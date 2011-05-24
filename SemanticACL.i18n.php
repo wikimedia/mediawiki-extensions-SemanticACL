@@ -1,7 +1,7 @@
 <?php
 
 $messages['en'] = array(
-	'sacl-desc' => 'Allows access restrictions to be set with Semantic MediaWiki properties.',
+	'sacl-desc' => 'Allows access restrictions to be set with Semantic MediaWiki properties',
 	'sacl-denied' => 'You are not on the access list for this page.',
 	'right-sacl-exempt' => 'Exempt from Semantic ACLs',
 	
@@ -13,3 +13,4 @@ $messages['en'] = array(
 	'sacl-property-editable-wl-group' => 'Editable by group',
 	'sacl-property-editable-wl-user' => 'Editable by user',
 );
+
