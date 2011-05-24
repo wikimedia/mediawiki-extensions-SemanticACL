@@ -6,10 +6,10 @@ $messages['en'] = array(
 	'right-sacl-exempt' => 'Exempt from Semantic ACLs',
 	
 	'sacl-property-visibility' => 'Visible to',
-	'sacl-property-visibility-wl-group' => 'View whitelisted group',
-	'sacl-property-visibility-wl-user' => 'View whitelisted user',
+	'sacl-property-visibility-wl-group' => 'Visible to group',
+	'sacl-property-visibility-wl-user' => 'Visible to user',
 	
 	'sacl-property-editable' => 'Editable by',
-	'sacl-property-editable-wl-group' => 'Edit whitelisted group',
-	'sacl-property-editable-wl-user' => 'Edit whitelisted user',
+	'sacl-property-editable-wl-group' => 'Editable by group',
+	'sacl-property-editable-wl-user' => 'Editable by user',
 );

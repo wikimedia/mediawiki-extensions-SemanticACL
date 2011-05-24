@@ -29,8 +29,8 @@ function saclInitProperties() {
 					wfMsgForContent('sacl-property-visibility-wl-user') );
 
 	SMWDIProperty::registerPropertyAlias( '___VISIBLE', 'Visible to' );
-	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_GROUP', 'View whitelisted group' );
-	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_USER', 'View whitelisted user' );
+	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_GROUP', 'Visible to group' );
+	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_USER', 'Visible to user' );
 					
 	// Write restriction properties
 	SMWDIProperty::registerProperty( '___EDITABLE', '_str',
@@ -41,8 +41,8 @@ function saclInitProperties() {
 					wfMsgForContent('sacl-property-editable-wl-user') );
 	
 	SMWDIProperty::registerPropertyAlias( '___EDITABLE_BY', 'Editable by' );
-	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_GROUP', 'Edit whitelisted group' );
-	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_USER', 'Edit whitelisted user' );
+	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_GROUP', 'Editable by group' );
+	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_USER', 'Editable by user' );
 					
 	return true;
 }
