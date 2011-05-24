@@ -8,6 +8,7 @@ $wgExtensionCredits['other'][] = array(
 	'name'           => 'Semantic ACL',
 	'author'         => array( 'Andrew Garrett' ),
 	'descriptionmsg' => 'sacl-desc',
+	'url' 		 => 'http://www.mediawiki.org/wiki/Extension:SemanticACL',
 );
 
 $wgExtensionMessagesFiles['SemanticACL'] = dirname(__FILE__).'/Messages.php';
