@@ -11,7 +11,7 @@ $wgExtensionCredits['other'][] = array(
 	'url' 		 => 'http://www.mediawiki.org/wiki/Extension:SemanticACL',
 );
 
-$wgExtensionMessagesFiles['SemanticACL'] = dirname(__FILE__).'/Messages.php';
+$wgExtensionMessagesFiles['SemanticACL'] = dirname(__FILE__) . '/SemanticACL.i18n.php';
 
 $wgHooks['userCan'][] = 'saclGetPermissionErrors';
 $wgHooks['smwInitProperties'][] = 'saclInitProperties';
