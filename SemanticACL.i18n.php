@@ -1,5 +1,7 @@
 <?php
 
+$messages = array();
+
 $messages['en'] = array(
 	'sacl-desc' => 'Allows access restrictions to be set with Semantic MediaWiki properties',
 	'sacl-denied' => 'You are not on the access list for this page.',
