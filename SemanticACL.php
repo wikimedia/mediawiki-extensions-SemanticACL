@@ -81,40 +81,33 @@ function saclGetPermissionErrors( $title, $user, $action, &$result ) {
 				$result = false;
 				return false;
 			}
-		} elseif ( $value == 'whitelist group' ) {
-			$whitelistProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
-			$whitelistValues = $store->getPropertyValues( $subject, $whitelistProperty );
+		} elseif ( $value == 'whitelist' ) {
+			$isWhitelisted = false;
 			
-			$inWhitelistedGroup = false;
+			$groupProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
+			$userProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
+			$whitelistValues = $store->getPropertyValues( $subject, $groupProperty );
 			
 			foreach( $whitelistValues as $whitelistValue ) {
 				$group = strtolower($whitelistValue->getString());
 				
 				if ( in_array( $group, $user->getEffectiveGroups() ) ) {
-					$inWhitelistedGroup = true;
+					$isWhitelisted = true;
 					break;
 				}
 			}
 			
-			if ( ! $inWhitelistedGroup ) {
-				$result = false;
-				return false;
-			}
-		} elseif ( $value == 'whitelist user' ) {
-			$whitelistProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
-			$whitelistValues = $store->getPropertyValues( $subject, $whitelistProperty );
-			
-			$isWhitelistedUser = false;
+			$whitelistValues = $store->getPropertyValues( $subject, $userProperty );
 			
 			foreach( $whitelistValues as $whitelistValue ) {
 				$title = $whitelistValue->getTitle();
 				
 				if ( $title->equals( $user->getUserPage() ) ) {
-					$isWhitelistedUser = true;
+					$isWhitelisted = true;
 				}
 			}
 			
-			if ( ! $isWhitelistedUser ) {
+			if ( ! $isWhitelisted ) {
 				$result = false;
 				return false;
 			}
