@@ -20,8 +20,6 @@ $wgGroupPermissions['sysop']['sacl-exempt'] = true;
 
 // Initialise predefined properties
 function saclInitProperties() {
-
-
 	// Read restriction properties
 	SMWDIProperty::registerProperty( '___VISIBLE', '_str',
 					wfMsgForContent('sacl-property-visibility') );
