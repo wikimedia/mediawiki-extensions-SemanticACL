@@ -110,6 +110,10 @@ $messages['mk'] = array(
  * @author SPQRobin
  */
 $messages['nl'] = array(
+	'sacl-desc' => 'Maakt het mogelijk toegangsbeperkingen in te stellen met Semantische MediaWiki-eigenschappen',
+	'sacl-denied' => 'U staat niet op de toegangslijst voor deze pagina.',
+	'right-sacl-exempt' => 'Vrijgesteld van Semantische ACLs (toegangscontrolelijsten)',
+	'sacl-property-visibility' => 'Zichtbaar voor',
 	'sacl-property-visibility-wl-group' => 'Zichtbaar voor groep',
 	'sacl-property-visibility-wl-user' => 'Zichtbaar voor gebruiker',
 	'sacl-property-editable' => 'Bewerkbaar door',
