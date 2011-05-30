@@ -108,13 +108,14 @@ $messages['mk'] = array(
 /** Dutch (Nederlands)
  * @author McDutchie
  * @author SPQRobin
+ * @author Siebrand
  */
 $messages['nl'] = array(
-	'sacl-desc' => 'Maakt het mogelijk toegangsbeperkingen in te stellen met Semantische MediaWiki-eigenschappen',
+	'sacl-desc' => 'Maakt het mogelijk toegangsbeperkingen in te stellen met eigenschappen van Semantic MediaWiki',
 	'sacl-denied' => 'U staat niet op de toegangslijst voor deze pagina.',
-	'right-sacl-exempt' => 'Vrijgesteld van Semantische ACLs (toegangscontrolelijsten)',
+	'right-sacl-exempt' => "Vrijgesteld van semantische ACL's (toegangscontrolelijsten)",
 	'sacl-property-visibility' => 'Zichtbaar voor',
-	'sacl-property-visibility-wl-group' => 'Zichtbaar voor groep',
+	'sacl-property-visibility-wl-group' => 'Zichtbaar voor de groep',
 	'sacl-property-visibility-wl-user' => 'Zichtbaar voor gebruiker',
 	'sacl-property-editable' => 'Bewerkbaar door',
 	'sacl-property-editable-wl-group' => 'Bewerkbaar door groep',
