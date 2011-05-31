@@ -53,6 +53,18 @@ $messages['fa'] = array(
 	'sacl-property-editable-wl-user' => 'قابل ویرایش برای کاربر',
 );
 
+/** Franco-Provençal (Arpetan)
+ * @author ChrisPtDe
+ */
+$messages['frp'] = array(
+	'sacl-property-visibility' => 'Visiblo por',
+	'sacl-property-visibility-wl-group' => 'Visiblo por la tropa',
+	'sacl-property-visibility-wl-user' => 'Visiblo por l’utilisator',
+	'sacl-property-editable' => 'Chanjâblo por',
+	'sacl-property-editable-wl-group' => 'Chanjâblo por la tropa',
+	'sacl-property-editable-wl-user' => 'Chanjâblo por l’utilisator',
+);
+
 /** Galician (Galego)
  * @author Toliño
  */
