@@ -23,6 +23,20 @@ $messages['qqq'] = array(
 	'right-sacl-exempt' => 'ACL = Access Control List',
 );
 
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'sacl-desc' => 'Дазваляе ладзіць абмежаваньні доступу праз уласьцівасьці Semantic MediaWiki',
+	'sacl-denied' => 'Вы ня ўключаныя ў сьпіс доступу да гэтай старонкі.',
+	'sacl-property-visibility' => 'Бачны',
+	'sacl-property-visibility-wl-group' => 'Бачны групе',
+	'sacl-property-visibility-wl-user' => 'Бачны ўдзельніку',
+	'sacl-property-editable' => 'Можа рэдагавацца',
+	'sacl-property-editable-wl-group' => 'Можа рэдагавацца групай',
+	'sacl-property-editable-wl-user' => 'Можа рэдагавацца ўдзельнікам',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
