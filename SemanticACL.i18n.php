@@ -67,6 +67,13 @@ $messages['fa'] = array(
 	'sacl-property-editable-wl-user' => 'قابل ویرایش برای کاربر',
 );
 
+/** French (Français)
+ * @author Sherbrooke
+ */
+$messages['fr'] = array(
+	'sacl-desc' => "Gère les restrictions d'accès ''via'' des propriétés de Semantic MediaWiki",
+);
+
 /** Franco-Provençal (Arpetan)
  * @author ChrisPtDe
  */
