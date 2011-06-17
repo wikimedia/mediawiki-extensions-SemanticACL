@@ -24,11 +24,13 @@ $messages['qqq'] = array(
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+ * @author EugeneZelenko
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
 	'sacl-desc' => 'Дазваляе ладзіць абмежаваньні доступу праз уласьцівасьці Semantic MediaWiki',
 	'sacl-denied' => 'Вы ня ўключаныя ў сьпіс доступу да гэтай старонкі.',
+	'right-sacl-exempt' => 'выключэньне са сэмантычных сьпісаў доступу',
 	'sacl-property-visibility' => 'Бачны',
 	'sacl-property-visibility-wl-group' => 'Бачны групе',
 	'sacl-property-visibility-wl-user' => 'Бачны ўдзельніку',
@@ -99,6 +101,21 @@ $messages['gl'] = array(
 	'sacl-property-editable' => 'Editable por',
 	'sacl-property-editable-wl-group' => 'Editable polo grupo',
 	'sacl-property-editable-wl-user' => 'Editable polo usuario',
+);
+
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'sacl-desc' => 'הוספת אפשרות להגדיר הגבלות על מאפיינים של מדיה־ויקי סמנטית',
+	'sacl-denied' => 'אינך מופיע ברשימת הגישה לדף הזה.',
+	'right-sacl-exempt' => 'פטור מרשימות בקרת גישה סמנטיות',
+	'sacl-property-visibility' => 'גלוי ל',
+	'sacl-property-visibility-wl-group' => 'גלוי לקבוצה',
+	'sacl-property-visibility-wl-user' => 'גלוי למשתמש',
+	'sacl-property-editable' => 'ניתן לעריכה על־ידי',
+	'sacl-property-editable-wl-group' => 'ניתן לעריכה על־ידי קבוצה',
+	'sacl-property-editable-wl-user' => 'ניתן לעריכה על־ידי המשתמש',
 );
 
 /** Interlingua (Interlingua)
