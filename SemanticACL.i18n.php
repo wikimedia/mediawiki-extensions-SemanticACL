@@ -74,6 +74,14 @@ $messages['fa'] = array(
  */
 $messages['fr'] = array(
 	'sacl-desc' => "Gère les restrictions d'accès ''via'' des propriétés de Semantic MediaWiki",
+	'sacl-denied' => "Vous n'êtes pas sur la liste d'accès pour cette page.",
+	'right-sacl-exempt' => "Exempté de la liste d'accès de Semantic MediaWiki",
+	'sacl-property-visibility' => 'Visible à',
+	'sacl-property-visibility-wl-group' => 'Visible pour les groupes',
+	'sacl-property-visibility-wl-user' => "Visible pour l'utilisateur",
+	'sacl-property-editable' => 'Modifiable par',
+	'sacl-property-editable-wl-group' => 'Modifiable par le groupe',
+	'sacl-property-editable-wl-user' => "Modifiable par l'utilisateur",
 );
 
 /** Franco-Provençal (Arpetan)
