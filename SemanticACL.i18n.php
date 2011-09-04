@@ -141,6 +141,15 @@ $messages['ia'] = array(
 	'sacl-property-editable-wl-user' => 'Modificabile per le usator',
 );
 
+/** Japanese (日本語)
+ * @author Schu
+ */
+$messages['ja'] = array(
+	'sacl-desc' => 'アクセス制限をセマンティックMediaWikiのプロパティで設定することを可能にします。',
+	'sacl-denied' => 'あなたは、このページのアクセスリスト上にいません。',
+	'right-sacl-exempt' => 'セマンティック ACL から免除',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
