@@ -18,9 +18,11 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author Kghbln
+ * @author Umherirrender
  */
 $messages['qqq'] = array(
-	'right-sacl-exempt' => 'ACL = Access Control List',
+	'right-sacl-exempt' => '{{doc-right|sacl-exempt}}
+ACL = Access Control List',
 );
 
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
