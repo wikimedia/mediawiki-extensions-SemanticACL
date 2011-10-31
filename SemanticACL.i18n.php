@@ -25,6 +25,21 @@ $messages['qqq'] = array(
 ACL = Access Control List',
 );
 
+/** Asturian (Asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'sacl-desc' => "Permite definir torgues d'accesu coles propiedaes de Semantic MediaWiki",
+	'sacl-denied' => "Nun tas na llista d'accesu d'esta páxina.",
+	'right-sacl-exempt' => "Dispensáu de les llistes de control d'accesu semántiques",
+	'sacl-property-visibility' => 'Visible pa',
+	'sacl-property-visibility-wl-group' => 'Visible pal grupu',
+	'sacl-property-visibility-wl-user' => 'Visible pal usuariu',
+	'sacl-property-editable' => 'Editable por',
+	'sacl-property-editable-wl-group' => 'Editable pol grupu',
+	'sacl-property-editable-wl-user' => 'Editable pol usuariu',
+);
+
 /** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Wizardist
