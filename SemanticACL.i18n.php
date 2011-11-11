@@ -56,6 +56,15 @@ $messages['be-tarask'] = array(
 	'sacl-property-editable-wl-user' => 'Можа рэдагавацца ўдзельнікам',
 );
 
+/** Breton (Brezhoneg)
+ * @author Fulup
+ */
+$messages['br'] = array(
+	'sacl-property-visibility' => "A c'hall bezañ gwelet gant",
+	'sacl-property-visibility-wl-group' => "A c'hall bezañ gwelet gant ar strolladoù",
+	'sacl-property-visibility-wl-user' => "A c'hall bezañ gwelet gant an implijer",
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
