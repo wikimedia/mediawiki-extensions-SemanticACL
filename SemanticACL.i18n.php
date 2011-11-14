@@ -181,6 +181,9 @@ $messages['ja'] = array(
  */
 $messages['lb'] = array(
 	'sacl-denied' => 'Dir sidd net op der Lëscht vun deenen déi dës Säit benotzen däerfen',
+	'sacl-property-visibility' => 'Visibel fir',
+	'sacl-property-visibility-wl-group' => 'Visibel fir de Grupp',
+	'sacl-property-visibility-wl-user' => 'Visibel fir de Benotzer',
 );
 
 /** Macedonian (Македонски)
