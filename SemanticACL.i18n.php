@@ -218,6 +218,18 @@ $messages['nl'] = array(
 	'sacl-property-editable-wl-user' => 'Bewerkbaar door gebruiker',
 );
 
+/** Polish (Polski)
+ * @author Woytecr
+ */
+$messages['pl'] = array(
+	'sacl-property-visibility' => 'Widoczne dla',
+	'sacl-property-visibility-wl-group' => 'Widoczne dla grupy',
+	'sacl-property-visibility-wl-user' => 'Widoczne dla użytkownika',
+	'sacl-property-editable' => 'Możliwość edytowania przez',
+	'sacl-property-editable-wl-group' => 'Edycja dla grup',
+	'sacl-property-editable-wl-user' => 'Edycja przez użytkownika',
+);
+
 /** Portuguese (Português)
  * @author Hamilton Abreu
  */
