@@ -245,3 +245,17 @@ $messages['pt'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo utilizador',
 );
 
+/** Simplified Chinese (‪中文(简体)‬)
+ * @author Hzy980512
+ */
+$messages['zh-hans'] = array(
+	'sacl-denied' => '您不在该页面的可视列表中',
+	'right-sacl-exempt' => 'Semantic ACL豁免权',
+	'sacl-property-visibility' => '可见于',
+	'sacl-property-visibility-wl-group' => '可见于组',
+	'sacl-property-visibility-wl-user' => '可见于用户',
+	'sacl-property-editable' => '可编辑于',
+	'sacl-property-editable-wl-group' => '可编辑于组',
+	'sacl-property-editable-wl-user' => '可编辑于用户',
+);
+
