@@ -230,6 +230,21 @@ $messages['pl'] = array(
 	'sacl-property-editable-wl-user' => 'Edycja przez użytkownika',
 );
 
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'sacl-desc' => "A përmëtt che le restrission d'acess a sio ampostà con le propietà Semantic MediaWiki",
+	'sacl-denied' => "It ses pa an sla lista dj'acess për sta pagina.",
+	'right-sacl-exempt' => 'Esempi da ACL Semantich',
+	'sacl-property-visibility' => 'Visìbil a',
+	'sacl-property-visibility-wl-group' => 'Visìbil a la partìa',
+	'sacl-property-visibility-wl-user' => "Visìbil a l'utent",
+	'sacl-property-editable' => 'Modificàbil da',
+	'sacl-property-editable-wl-group' => 'Modificàbi da la partìa',
+	'sacl-property-editable-wl-user' => "Modificàbi da l'utent",
+);
+
 /** Portuguese (Português)
  * @author Hamilton Abreu
  */
