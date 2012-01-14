@@ -152,6 +152,21 @@ $messages['he'] = array(
 	'sacl-property-editable-wl-user' => 'ניתן לעריכה על־ידי המשתמש',
 );
 
+/** Upper Sorbian (Hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'sacl-desc' => 'Zmóžnja přistupne wobmjezowanja zwjazane z atributami Semantic MediaWiki',
+	'sacl-denied' => 'Njejsy na lisćinje woprawnjenych za přistup na tutu stronu.',
+	'right-sacl-exempt' => 'Ze Semantic ACL wuwzać',
+	'sacl-property-visibility' => 'Widźomny za',
+	'sacl-property-visibility-wl-group' => 'Widźomny za skupinu',
+	'sacl-property-visibility-wl-user' => 'Widźomny za wužiwarja',
+	'sacl-property-editable' => 'Wobdźěłujomny wot',
+	'sacl-property-editable-wl-group' => 'Wobdźěłujomny wot skupiny',
+	'sacl-property-editable-wl-user' => 'Wobdźěłujomny wot wužiwarja',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
