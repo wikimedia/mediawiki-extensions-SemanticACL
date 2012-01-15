@@ -63,6 +63,9 @@ $messages['br'] = array(
 	'sacl-property-visibility' => "A c'hall bezañ gwelet gant",
 	'sacl-property-visibility-wl-group' => "A c'hall bezañ gwelet gant ar strolladoù",
 	'sacl-property-visibility-wl-user' => "A c'hall bezañ gwelet gant an implijer",
+	'sacl-property-editable' => "A c'hall bezañ kemmet gant",
+	'sacl-property-editable-wl-group' => "A c'hall bezañ kemmet gant ar strollad",
+	'sacl-property-editable-wl-user' => "A c'hall bezañ kemmet gant an implijer",
 );
 
 /** German (Deutsch)
