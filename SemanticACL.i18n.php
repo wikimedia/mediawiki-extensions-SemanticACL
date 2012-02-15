@@ -281,8 +281,10 @@ $messages['pt'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Hzy980512
+ * @author Linforest
  */
 $messages['zh-hans'] = array(
+	'sacl-desc' => '允许采用Semantic MediaWiki属性来设置访问限制',
 	'sacl-denied' => '您不在该页面的可视列表中',
 	'right-sacl-exempt' => 'Semantic ACL豁免权',
 	'sacl-property-visibility' => '可见于',
