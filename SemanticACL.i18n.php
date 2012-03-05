@@ -83,6 +83,21 @@ $messages['de'] = array(
 	'sacl-property-editable-wl-user' => 'Bearbeitbar von Benutzer',
 );
 
+/** Spanish (Español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'sacl-desc' => 'Permite definir restricciones de acceso con las propiedades de Semantic MediaWiki',
+	'sacl-denied' => 'No está en la lista de acceso de esta página.',
+	'right-sacl-exempt' => 'Exento de la lista de control de acceso de Semantic',
+	'sacl-property-visibility' => 'Visible para',
+	'sacl-property-visibility-wl-group' => 'Visible para el grupo',
+	'sacl-property-visibility-wl-user' => 'Visible para el usuario',
+	'sacl-property-editable' => 'Editable por',
+	'sacl-property-editable-wl-group' => 'Editable por el grupo',
+	'sacl-property-editable-wl-user' => 'Editable por el usuario',
+);
+
 /** Persian (فارسی)
  * @author Ebraminio
  */
