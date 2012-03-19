@@ -252,9 +252,13 @@ $messages['nl'] = array(
 );
 
 /** Polish (Polski)
+ * @author BeginaFelicysym
  * @author Woytecr
  */
 $messages['pl'] = array(
+	'sacl-desc' => 'Umożliwia ograniczenia dostępu przy użyciu właściwości Semantycznej MediaWiki',
+	'sacl-denied' => 'Nie jesteś na liście dostępu do tej strony.',
+	'right-sacl-exempt' => 'Zwolniony z listy ACL Semantycznej MediaWiki',
 	'sacl-property-visibility' => 'Widoczne dla',
 	'sacl-property-visibility-wl-group' => 'Widoczne dla grupy',
 	'sacl-property-visibility-wl-user' => 'Widoczne dla użytkownika',
