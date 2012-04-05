@@ -200,6 +200,20 @@ $messages['ia'] = array(
 	'sacl-property-editable-wl-user' => 'Modificabile per le usator',
 );
 
+/** Italian (Italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'sacl-desc' => 'Permette di impostare restrizioni di accesso con proprietà Semantic MediaWiki',
+	'sacl-denied' => 'Non sei sulla lista di accesso per questa pagina.',
+	'sacl-property-visibility' => 'Visibile a',
+	'sacl-property-visibility-wl-group' => 'Visibile al gruppo',
+	'sacl-property-visibility-wl-user' => "Visibile all'utente",
+	'sacl-property-editable' => 'Modificabile da',
+	'sacl-property-editable-wl-group' => 'Modificabile dal gruppo',
+	'sacl-property-editable-wl-user' => "Modificabile dall'utente",
+);
+
 /** Japanese (日本語)
  * @author Schu
  */
