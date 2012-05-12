@@ -134,10 +134,10 @@ $messages['fr'] = array(
 $messages['frp'] = array(
 	'sacl-property-visibility' => 'Visiblo por',
 	'sacl-property-visibility-wl-group' => 'Visiblo por la tropa',
-	'sacl-property-visibility-wl-user' => 'Visiblo por l’utilisator',
+	'sacl-property-visibility-wl-user' => 'Visiblo por l’usanciér',
 	'sacl-property-editable' => 'Chanjâblo por',
 	'sacl-property-editable-wl-group' => 'Chanjâblo por la tropa',
-	'sacl-property-editable-wl-user' => 'Chanjâblo por l’utilisator',
+	'sacl-property-editable-wl-user' => 'Chanjâblo por l’usanciér',
 );
 
 /** Galician (Galego)
