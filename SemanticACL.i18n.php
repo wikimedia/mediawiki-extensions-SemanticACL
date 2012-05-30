@@ -312,6 +312,21 @@ $messages['pt'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo utilizador',
 );
 
+/** Brazilian Portuguese (Português do Brasil)
+ * @author Jaideraf
+ */
+$messages['pt-br'] = array(
+	'sacl-desc' => 'Permite definir restrições de acesso com propriedades do Semantic Mediawiki',
+	'sacl-denied' => 'Você não está na lista de acesso para esta página.',
+	'right-sacl-exempt' => 'Isenta das Listas de Controle de Acesso Semânticas',
+	'sacl-property-visibility' => 'Visível para',
+	'sacl-property-visibility-wl-group' => 'Visível para o grupo',
+	'sacl-property-visibility-wl-user' => 'Visível para o usuário',
+	'sacl-property-editable' => 'Editável por',
+	'sacl-property-editable-wl-group' => 'Editável pelo grupo',
+	'sacl-property-editable-wl-user' => 'Editável pelo usuário',
+);
+
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Hzy980512
  * @author Linforest
