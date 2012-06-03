@@ -200,7 +200,7 @@ $messages['ia'] = array(
 	'sacl-property-editable-wl-user' => 'Modificabile per le usator',
 );
 
-/** Italian (Italiano)
+/** Italian (italiano)
  * @author Beta16
  */
 $messages['it'] = array(
@@ -313,7 +313,7 @@ $messages['pt'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo utilizador',
 );
 
-/** Brazilian Portuguese (Português do Brasil)
+/** Brazilian Portuguese (português do Brasil)
  * @author Jaideraf
  */
 $messages['pt-br'] = array(
