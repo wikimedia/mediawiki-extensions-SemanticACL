@@ -217,9 +217,10 @@ $messages['it'] = array(
 
 /** Japanese (日本語)
  * @author Schu
+ * @author Shirayuki
  */
 $messages['ja'] = array(
-	'sacl-desc' => 'アクセス制限をセマンティックMediaWikiのプロパティで設定することを可能にします。',
+	'sacl-desc' => 'セマンティックMediaWikiのプロパティでアクセス制限を設定できるようにする',
 	'sacl-denied' => 'あなたは、このページのアクセスリスト上にいません。',
 	'right-sacl-exempt' => 'セマンティック ACL から免除',
 );
