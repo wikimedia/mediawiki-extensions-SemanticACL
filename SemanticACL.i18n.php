@@ -25,7 +25,7 @@ $messages['qqq'] = array(
 ACL = Access Control List',
 );
 
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  * @author Xuacu
  */
 $messages['ast'] = array(
@@ -56,7 +56,7 @@ $messages['be-tarask'] = array(
 	'sacl-property-editable-wl-user' => 'Можа рэдагавацца ўдзельнікам',
 );
 
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  * @author Fulup
  */
 $messages['br'] = array(
@@ -83,7 +83,7 @@ $messages['de'] = array(
 	'sacl-property-editable-wl-user' => 'Bearbeitbar von Benutzer',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Armando-Martin
  */
 $messages['es'] = array(
@@ -113,7 +113,7 @@ $messages['fa'] = array(
 	'sacl-property-editable-wl-user' => 'قابل ویرایش برای کاربر',
 );
 
-/** French (Français)
+/** French (français)
  * @author Sherbrooke
  */
 $messages['fr'] = array(
@@ -128,7 +128,7 @@ $messages['fr'] = array(
 	'sacl-property-editable-wl-user' => "Modifiable par l'utilisateur",
 );
 
-/** Franco-Provençal (Arpetan)
+/** Franco-Provençal (arpetan)
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
@@ -185,7 +185,7 @@ $messages['hsb'] = array(
 	'sacl-property-editable-wl-user' => 'Wobdźěłujomny wot wužiwarja',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
@@ -235,7 +235,7 @@ $messages['lb'] = array(
 	'sacl-property-visibility-wl-user' => 'Visibel fir de Benotzer',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
@@ -267,7 +267,7 @@ $messages['nl'] = array(
 	'sacl-property-editable-wl-user' => 'Bewerkbaar door gebruiker',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author BeginaFelicysym
  * @author Woytecr
  */
@@ -299,7 +299,7 @@ $messages['pms'] = array(
 	'sacl-property-editable-wl-user' => "Modificàbil da l'utent",
 );
 
-/** Portuguese (Português)
+/** Portuguese (português)
  * @author Hamilton Abreu
  */
 $messages['pt'] = array(
@@ -329,7 +329,7 @@ $messages['pt-br'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo usuário',
 );
 
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文（简体）‬)
  * @author Hzy980512
  * @author Linforest
  */
