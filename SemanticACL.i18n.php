@@ -40,7 +40,7 @@ $messages['ast'] = array(
 	'sacl-property-editable-wl-user' => 'Editable pol usuariu',
 );
 
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Wizardist
  */
@@ -140,7 +140,7 @@ $messages['frp'] = array(
 	'sacl-property-editable-wl-user' => 'Chanjâblo por l’usanciér',
 );
 
-/** Galician (Galego)
+/** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -170,7 +170,7 @@ $messages['he'] = array(
 	'sacl-property-editable-wl-user' => 'ניתן לעריכה על־ידי המשתמש',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
