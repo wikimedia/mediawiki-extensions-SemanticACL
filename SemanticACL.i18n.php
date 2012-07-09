@@ -185,6 +185,21 @@ $messages['hsb'] = array(
 	'sacl-property-editable-wl-user' => 'Wobdźěłujomny wot wužiwarja',
 );
 
+/** Hungarian (magyar)
+ * @author TK-999
+ */
+$messages['hu'] = array(
+	'sacl-desc' => 'Lehetvőé teszi a hozzáférés korlátozásának beállítását szemantikus MediaWiki-tulajdonságokkal',
+	'sacl-denied' => 'Nem vagy rajta ezen lap hozzáférési listáján.',
+	'right-sacl-exempt' => 'Szemantikus hozzáférés-szabályozó listák alól független',
+	'sacl-property-visibility' => 'Megtekinthetik',
+	'sacl-property-visibility-wl-group' => 'Megtekintheti az alábbi csoport',
+	'sacl-property-visibility-wl-user' => 'Megtekintheti az alábbi felhasználó',
+	'sacl-property-editable' => 'Szerkesztheti',
+	'sacl-property-editable-wl-group' => 'Szerkesztheti az alábbi csoport',
+	'sacl-property-editable-wl-user' => 'Szerkesztheti az alábbi felhasználó',
+);
+
 /** Interlingua (interlingua)
  * @author McDutchie
  */
