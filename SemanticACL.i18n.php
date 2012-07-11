@@ -265,6 +265,21 @@ $messages['mk'] = array(
 	'sacl-property-editable-wl-user' => 'Уредливо за корисникот',
 );
 
+/** Norwegian Bokmål (‪norsk (bokmål)‬)
+ * @author Event
+ */
+$messages['nb'] = array(
+	'sacl-desc' => 'Tillater å sette adgangsbegrensninger med egenskaper fra Semantic MediaWiki',
+	'sacl-denied' => 'Du er ikke på adgangslisten for denne siden.',
+	'right-sacl-exempt' => 'Fritatt fra Semantic ACL-er',
+	'sacl-property-visibility' => 'Synlig for',
+	'sacl-property-visibility-wl-group' => 'Synlig for gruppe',
+	'sacl-property-visibility-wl-user' => 'Synlig for bruker',
+	'sacl-property-editable' => 'Redigerbar av',
+	'sacl-property-editable-wl-group' => 'Redigerbar av gruppe',
+	'sacl-property-editable-wl-user' => 'Redigerbar av bruker',
+);
+
 /** Dutch (Nederlands)
  * @author McDutchie
  * @author SPQRobin
