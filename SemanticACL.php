@@ -1,9 +1,23 @@
 <?php
 
+/**
+ * SemanticACL extension - Allows per-page read and edit restrictions to be set with properties.
+ *
+ * @link https://www.mediawiki.org/wiki/Extension:SemanticACL Documentation
+ *
+ * @file SemanticACL.php
+ * @ingroup Extensions
+ * @defgroup SemanticACL
+ * @package MediaWiki
+ * @author Werdna (Andrew Garrett)
+ * @copyright (C) 2011 Werdna
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
+
 if ( !defined( 'MEDIAWIKI' ) )
 	die();
 
-$wgExtensionCredits['other'][] = array(
+$wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'Semantic ACL',
 	'author'         => array( 'Andrew Garrett' ),

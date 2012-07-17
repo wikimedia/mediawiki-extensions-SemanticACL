@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * @file SemanticACL.i18n.php
+ * @ingroup SemanticACL
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
+
 $messages = array();
 
+/** English
+ * @author Werdna
+ */
 $messages['en'] = array(
 	'sacl-desc' => 'Allows access restrictions to be set with Semantic MediaWiki properties',
 	'sacl-denied' => 'You are not on the access list for this page.',
