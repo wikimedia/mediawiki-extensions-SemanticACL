@@ -368,6 +368,21 @@ $messages['pt-br'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo usuário',
 );
 
+/** Tagalog (Tagalog)
+ * @author AnakngAraw
+ */
+$messages['tl'] = array(
+	'sacl-desc' => 'Nagpapahintulot na maitakda ang mga kabawalan sa pagpunta na mayrooong mga katangiang-ari ng Semantikong MediaWiki',
+	'sacl-denied' => 'Wala ka sa listahan ng mga makakapunta para sa pahinang ito.',
+	'right-sacl-exempt' => 'Hindi kasali sa Semantikong Listahan ng Pagtaban sa Pagpunta',
+	'sacl-property-visibility' => 'Makikita ng',
+	'sacl-property-visibility-wl-group' => 'Makikita ng pangkat',
+	'sacl-property-visibility-wl-user' => 'Makikita ng tagagamit',
+	'sacl-property-editable' => 'Mapapatnugutan ng',
+	'sacl-property-editable-wl-group' => 'Mapapatnugutan ng pangkat',
+	'sacl-property-editable-wl-user' => 'Mapapatnugutan ng tagagamit',
+);
+
 /** Simplified Chinese (‪中文（简体）‬)
  * @author Hzy980512
  * @author Linforest
