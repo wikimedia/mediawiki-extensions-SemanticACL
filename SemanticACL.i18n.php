@@ -244,9 +244,15 @@ $messages['it'] = array(
  * @author Shirayuki
  */
 $messages['ja'] = array(
-	'sacl-desc' => 'セマンティックMediaWikiのプロパティでアクセス制限を設定できるようにする',
+	'sacl-desc' => 'Semantic MediaWiki のプロパティでアクセス制限を設定できるようにする',
 	'sacl-denied' => 'あなたは、このページのアクセスリスト上にいません。',
 	'right-sacl-exempt' => 'セマンティック ACL から免除',
+	'sacl-property-visibility' => '閲覧可能',
+	'sacl-property-visibility-wl-group' => 'グループが閲覧可能',
+	'sacl-property-visibility-wl-user' => '利用者が閲覧可能',
+	'sacl-property-editable' => '編集可能',
+	'sacl-property-editable-wl-group' => 'グループが編集可能',
+	'sacl-property-editable-wl-user' => '利用者が編集可能',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
