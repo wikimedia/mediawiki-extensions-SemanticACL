@@ -405,3 +405,16 @@ $messages['zh-hans'] = array(
 	'sacl-property-editable-wl-user' => '可编辑于用户',
 );
 
+/** Traditional Chinese (中文（繁體）‎) */
+$messages['zh-hant'] = array(
+	'sacl-desc' => '允許採用Semantic MediaWiki屬性來設置訪問限制',
+	'sacl-denied' => '您不在該頁面的可視列表中',
+	'right-sacl-exempt' => 'Semantic ACL豁免權',
+	'sacl-property-visibility' => '可見於',
+	'sacl-property-visibility-wl-group' => '可見於組',
+	'sacl-property-visibility-wl-user' => '可見於用戶',
+	'sacl-property-editable' => '可編輯於',
+	'sacl-property-editable-wl-group' => '可編輯於組',
+	'sacl-property-editable-wl-user' => '可編輯於用戶',
+);
+
