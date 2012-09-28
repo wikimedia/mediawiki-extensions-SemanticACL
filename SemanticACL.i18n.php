@@ -245,7 +245,7 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'sacl-desc' => 'Semantic MediaWiki のプロパティでアクセス制限を設定できるようにする',
-	'sacl-denied' => 'あなたは、このページのアクセスリスト上にいません。',
+	'sacl-denied' => 'あなたは、このページのアクセスリストに含まれていません。',
 	'right-sacl-exempt' => '意味的 ACL から免除',
 	'sacl-property-visibility' => '閲覧可能',
 	'sacl-property-visibility-wl-group' => 'グループが閲覧可能',
