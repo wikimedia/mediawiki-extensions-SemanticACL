@@ -49,7 +49,7 @@ $messages['ast'] = array(
 	'sacl-property-editable-wl-user' => 'Editable pol usuariu',
 );
 
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author EugeneZelenko
  * @author Wizardist
  */
@@ -280,7 +280,7 @@ $messages['mk'] = array(
 	'sacl-property-editable-wl-user' => 'Уредливо за корисникот',
 );
 
-/** Norwegian Bokmål (‪norsk (bokmål)‬)
+/** Norwegian Bokmål (norsk (bokmål)‎)
  * @author Event
  */
 $messages['nb'] = array(
@@ -389,7 +389,7 @@ $messages['tl'] = array(
 	'sacl-property-editable-wl-user' => 'Mapapatnugutan ng tagagamit',
 );
 
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
  * @author Linforest
  */
