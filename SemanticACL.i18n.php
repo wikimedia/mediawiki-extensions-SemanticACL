@@ -374,6 +374,21 @@ $messages['pt-br'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo usuário',
 );
 
+/** Swedish (svenska)
+ * @author Martinwiss
+ */
+$messages['sv'] = array(
+	'sacl-desc' => 'Möjliggör att rättigheter tilldelas med hjälp av egenskaper från Semantiska MediaWiki',
+	'sacl-denied' => 'Du finns inte med på listan över de som har tillgång till den här sidan.',
+	'right-sacl-exempt' => 'Utdrag från Semantic ACL:er',
+	'sacl-property-visibility' => 'Synlig för',
+	'sacl-property-visibility-wl-group' => 'Synlig för grupp',
+	'sacl-property-visibility-wl-user' => 'Synlig för användare',
+	'sacl-property-editable' => 'Redigerbar för',
+	'sacl-property-editable-wl-group' => 'Redigerbar för grupp',
+	'sacl-property-editable-wl-user' => 'Redigerbar för användare',
+);
+
 /** Tagalog (Tagalog)
  * @author AnakngAraw
  */
