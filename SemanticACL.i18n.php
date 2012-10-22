@@ -420,7 +420,8 @@ $messages['zh-hans'] = array(
 	'sacl-property-editable-wl-user' => '可编辑于用户',
 );
 
-/** Traditional Chinese (中文（繁體）‎) */
+/** Traditional Chinese (中文（繁體）‎)
+ */
 $messages['zh-hant'] = array(
 	'sacl-desc' => '允許採用Semantic MediaWiki屬性來設置訪問限制',
 	'sacl-denied' => '您不在該頁面的可視列表中',
@@ -432,4 +433,3 @@ $messages['zh-hant'] = array(
 	'sacl-property-editable-wl-group' => '可編輯於組',
 	'sacl-property-editable-wl-user' => '可編輯於用戶',
 );
-
