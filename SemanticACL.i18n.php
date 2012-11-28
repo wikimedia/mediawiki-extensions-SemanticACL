@@ -122,6 +122,21 @@ $messages['fa'] = array(
 	'sacl-property-editable-wl-user' => 'قابل ویرایش برای کاربر',
 );
 
+/** Finnish (suomi)
+ * @author Nedergard
+ */
+$messages['fi'] = array(
+	'sacl-desc' => 'Sallii Semantic Media-Wikin ominaisuuksien käyttörajoitusten asettamisen.',
+	'sacl-denied' => 'Käyttäjätunnuksesi ei ole tämän sivun käyttöoikeusluettelossa.',
+	'right-sacl-exempt' => 'Ei kuulu semanttiseen käyttörajoitusluetteloon',
+	'sacl-property-visibility' => 'Näyttöoikeudet',
+	'sacl-property-visibility-wl-group' => 'Näkyy ryhmälle',
+	'sacl-property-visibility-wl-user' => 'Näkyy käyttäjälle',
+	'sacl-property-editable' => 'Muokkausoikeudet',
+	'sacl-property-editable-wl-group' => 'Muokkausoikeudet ryhmällä',
+	'sacl-property-editable-wl-user' => 'Muokkausoikeudet käyttäjällä',
+);
+
 /** French (français)
  * @author Sherbrooke
  */
