@@ -27,9 +27,11 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author Kghbln
+ * @author Shirayuki
  * @author Umherirrender
  */
 $messages['qqq'] = array(
+	'sacl-desc' => '{{desc|name=Semantic ACL|url=http://www.mediawiki.org/wiki/Extension:SemanticACL}}',
 	'right-sacl-exempt' => '{{doc-right|sacl-exempt}}
 ACL = Access Control List',
 );
