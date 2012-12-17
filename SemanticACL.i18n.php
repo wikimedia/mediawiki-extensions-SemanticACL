@@ -32,8 +32,63 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'sacl-desc' => '{{desc|name=Semantic ACL|url=http://www.mediawiki.org/wiki/Extension:SemanticACL}}',
+	'sacl-denied' => 'This is an informatory message.',
 	'right-sacl-exempt' => '{{doc-right|sacl-exempt}}
 ACL = Access Control List',
+	'sacl-property-visibility' => 'This is the name of the property that will hold the values defining the user(s) or user group(s) which may view a page.
+
+See also:
+* {{msg-mw|Sacl-property-visibility}}
+* {{msg-mw|Sacl-property-visibility-wl-group}}
+* {{msg-mw|Sacl-property-visibility-wl-user}}
+* {{msg-mw|Sacl-property-editable}}
+* {{msg-mw|Sacl-property-editable-wl-group}}
+* {{msg-mw|Sacl-property-editable-wl-user}}',
+	'sacl-property-visibility-wl-group' => 'This is the name of the property that will hold the values defining the user group(s) which may view a page.
+
+See also:
+* {{msg-mw|Sacl-property-visibility}}
+* {{msg-mw|Sacl-property-visibility-wl-group}}
+* {{msg-mw|Sacl-property-visibility-wl-user}}
+* {{msg-mw|Sacl-property-editable}}
+* {{msg-mw|Sacl-property-editable-wl-group}}
+* {{msg-mw|Sacl-property-editable-wl-user}}',
+	'sacl-property-visibility-wl-user' => 'This is the name of the property that will hold the values defining the user(s) which may view a page.
+
+See also:
+* {{msg-mw|Sacl-property-visibility}}
+* {{msg-mw|Sacl-property-visibility-wl-group}}
+* {{msg-mw|Sacl-property-visibility-wl-user}}
+* {{msg-mw|Sacl-property-editable}}
+* {{msg-mw|Sacl-property-editable-wl-group}}
+* {{msg-mw|Sacl-property-editable-wl-user}}',
+	'sacl-property-editable' => 'This is the name of the property that will hold the values defining the user(s) or user group(s) which may edit a page.
+
+See also:
+* {{msg-mw|Sacl-property-visibility}}
+* {{msg-mw|Sacl-property-visibility-wl-group}}
+* {{msg-mw|Sacl-property-visibility-wl-user}}
+* {{msg-mw|Sacl-property-editable}}
+* {{msg-mw|Sacl-property-editable-wl-group}}
+* {{msg-mw|Sacl-property-editable-wl-user}}',
+	'sacl-property-editable-wl-group' => 'This is the name of the property that will hold the values defining the user group(s) which may edit a page.
+
+See also:
+* {{msg-mw|Sacl-property-visibility}}
+* {{msg-mw|Sacl-property-visibility-wl-group}}
+* {{msg-mw|Sacl-property-visibility-wl-user}}
+* {{msg-mw|Sacl-property-editable}}
+* {{msg-mw|Sacl-property-editable-wl-group}}
+* {{msg-mw|Sacl-property-editable-wl-user}}',
+	'sacl-property-editable-wl-user' => 'This is the name of the property that will hold the values defining the user(s) which may edit a page.
+
+See also:
+* {{msg-mw|Sacl-property-visibility}}
+* {{msg-mw|Sacl-property-visibility-wl-group}}
+* {{msg-mw|Sacl-property-visibility-wl-user}}
+* {{msg-mw|Sacl-property-editable}}
+* {{msg-mw|Sacl-property-editable-wl-group}}
+* {{msg-mw|Sacl-property-editable-wl-user}}',
 );
 
 /** Asturian (asturianu)
