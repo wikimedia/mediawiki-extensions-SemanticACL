@@ -379,9 +379,9 @@ $messages['nl'] = array(
 	'sacl-property-visibility' => 'Zichtbaar voor',
 	'sacl-property-visibility-wl-group' => 'Zichtbaar voor de groep',
 	'sacl-property-visibility-wl-user' => 'Zichtbaar voor gebruiker',
-	'sacl-property-editable' => 'Bewerkbaar door',
-	'sacl-property-editable-wl-group' => 'Bewerkbaar door groep',
-	'sacl-property-editable-wl-user' => 'Bewerkbaar door gebruiker',
+	'sacl-property-editable' => 'Te bewerken door',
+	'sacl-property-editable-wl-group' => 'Te bewerken door groep',
+	'sacl-property-editable-wl-user' => 'Te bewerken door gebruiker',
 );
 
 /** Polish (polski)
