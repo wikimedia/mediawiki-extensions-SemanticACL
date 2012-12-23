@@ -38,57 +38,33 @@ ACL = Access Control List',
 	'sacl-property-visibility' => 'This is the name of the property that will hold the values defining the user(s) or user group(s) which may view a page.
 
 See also:
-* {{msg-mw|Sacl-property-visibility}}
 * {{msg-mw|Sacl-property-visibility-wl-group}}
-* {{msg-mw|Sacl-property-visibility-wl-user}}
-* {{msg-mw|Sacl-property-editable}}
-* {{msg-mw|Sacl-property-editable-wl-group}}
-* {{msg-mw|Sacl-property-editable-wl-user}}',
+* {{msg-mw|Sacl-property-visibility-wl-user}}',
 	'sacl-property-visibility-wl-group' => 'This is the name of the property that will hold the values defining the user group(s) which may view a page.
 
 See also:
 * {{msg-mw|Sacl-property-visibility}}
-* {{msg-mw|Sacl-property-visibility-wl-group}}
-* {{msg-mw|Sacl-property-visibility-wl-user}}
-* {{msg-mw|Sacl-property-editable}}
-* {{msg-mw|Sacl-property-editable-wl-group}}
-* {{msg-mw|Sacl-property-editable-wl-user}}',
+* {{msg-mw|Sacl-property-visibility-wl-user}}',
 	'sacl-property-visibility-wl-user' => 'This is the name of the property that will hold the values defining the user(s) which may view a page.
 
 See also:
 * {{msg-mw|Sacl-property-visibility}}
-* {{msg-mw|Sacl-property-visibility-wl-group}}
-* {{msg-mw|Sacl-property-visibility-wl-user}}
-* {{msg-mw|Sacl-property-editable}}
-* {{msg-mw|Sacl-property-editable-wl-group}}
-* {{msg-mw|Sacl-property-editable-wl-user}}',
+* {{msg-mw|Sacl-property-visibility-wl-group}}',
 	'sacl-property-editable' => 'This is the name of the property that will hold the values defining the user(s) or user group(s) which may edit a page.
 
 See also:
-* {{msg-mw|Sacl-property-visibility}}
-* {{msg-mw|Sacl-property-visibility-wl-group}}
-* {{msg-mw|Sacl-property-visibility-wl-user}}
-* {{msg-mw|Sacl-property-editable}}
 * {{msg-mw|Sacl-property-editable-wl-group}}
 * {{msg-mw|Sacl-property-editable-wl-user}}',
 	'sacl-property-editable-wl-group' => 'This is the name of the property that will hold the values defining the user group(s) which may edit a page.
 
 See also:
-* {{msg-mw|Sacl-property-visibility}}
-* {{msg-mw|Sacl-property-visibility-wl-group}}
-* {{msg-mw|Sacl-property-visibility-wl-user}}
 * {{msg-mw|Sacl-property-editable}}
-* {{msg-mw|Sacl-property-editable-wl-group}}
 * {{msg-mw|Sacl-property-editable-wl-user}}',
 	'sacl-property-editable-wl-user' => 'This is the name of the property that will hold the values defining the user(s) which may edit a page.
 
 See also:
-* {{msg-mw|Sacl-property-visibility}}
-* {{msg-mw|Sacl-property-visibility-wl-group}}
-* {{msg-mw|Sacl-property-visibility-wl-user}}
 * {{msg-mw|Sacl-property-editable}}
-* {{msg-mw|Sacl-property-editable-wl-group}}
-* {{msg-mw|Sacl-property-editable-wl-user}}',
+* {{msg-mw|Sacl-property-editable-wl-group}}',
 );
 
 /** Asturian (asturianu)
@@ -474,6 +450,21 @@ $messages['tl'] = array(
 	'sacl-property-editable' => 'Mapapatnugutan ng',
 	'sacl-property-editable-wl-group' => 'Mapapatnugutan ng pangkat',
 	'sacl-property-editable-wl-user' => 'Mapapatnugutan ng tagagamit',
+);
+
+/** Ukrainian (українська)
+ * @author Base
+ */
+$messages['uk'] = array(
+	'sacl-desc' => 'Дозволяє обмежувати доступ через властивості Semantic MediaWiki',
+	'sacl-denied' => 'Ви не у списку доступу до цієї сторінки',
+	'right-sacl-exempt' => 'Вийняток із семантичних списків котролю доступу (Semantic ACL)',
+	'sacl-property-visibility' => 'Видима',
+	'sacl-property-visibility-wl-group' => 'Видима групі',
+	'sacl-property-visibility-wl-user' => 'Видима користувачу',
+	'sacl-property-editable' => 'Може редагуватись',
+	'sacl-property-editable-wl-group' => 'Може редагуватись групою',
+	'sacl-property-editable-wl-user' => 'Може редагуватись користувачем',
 );
 
 /** Simplified Chinese (中文（简体）‎)
