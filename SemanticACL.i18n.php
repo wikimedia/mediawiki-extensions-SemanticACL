@@ -422,6 +422,15 @@ $messages['pt-br'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo usuário',
 );
 
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'sacl-property-visibility' => 'බැලිය හැක්කේ',
+	'sacl-property-visibility-wl-group' => 'සමූහයට දෘශ්‍යමාන',
+	'sacl-property-visibility-wl-user' => 'පරිශීලකට දෘශ්‍යමාන',
+);
+
 /** Swedish (svenska)
  * @author Martinwiss
  */
