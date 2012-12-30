@@ -422,6 +422,13 @@ $messages['pt-br'] = array(
 	'sacl-property-editable-wl-user' => 'Editável pelo usuário',
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'sacl-property-visibility' => 'Vesibbile a',
+);
+
 /** Sinhala (සිංහල)
  * @author පසිඳු කාවින්ද
  */
@@ -429,6 +436,9 @@ $messages['si'] = array(
 	'sacl-property-visibility' => 'බැලිය හැක්කේ',
 	'sacl-property-visibility-wl-group' => 'සමූහයට දෘශ්‍යමාන',
 	'sacl-property-visibility-wl-user' => 'පරිශීලකට දෘශ්‍යමාන',
+	'sacl-property-editable' => 'සංස්කරණය කල හැකි',
+	'sacl-property-editable-wl-group' => 'සමූහය විසින් සංස්කරණය කල හැකි',
+	'sacl-property-editable-wl-user' => 'පරිශීලක විසින් සංස්කරණය කල හැකි',
 );
 
 /** Swedish (svenska)
