@@ -110,6 +110,18 @@ $messages['br'] = array(
 	'sacl-property-editable-wl-user' => "A c'hall bezañ kemmet gant an implijer",
 );
 
+/** Czech (česky)
+ * @author Vks
+ */
+$messages['cs'] = array(
+	'sacl-property-visibility' => 'Viditelné',
+	'sacl-property-visibility-wl-group' => 'Viditelné skupině',
+	'sacl-property-visibility-wl-user' => 'Viditelné uživateli',
+	'sacl-property-editable' => 'Upravovatelné',
+	'sacl-property-editable-wl-group' => 'Upravovatelné skupinou',
+	'sacl-property-editable-wl-user' => 'Upravovatelné uživatelem',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
@@ -433,6 +445,7 @@ $messages['roa-tara'] = array(
  * @author පසිඳු කාවින්ද
  */
 $messages['si'] = array(
+	'right-sacl-exempt' => 'අර්ථ විචාර ACLs වෙතින් නිදහස් වෙන්න',
 	'sacl-property-visibility' => 'බැලිය හැක්කේ',
 	'sacl-property-visibility-wl-group' => 'සමූහයට දෘශ්‍යමාන',
 	'sacl-property-visibility-wl-user' => 'පරිශීලකට දෘශ්‍යමාන',
