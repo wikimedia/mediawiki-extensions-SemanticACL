@@ -315,6 +315,21 @@ $messages['ja'] = array(
 	'sacl-property-editable-wl-user' => '利用者が編集可能',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'sacl-desc' => 'Määd_et möjjelesch, Zohjreffsrääschde noh semntesche Eijeschaffte ze verjävve.',
+	'sacl-denied' => 'Doh bes nit op dä Zohjreffsleß för heh di Sigg.',
+	'right-sacl-exempt' => 'Ußjenomme vun de semantesche Zohjreffs_Leßte',
+	'sacl-property-visibility' => 'Seeschbaa för',
+	'sacl-property-visibility-wl-group' => 'Seeschbaa för de Jropp',
+	'sacl-property-visibility-wl-user' => 'Seeschbaa för Metmaacher',
+	'sacl-property-editable' => 'Änderbaa vun',
+	'sacl-property-editable-wl-group' => 'Änderbaa vun ene Jropp', # Fuzzy
+	'sacl-property-editable-wl-user' => 'Änderbaa vun enem Metmaacher', # Fuzzy
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
