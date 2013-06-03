@@ -355,7 +355,7 @@ $messages['mk'] = array(
 	'sacl-property-editable-wl-user' => 'Уредливо за корисникот',
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎)
+/** Norwegian Bokmål (norsk bokmål)
  * @author Event
  */
 $messages['nb'] = array(
