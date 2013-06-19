@@ -453,7 +453,15 @@ $messages['pt-br'] = array(
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
+	'sacl-desc' => "Permette ca le restriziune d'accesse avènene 'mbostate cu le probbietà Semandeche de MediaUicchi",
+	'sacl-denied' => "Non ge stè jndr'à l'elenghe d'accesse pe sta pàgene.",
+	'right-sacl-exempt' => "Escluse da 'a Semandeche ACL",
 	'sacl-property-visibility' => 'Vesibbile a',
+	'sacl-property-visibility-wl-group' => "Visibbile a 'u gruppe",
+	'sacl-property-visibility-wl-user' => "Visibbile a l'utende",
+	'sacl-property-editable' => 'Cangiabbile da',
+	'sacl-property-editable-wl-group' => "Cangiabbile da 'u gruppe",
+	'sacl-property-editable-wl-user' => "Cangiabbile da l'utende",
 );
 
 /** Sinhala (සිංහල)
