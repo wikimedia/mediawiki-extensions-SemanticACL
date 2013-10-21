@@ -525,6 +525,7 @@ $messages['uk'] = array(
 /** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
  * @author Linforest
+ * @author Liuxinyu970226
  */
 $messages['zh-hans'] = array(
 	'sacl-desc' => '允许采用Semantic MediaWiki属性来设置访问限制',
