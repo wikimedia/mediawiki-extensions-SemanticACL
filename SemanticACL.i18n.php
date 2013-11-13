@@ -464,6 +464,21 @@ $messages['roa-tara'] = array(
 	'sacl-property-editable-wl-user' => "Cangiabbile da l'utende",
 );
 
+/** Russian (русский)
+ * @author Okras
+ */
+$messages['ru'] = array(
+	'sacl-desc' => 'Позволяет установить ограничения доступа с помощью свойств Семантической Медиавики',
+	'sacl-denied' => 'Вас нет в списке доступа для данной страницы.',
+	'right-sacl-exempt' => 'исключение из семантических списков контроля доступа',
+	'sacl-property-visibility' => 'Видна для',
+	'sacl-property-visibility-wl-group' => 'Видна группе',
+	'sacl-property-visibility-wl-user' => 'Видна участнику',
+	'sacl-property-editable' => 'Доступна для редактирования',
+	'sacl-property-editable-wl-group' => 'Доступна для редактирования группой',
+	'sacl-property-editable-wl-user' => 'Доступна для редактирования участником',
+);
+
 /** Sinhala (සිංහල)
  * @author පසිඳු කාවින්ද
  */
