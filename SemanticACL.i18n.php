@@ -110,7 +110,7 @@ $messages['br'] = array(
 	'sacl-property-editable-wl-user' => "A c'hall bezañ kemmet gant an implijer",
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Vks
  */
 $messages['cs'] = array(
