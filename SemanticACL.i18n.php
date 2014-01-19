@@ -315,6 +315,18 @@ $messages['ja'] = array(
 	'sacl-property-editable-wl-user' => '利用者が編集可能',
 );
 
+/** Korean (한국어)
+ * @author Priviet
+ */
+$messages['ko'] = array(
+	'sacl-property-visibility' => '보이기',
+	'sacl-property-visibility-wl-group' => '그룹에게 보이기',
+	'sacl-property-visibility-wl-user' => '사용자에게 보이기',
+	'sacl-property-editable' => '편집 가능',
+	'sacl-property-editable-wl-group' => '그룹이 편집 가능',
+	'sacl-property-editable-wl-user' => '사용자가 편집 가능',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
