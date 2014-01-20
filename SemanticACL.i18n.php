@@ -319,6 +319,8 @@ $messages['ja'] = array(
  * @author Priviet
  */
 $messages['ko'] = array(
+	'sacl-denied' => '이 문서에 접근할 권한이 없습니다.',
+	'right-sacl-exempt' => '시맨틱 ACL에서 면제',
 	'sacl-property-visibility' => '보이기',
 	'sacl-property-visibility-wl-group' => '그룹에게 보이기',
 	'sacl-property-visibility-wl-user' => '사용자에게 보이기',
