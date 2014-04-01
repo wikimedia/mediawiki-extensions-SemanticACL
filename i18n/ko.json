@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Priviet"
+        ]
+    },
+    "sacl-desc": "시맨틱 미디어위키 속성으로 설정된 접근 제한을 허용",
+    "sacl-denied": "이 문서에 접근할 권한이 없습니다.",
+    "right-sacl-exempt": "시맨틱 ACL에서 면제",
+    "sacl-property-visibility": "보이기",
+    "sacl-property-visibility-wl-group": "그룹에게 보이기",
+    "sacl-property-visibility-wl-user": "사용자에게 보이기",
+    "sacl-property-editable": "편집 가능",
+    "sacl-property-editable-wl-group": "그룹이 편집 가능",
+    "sacl-property-editable-wl-user": "사용자가 편집 가능"
+}

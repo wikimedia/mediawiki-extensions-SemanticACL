@@ -25,6 +25,7 @@ $wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other']
 	'url' 		 => 'https://www.mediawiki.org/wiki/Extension:SemanticACL',
 );
 
+$wgMessagesDirs['SemanticACL'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['SemanticACL'] = dirname(__FILE__) . '/SemanticACL.i18n.php';
 
 $wgHooks['userCan'][] = 'saclGetPermissionErrors';
@@ -45,7 +46,7 @@ function saclInitProperties() {
 	SMWDIProperty::registerPropertyAlias( '___VISIBLE', 'Visible to' );
 	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_GROUP', 'Visible to group' );
 	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_USER', 'Visible to user' );
-					
+
 	// Write restriction properties
 	SMWDIProperty::registerProperty( '___EDITABLE', '_str',
 					wfMsgForContent('sacl-property-editable') );
@@ -53,11 +54,11 @@ function saclInitProperties() {
 					wfMsgForContent('sacl-property-editable-wl-group') );
 	SMWDIProperty::registerProperty( '___EDITABLE_WL_USER', '_wpg',
 					wfMsgForContent('sacl-property-editable-wl-user') );
-	
+
 	SMWDIProperty::registerPropertyAlias( '___EDITABLE_BY', 'Editable by' );
 	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_GROUP', 'Editable by group' );
 	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_USER', 'Editable by user' );
-					
+
 	return true;
 }
 
@@ -71,24 +72,24 @@ function saclGetPermissionErrors( $title, $user, $action, &$result ) {
 
 	$store = smwfGetStore();
 	$subject = SMWDIWikiPage::newFromTitle( $title );
-	
+
 	// The prefix for the whitelisted group and user properties
 	// Either ___VISIBLE or ___EDITABLE
 	$prefix = '';
-	
+
 	if ( $action == 'read' ) {
 		$prefix = '___VISIBLE';
 	} else {
 		$type_property = 'Editable by';
 		$prefix = '___EDITABLE';
 	}
-	
+
 	$property = new SMWDIProperty($prefix);
 	$aclTypes = $store->getPropertyValues( $subject, $property );
-	
+
 	foreach( $aclTypes as $valueObj ) {
 		$value = strtolower($valueObj->getString());
-		
+
 		if ( $value == 'users' ) {
 			if ( $user->isAnon() ) {
 				$result = false;
@@ -96,30 +97,30 @@ function saclGetPermissionErrors( $title, $user, $action, &$result ) {
 			}
 		} elseif ( $value == 'whitelist' ) {
 			$isWhitelisted = false;
-			
+
 			$groupProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
 			$userProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
 			$whitelistValues = $store->getPropertyValues( $subject, $groupProperty );
-			
+
 			foreach( $whitelistValues as $whitelistValue ) {
 				$group = strtolower($whitelistValue->getString());
-				
+
 				if ( in_array( $group, $user->getEffectiveGroups() ) ) {
 					$isWhitelisted = true;
 					break;
 				}
 			}
-			
+
 			$whitelistValues = $store->getPropertyValues( $subject, $userProperty );
-			
+
 			foreach( $whitelistValues as $whitelistValue ) {
 				$title = $whitelistValue->getTitle();
-				
+
 				if ( $title->equals( $user->getUserPage() ) ) {
 					$isWhitelisted = true;
 				}
 			}
-			
+
 			if ( ! $isWhitelisted ) {
 				$result = false;
 				return false;
@@ -128,6 +129,6 @@ function saclGetPermissionErrors( $title, $user, $action, &$result ) {
 			return true;
 		}
 	}
-	
+
 	return true;
 }

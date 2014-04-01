@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Kghbln"
+        ]
+    },
+    "sacl-desc": "Ermöglicht mit semantischen Attributen verknüpfte Zugriffsbeschränkungen auf Seiten",
+    "sacl-denied": "Du befindest dich nicht auf der Liste der für diese Seite Zugriffsberechtigten.",
+    "right-sacl-exempt": "Ausgenommen von Zugriffsbeschränkungen auf semantische Attribute",
+    "sacl-property-visibility": "Sichtbar für",
+    "sacl-property-visibility-wl-group": "Sichtbar für Benutzergruppe",
+    "sacl-property-visibility-wl-user": "Sichtbar für Benutzer",
+    "sacl-property-editable": "Bearbeitbar von",
+    "sacl-property-editable-wl-group": "Bearbeitbar von Benutzergruppe",
+    "sacl-property-editable-wl-user": "Bearbeitbar von Benutzer"
+}

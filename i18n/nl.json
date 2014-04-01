@@ -1,0 +1,18 @@
+{
+    "@metadata": {
+        "authors": [
+            "McDutchie",
+            "SPQRobin",
+            "Siebrand"
+        ]
+    },
+    "sacl-desc": "Maakt het mogelijk toegangsbeperkingen in te stellen met eigenschappen van Semantic MediaWiki",
+    "sacl-denied": "U staat niet op de toegangslijst voor deze pagina.",
+    "right-sacl-exempt": "Vrijgesteld van semantische ACL's (toegangscontrolelijsten)",
+    "sacl-property-visibility": "Zichtbaar voor",
+    "sacl-property-visibility-wl-group": "Zichtbaar voor de groep",
+    "sacl-property-visibility-wl-user": "Zichtbaar voor gebruiker",
+    "sacl-property-editable": "Te bewerken door",
+    "sacl-property-editable-wl-group": "Te bewerken door groep",
+    "sacl-property-editable-wl-user": "Te bewerken door gebruiker"
+}

@@ -1,0 +1,18 @@
+{
+    "@metadata": {
+        "authors": [
+            "Kghbln",
+            "Shirayuki",
+            "Umherirrender"
+        ]
+    },
+    "sacl-desc": "{{desc|name=Semantic ACL|url=http://www.mediawiki.org/wiki/Extension:SemanticACL}}",
+    "sacl-denied": "This is an informatory message.",
+    "right-sacl-exempt": "{{doc-right|sacl-exempt}}\nACL = Access Control List",
+    "sacl-property-visibility": "This is the name of the property that will hold the values defining the user(s) or user group(s) which may view a page.\n\nSee also:\n* {{msg-mw|Sacl-property-visibility-wl-group}}\n* {{msg-mw|Sacl-property-visibility-wl-user}}",
+    "sacl-property-visibility-wl-group": "This is the name of the property that will hold the values defining the user group(s) which may view a page.\n\nSee also:\n* {{msg-mw|Sacl-property-visibility}}\n* {{msg-mw|Sacl-property-visibility-wl-user}}",
+    "sacl-property-visibility-wl-user": "This is the name of the property that will hold the values defining the user(s) which may view a page.\n\nSee also:\n* {{msg-mw|Sacl-property-visibility}}\n* {{msg-mw|Sacl-property-visibility-wl-group}}",
+    "sacl-property-editable": "This is the name of the property that will hold the values defining the user(s) or user group(s) which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable-wl-group}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
+    "sacl-property-editable-wl-group": "This is the name of the property that will hold the values defining the user group(s) which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
+    "sacl-property-editable-wl-user": "This is the name of the property that will hold the values defining the user(s) which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-group}}"
+}

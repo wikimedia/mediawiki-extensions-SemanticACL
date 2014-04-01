@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Base"
+        ]
+    },
+    "sacl-desc": "Дозволяє обмежувати доступ через властивості Semantic MediaWiki",
+    "sacl-denied": "Ви не у списку доступу до цієї сторінки",
+    "right-sacl-exempt": "Вийняток із семантичних списків котролю доступу (Semantic ACL)",
+    "sacl-property-visibility": "Видима",
+    "sacl-property-visibility-wl-group": "Видима групі",
+    "sacl-property-visibility-wl-user": "Видима користувачу",
+    "sacl-property-editable": "Може редагуватись",
+    "sacl-property-editable-wl-group": "Може редагуватись групою",
+    "sacl-property-editable-wl-user": "Може редагуватись користувачем"
+}

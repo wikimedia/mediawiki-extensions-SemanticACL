@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Bjankuloski06"
+        ]
+    },
+    "sacl-desc": "Овозможува поставање на ограничувања на пристапот со својства на Семантичко МедијаВики",
+    "sacl-denied": "Не сте на списокот за пристап до оваа страница.",
+    "right-sacl-exempt": "Изземен од семантичкиот список за конрола на пристап",
+    "sacl-property-visibility": "Видливо за",
+    "sacl-property-visibility-wl-group": "Видливо за групата",
+    "sacl-property-visibility-wl-user": "Видливо за корисникот",
+    "sacl-property-editable": "Уредливо за",
+    "sacl-property-editable-wl-group": "Уредливо за групата",
+    "sacl-property-editable-wl-user": "Уредливо за корисникот"
+}

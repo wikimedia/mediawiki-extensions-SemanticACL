@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Vks"
+        ]
+    },
+    "sacl-property-visibility": "Viditelné",
+    "sacl-property-visibility-wl-group": "Viditelné skupině",
+    "sacl-property-visibility-wl-user": "Viditelné uživateli",
+    "sacl-property-editable": "Upravovatelné",
+    "sacl-property-editable-wl-group": "Upravovatelné skupinou",
+    "sacl-property-editable-wl-user": "Upravovatelné uživatelem"
+}
