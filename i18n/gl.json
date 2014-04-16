@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "Toliño"
-        ]
-    },
-    "sacl-desc": "Permite definir restricións de acceso coas propiedades de Semantic MediaWiki",
-    "sacl-denied": "Non está na lista de acceso desta páxina.",
-    "right-sacl-exempt": "Exento da lista de control de acceso semántica",
-    "sacl-property-visibility": "Visible para",
-    "sacl-property-visibility-wl-group": "Visible para o grupo",
-    "sacl-property-visibility-wl-user": "Visible para o usuario",
-    "sacl-property-editable": "Editable por",
-    "sacl-property-editable-wl-group": "Editable polo grupo",
-    "sacl-property-editable-wl-user": "Editable polo usuario"
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"sacl-desc": "Permite definir restricións de acceso coas propiedades de Semantic MediaWiki",
+	"sacl-denied": "Non está na lista de acceso desta páxina.",
+	"right-sacl-exempt": "Exento da lista de control de acceso semántica",
+	"sacl-property-visibility": "Visible para",
+	"sacl-property-visibility-wl-group": "Visible para o grupo",
+	"sacl-property-visibility-wl-user": "Visible para o usuario",
+	"sacl-property-editable": "Editable por",
+	"sacl-property-editable-wl-group": "Editable polo grupo",
+	"sacl-property-editable-wl-user": "Editable polo usuario"
 }

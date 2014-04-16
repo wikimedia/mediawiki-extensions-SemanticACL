@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "Amire80"
-        ]
-    },
-    "sacl-desc": "הוספת אפשרות להגדיר הגבלות על מאפיינים של מדיה־ויקי סמנטית",
-    "sacl-denied": "אינך מופיע ברשימת הגישה לדף הזה.",
-    "right-sacl-exempt": "פטור מרשימות בקרת גישה סמנטיות",
-    "sacl-property-visibility": "גלוי ל",
-    "sacl-property-visibility-wl-group": "גלוי לקבוצה",
-    "sacl-property-visibility-wl-user": "גלוי למשתמש",
-    "sacl-property-editable": "ניתן לעריכה על־ידי",
-    "sacl-property-editable-wl-group": "ניתן לעריכה על־ידי קבוצה",
-    "sacl-property-editable-wl-user": "ניתן לעריכה על־ידי המשתמש"
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"sacl-desc": "הוספת אפשרות להגדיר הגבלות על מאפיינים של מדיה־ויקי סמנטית",
+	"sacl-denied": "אינך מופיע ברשימת הגישה לדף הזה.",
+	"right-sacl-exempt": "פטור מרשימות בקרת גישה סמנטיות",
+	"sacl-property-visibility": "גלוי ל",
+	"sacl-property-visibility-wl-group": "גלוי לקבוצה",
+	"sacl-property-visibility-wl-user": "גלוי למשתמש",
+	"sacl-property-editable": "ניתן לעריכה על־ידי",
+	"sacl-property-editable-wl-group": "ניתן לעריכה על־ידי קבוצה",
+	"sacl-property-editable-wl-user": "ניתן לעריכה על־ידי המשתמש"
 }

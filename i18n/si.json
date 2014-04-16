@@ -1,14 +1,14 @@
 {
-    "@metadata": {
-        "authors": [
-            "පසිඳු කාවින්ද"
-        ]
-    },
-    "right-sacl-exempt": "අර්ථ විචාර ACLs වෙතින් නිදහස් වෙන්න",
-    "sacl-property-visibility": "බැලිය හැක්කේ",
-    "sacl-property-visibility-wl-group": "සමූහයට දෘශ්‍යමාන",
-    "sacl-property-visibility-wl-user": "පරිශීලකට දෘශ්‍යමාන",
-    "sacl-property-editable": "සංස්කරණය කල හැකි",
-    "sacl-property-editable-wl-group": "සමූහය විසින් සංස්කරණය කල හැකි",
-    "sacl-property-editable-wl-user": "පරිශීලක විසින් සංස්කරණය කල හැකි"
+	"@metadata": {
+		"authors": [
+			"පසිඳු කාවින්ද"
+		]
+	},
+	"right-sacl-exempt": "අර්ථ විචාර ACLs වෙතින් නිදහස් වෙන්න",
+	"sacl-property-visibility": "බැලිය හැක්කේ",
+	"sacl-property-visibility-wl-group": "සමූහයට දෘශ්‍යමාන",
+	"sacl-property-visibility-wl-user": "පරිශීලකට දෘශ්‍යමාන",
+	"sacl-property-editable": "සංස්කරණය කල හැකි",
+	"sacl-property-editable-wl-group": "සමූහය විසින් සංස්කරණය කල හැකි",
+	"sacl-property-editable-wl-user": "පරිශීලක විසින් සංස්කරණය කල හැකි"
 }

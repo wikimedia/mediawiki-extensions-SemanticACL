@@ -1,17 +1,17 @@
 {
-    "@metadata": {
-        "authors": [
-            "BeginaFelicysym",
-            "Woytecr"
-        ]
-    },
-    "sacl-desc": "Umożliwia ograniczenia dostępu przy użyciu właściwości Semantycznej MediaWiki",
-    "sacl-denied": "Nie jesteś na liście dostępu do tej strony.",
-    "right-sacl-exempt": "Zwolniony z listy ACL Semantycznej MediaWiki",
-    "sacl-property-visibility": "Widoczne dla",
-    "sacl-property-visibility-wl-group": "Widoczne dla grupy",
-    "sacl-property-visibility-wl-user": "Widoczne dla użytkownika",
-    "sacl-property-editable": "Możliwość edytowania przez",
-    "sacl-property-editable-wl-group": "Edycja dla grup",
-    "sacl-property-editable-wl-user": "Edycja przez użytkownika"
+	"@metadata": {
+		"authors": [
+			"BeginaFelicysym",
+			"Woytecr"
+		]
+	},
+	"sacl-desc": "Umożliwia ograniczenia dostępu przy użyciu właściwości Semantycznej MediaWiki",
+	"sacl-denied": "Nie jesteś na liście dostępu do tej strony.",
+	"right-sacl-exempt": "Zwolniony z listy ACL Semantycznej MediaWiki",
+	"sacl-property-visibility": "Widoczne dla",
+	"sacl-property-visibility-wl-group": "Widoczne dla grupy",
+	"sacl-property-visibility-wl-user": "Widoczne dla użytkownika",
+	"sacl-property-editable": "Możliwość edytowania przez",
+	"sacl-property-editable-wl-group": "Edycja dla grup",
+	"sacl-property-editable-wl-user": "Edycja przez użytkownika"
 }

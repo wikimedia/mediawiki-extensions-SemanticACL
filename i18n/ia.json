@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "McDutchie"
-        ]
-    },
-    "sacl-desc": "Permitte definir restrictiones de accesso con proprietates de Semantic MediaWiki",
-    "sacl-denied": "Tu non es in le lista de accesso de iste pagina.",
-    "right-sacl-exempt": "Exempte del controlo de accesso de Semantic MediaWiki",
-    "sacl-property-visibility": "Visibile pro",
-    "sacl-property-visibility-wl-group": "Visibile pro le gruppo",
-    "sacl-property-visibility-wl-user": "Visibile pro le usator",
-    "sacl-property-editable": "Modificabile per",
-    "sacl-property-editable-wl-group": "Modificabile per le gruppo",
-    "sacl-property-editable-wl-user": "Modificabile per le usator"
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"sacl-desc": "Permitte definir restrictiones de accesso con proprietates de Semantic MediaWiki",
+	"sacl-denied": "Tu non es in le lista de accesso de iste pagina.",
+	"right-sacl-exempt": "Exempte del controlo de accesso de Semantic MediaWiki",
+	"sacl-property-visibility": "Visibile pro",
+	"sacl-property-visibility-wl-group": "Visibile pro le gruppo",
+	"sacl-property-visibility-wl-user": "Visibile pro le usator",
+	"sacl-property-editable": "Modificabile per",
+	"sacl-property-editable-wl-group": "Modificabile per le gruppo",
+	"sacl-property-editable-wl-user": "Modificabile per le usator"
 }

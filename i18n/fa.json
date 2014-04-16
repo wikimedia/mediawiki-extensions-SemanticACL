@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "Ebraminio"
-        ]
-    },
-    "sacl-desc": "اجازه می‌دهد محدودیت‌های دسترسی با مشخصات معنایی مدیاویکی تنظیم شوند",
-    "sacl-denied": "شما در فهرست دسترسی به این صفحه نیستید.",
-    "right-sacl-exempt": "معاف از فهرست کنترل دسترسی (ACL) معنایی",
-    "sacl-property-visibility": "قابل نمایش برای",
-    "sacl-property-visibility-wl-group": "قابل نمایش برای گروه",
-    "sacl-property-visibility-wl-user": "قابل نمایش برای کاربر",
-    "sacl-property-editable": "قابل ویرایش برای",
-    "sacl-property-editable-wl-group": "قابل ویرایش برای گروه",
-    "sacl-property-editable-wl-user": "قابل ویرایش برای کاربر"
+	"@metadata": {
+		"authors": [
+			"Ebraminio"
+		]
+	},
+	"sacl-desc": "اجازه می‌دهد محدودیت‌های دسترسی با مشخصات معنایی مدیاویکی تنظیم شوند",
+	"sacl-denied": "شما در فهرست دسترسی به این صفحه نیستید.",
+	"right-sacl-exempt": "معاف از فهرست کنترل دسترسی (ACL) معنایی",
+	"sacl-property-visibility": "قابل نمایش برای",
+	"sacl-property-visibility-wl-group": "قابل نمایش برای گروه",
+	"sacl-property-visibility-wl-user": "قابل نمایش برای کاربر",
+	"sacl-property-editable": "قابل ویرایش برای",
+	"sacl-property-editable-wl-group": "قابل ویرایش برای گروه",
+	"sacl-property-editable-wl-user": "قابل ویرایش برای کاربر"
 }
