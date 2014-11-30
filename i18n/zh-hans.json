@@ -12,7 +12,7 @@
 	"sacl-property-visibility": "可见于",
 	"sacl-property-visibility-wl-group": "可见于组",
 	"sacl-property-visibility-wl-user": "可见于用户",
-	"sacl-property-editable": "可编辑于",
-	"sacl-property-editable-wl-group": "可编辑于组",
-	"sacl-property-editable-wl-user": "可编辑于用户"
+	"sacl-property-editable": "可编辑由",
+	"sacl-property-editable-wl-group": "可编辑由组",
+	"sacl-property-editable-wl-user": "可编辑由用户"
 }
