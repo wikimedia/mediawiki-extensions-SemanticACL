@@ -4,7 +4,8 @@
 			"Kghbln",
 			"Shirayuki",
 			"Umherirrender",
-			"Purodha"
+			"Purodha",
+			"Nemo bis"
 		]
 	},
 	"sacl-desc": "{{desc|name=Semantic ACL|url=https://www.mediawiki.org/wiki/Extension:SemanticACL}}",
@@ -14,6 +15,6 @@
 	"sacl-property-visibility-wl-group": "This is the name of the property that will hold the values defining the user group(s) which may view a page.\n\nSee also:\n* {{msg-mw|Sacl-property-visibility}}\n* {{msg-mw|Sacl-property-visibility-wl-user}}",
 	"sacl-property-visibility-wl-user": "This is the name of the property that will hold the values defining the user(s) which may view a page.\n\nSee also:\n* {{msg-mw|Sacl-property-visibility}}\n* {{msg-mw|Sacl-property-visibility-wl-group}}",
 	"sacl-property-editable": "This is the name of the property that will hold the values defining the user(s) or user group(s) which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable-wl-group}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
-	"sacl-property-editable-wl-group": "This is the name of the property that will hold the values defining the user group(s) the members of which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
-	"sacl-property-editable-wl-user": "This is the name of the property that will hold the values defining the user(s) who may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-group}}"
+	"sacl-property-editable-wl-group": "This is the name of the property that will hold the values defining the group of user groups the members of which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
+	"sacl-property-editable-wl-user": "This is the name of the property that will hold the values defining the user(s) who may edit a page. Translate it as you would translate the header of a table column/row.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-group}}"
 }
