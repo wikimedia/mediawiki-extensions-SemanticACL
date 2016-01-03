@@ -37,11 +37,11 @@ $wgGroupPermissions['sysop']['sacl-exempt'] = true;
 function saclInitProperties() {
 	// Read restriction properties
 	SMWDIProperty::registerProperty( '___VISIBLE', '_str',
-					wfMsgForContent('sacl-property-visibility') );
+					wfMessage('sacl-property-visibility')->inContentLanguage()->text() );
 	SMWDIProperty::registerProperty( '___VISIBLE_WL_GROUP', '_str',
-					wfMsgForContent('sacl-property-visibility-wl-group') );
+					wfMessage('sacl-property-visibility-wl-group')->inContentLanguage()->text() );
 	SMWDIProperty::registerProperty( '___VISIBLE_WL_USER', '_wpg',
-					wfMsgForContent('sacl-property-visibility-wl-user') );
+					wfMessage('sacl-property-visibility-wl-user')->inContentLanguage()->text() );
 
 	SMWDIProperty::registerPropertyAlias( '___VISIBLE', 'Visible to' );
 	SMWDIProperty::registerPropertyAlias( '___VISIBLE_WL_GROUP', 'Visible to group' );
@@ -49,11 +49,11 @@ function saclInitProperties() {
 
 	// Write restriction properties
 	SMWDIProperty::registerProperty( '___EDITABLE', '_str',
-					wfMsgForContent('sacl-property-editable') );
+					wfMessage('sacl-property-editable')->inContentLanguage()->text() );
 	SMWDIProperty::registerProperty( '___EDITABLE_WL_GROUP', '_str',
-					wfMsgForContent('sacl-property-editable-wl-group') );
+					wfMessage('sacl-property-editable-wl-group')->inContentLanguage()->text() );
 	SMWDIProperty::registerProperty( '___EDITABLE_WL_USER', '_wpg',
-					wfMsgForContent('sacl-property-editable-wl-user') );
+					wfMessage('sacl-property-editable-wl-user')->inContentLanguage()->text() );
 
 	SMWDIProperty::registerPropertyAlias( '___EDITABLE_BY', 'Editable by' );
 	SMWDIProperty::registerPropertyAlias( '___EDITABLE_WL_GROUP', 'Editable by group' );
