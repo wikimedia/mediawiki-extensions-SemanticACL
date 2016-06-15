@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"Guycn2"
 		]
 	},
 	"sacl-desc": "הוספת אפשרות להגדיר הגבלות על מאפיינים של מדיה־ויקי סמנטית",
 	"sacl-denied": "אינך מופיע ברשימת הגישה לדף הזה.",
-	"right-sacl-exempt": "פטור מרשימות בקרת גישה סמנטיות",
+	"right-sacl-exempt": "חסינות מרשימות בקרת גישה סמנטיות",
 	"sacl-property-visibility": "גלוי ל",
 	"sacl-property-visibility-wl-group": "גלוי לקבוצה",
 	"sacl-property-visibility-wl-user": "גלוי למשתמש",
