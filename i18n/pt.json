@@ -6,7 +6,7 @@
 	},
 	"sacl-desc": "Permite definir restrições de acesso com as propriedades do MediaWiki Semântico",
 	"sacl-denied": "Não está na lista de acesso desta página.",
-	"right-sacl-exempt": "Isenta das Listas de Controle de Acesso Semânticas",
+	"right-sacl-exempt": "Isenta das Listas de Controlo de Acesso Semânticas",
 	"sacl-property-visibility": "Visível para",
 	"sacl-property-visibility-wl-group": "Visível para o grupo",
 	"sacl-property-visibility-wl-user": "Visível para o utilizador",
