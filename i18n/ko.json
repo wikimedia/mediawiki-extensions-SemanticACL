@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Priviet"
+			"Priviet",
+			"아라"
 		]
 	},
-	"sacl-desc": "시맨틱 미디어위키 속성으로 설정된 접근 제한을 허용",
+	"sacl-desc": "시맨틱 미디어위키 속성으로 설정된 접근 제한을 할 수 있게 합니다",
 	"sacl-denied": "이 문서에 접근할 권한이 없습니다.",
 	"right-sacl-exempt": "시맨틱 ACL에서 면제",
 	"sacl-property-visibility": "보이기",
