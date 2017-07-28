@@ -11,26 +11,35 @@
  * @package MediaWiki
  * @author Werdna (Andrew Garrett)
  * @copyright (C) 2011 Werdna
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ * @license https://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-if ( !defined( 'MEDIAWIKI' ) )
-	die();
+// Ensure that the script cannot be executed outside of MediaWiki.
+if ( !defined( 'MEDIAWIKI' ) ) {
+    die( 'This is an extension to MediaWiki and cannot be run standalone.' );
+}
 
-$wgExtensionCredits[defined( 'SEMANTIC_EXTENSION_TYPE' ) ? 'semantic' : 'other'][] = array(
-	'path'           => __FILE__,
-	'name'           => 'Semantic ACL',
-	'author'         => array( 'Andrew Garrett' ),
+// Display extension properties on MediaWiki.
+$wgExtensionCredits['semantic'][] = array(
+	'path' => __FILE__,
+	'name' => 'Semantic ACL',
+	'author' => array(
+		'Andrew Garrett',
+		'...'
+	),
 	'descriptionmsg' => 'sacl-desc',
-	'url' 		 => 'https://www.mediawiki.org/wiki/Extension:SemanticACL',
+	'url' => 'https://www.mediawiki.org/wiki/Extension:SemanticACL',
+	'license-name' => 'GPL-2.0+'
 );
 
+// Register extension messages and other localisation.
 $wgMessagesDirs['SemanticACL'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['SemanticACL'] = dirname(__FILE__) . '/SemanticACL.i18n.php';
 
+// Register extension hooks.
 $wgHooks['userCan'][] = 'saclGetPermissionErrors';
 $wgHooks['smwInitProperties'][] = 'saclInitProperties';
 
+// Create extension's permissions
 $wgGroupPermissions['sysop']['sacl-exempt'] = true;
 
 // Initialise predefined properties
