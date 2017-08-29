@@ -41,6 +41,7 @@ $wgHooks['smwInitProperties'][] = 'saclInitProperties';
 
 // Create extension's permissions
 $wgGroupPermissions['sysop']['sacl-exempt'] = true;
+$wgAvailableRights[] = 'sacl-exempt';
 
 // Initialise predefined properties
 function saclInitProperties() {
