@@ -29,7 +29,7 @@ $wgExtensionCredits['semantic'][] = array(
 	),
 	'descriptionmsg' => 'sacl-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:SemanticACL',
-	'license-name' => 'GPL-2.0+'
+	'license-name' => 'GPL-2.0-or-later'
 );
 
 // Register extension messages and other localisation.
