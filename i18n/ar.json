@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"sacl-desc": "يسمح بضبط قيود الوصول مع خصائص ميدياويكي الدلالي",
+	"sacl-denied": "أنت لست في قائمة الوصول لهذه الصفحة.",
+	"right-sacl-exempt": "معفى من ACLs الدلالي",
+	"sacl-property-visibility": "مرئي لـ",
+	"sacl-property-visibility-wl-group": "مرئي لمجموعة",
+	"sacl-property-visibility-wl-user": "مرئي للمستخدم",
+	"sacl-property-editable": "قابل للتعديل بواسطة",
+	"sacl-property-editable-wl-group": "قابل للتعديل من قبل مجموعة",
+	"sacl-property-editable-wl-user": "قابل للتحرير من قبل المستخدم"
+}
