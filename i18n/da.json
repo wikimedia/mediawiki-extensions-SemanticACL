@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saederup92"
+		]
+	},
+	"sacl-property-visibility": "Synligt for",
+	"sacl-property-visibility-wl-group": "Synligt for gruppe",
+	"sacl-property-visibility-wl-user": "Synligt for bruger",
+	"sacl-property-editable": "Redigerbar af",
+	"sacl-property-editable-wl-group": "Redigerbar af gruppe",
+	"sacl-property-editable-wl-user": "Redigerbar af bruger"
+}
