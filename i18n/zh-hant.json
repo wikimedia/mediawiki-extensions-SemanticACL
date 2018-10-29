@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cwlin0416"
+			"Cwlin0416",
+			"Kly"
 		]
 	},
-	"sacl-desc": "允許語義 MediaWiki 設定存取權限",
+	"sacl-desc": "允許 Semantic MediaWiki 設定存取權限",
 	"sacl-denied": "您未在此頁面的允許存取清單中。",
 	"right-sacl-exempt": "不受語義 ACL 限制",
 	"sacl-property-visibility": "可檢視",
