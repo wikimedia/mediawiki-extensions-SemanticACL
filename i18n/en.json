@@ -6,6 +6,7 @@
 	},
 	"sacl-desc": "Allows access restrictions to be set with Semantic MediaWiki properties",
 	"sacl-denied": "You are not on the access list for this page.",
+	"action-sacl-exempt": "exempt from Semantic ACLs",
 	"right-sacl-exempt": "Exempt from Semantic ACLs",
 	"sacl-property-visibility": "Visible to",
 	"sacl-property-visibility-wl-group": "Visible to group",
