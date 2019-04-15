@@ -6,6 +6,7 @@
 	},
 	"sacl-desc": "Permette ca le restriziune d'accesse avènene 'mbostate cu le probbietà Semandeche de MediaUicchi",
 	"sacl-denied": "Non ge stè jndr'à l'elenghe d'accesse pe sta pàgene.",
+	"action-sacl-exempt": "escluse da 'a Semandeche ACL",
 	"right-sacl-exempt": "Escluse da 'a Semandeche ACL",
 	"sacl-property-visibility": "Vesibbile a",
 	"sacl-property-visibility-wl-group": "Visibbile a 'u gruppe",

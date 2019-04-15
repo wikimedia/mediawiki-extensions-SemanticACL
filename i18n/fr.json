@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sherbrooke"
+			"Sherbrooke",
+			"Gomoko"
 		]
 	},
 	"sacl-desc": "Gère les restrictions d'accès ''via'' des propriétés de Semantic MediaWiki",
 	"sacl-denied": "Vous n'êtes pas sur la liste d'accès pour cette page.",
+	"action-sacl-exempt": "dispenser des ACL sémantiques",
 	"right-sacl-exempt": "Exempté de la liste d'accès de Semantic MediaWiki",
 	"sacl-property-visibility": "Visible à",
 	"sacl-property-visibility-wl-group": "Visible pour les groupes",
