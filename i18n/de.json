@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kghbln"
+			"Kghbln",
+			"Metalhead64"
 		]
 	},
 	"sacl-desc": "Ermöglicht mit semantischen Attributen verknüpfte Zugriffsbeschränkungen auf Seiten",
 	"sacl-denied": "Du befindest dich nicht auf der Liste der für diese Seite Zugriffsberechtigten.",
+	"action-sacl-exempt": "von Zugriffsbeschränkungen auf semantische Attribute ausgenommen zu sein",
 	"right-sacl-exempt": "Ausgenommen von Zugriffsbeschränkungen auf semantische Attribute",
 	"sacl-property-visibility": "Sichtbar für",
 	"sacl-property-visibility-wl-group": "Sichtbar für Benutzergruppe",
