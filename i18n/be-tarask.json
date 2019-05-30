@@ -9,7 +9,7 @@
 	"sacl-desc": "Дазваляе ладзіць абмежаваньні доступу праз уласьцівасьці Semantic MediaWiki",
 	"sacl-denied": "Вы ня ўключаныя ў сьпіс доступу да гэтай старонкі.",
 	"action-sacl-exempt": "выключэньне з сэмантычных сьпісаў доступу",
-	"right-sacl-exempt": "выключэньне са сэмантычных сьпісаў доступу",
+	"right-sacl-exempt": "Выключэньне з сэмантычных сьпісаў доступу",
 	"sacl-property-visibility": "Бачны",
 	"sacl-property-visibility-wl-group": "Бачны групе",
 	"sacl-property-visibility-wl-user": "Бачны ўдзельніку",
