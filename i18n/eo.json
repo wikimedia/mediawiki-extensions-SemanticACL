@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mirin"
+		]
+	},
+	"sacl-property-visibility": "Videbla al",
+	"sacl-property-visibility-wl-group": "Videbla al grupo",
+	"sacl-property-visibility-wl-user": "Videbla al uzanto",
+	"sacl-property-editable": "Redaktebla de",
+	"sacl-property-editable-wl-group": "Redaktebla de grupo",
+	"sacl-property-editable-wl-user": "Redaktebla de uzanto"
+}
