@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Event"
+			"Event",
+			"Jon Harald Søby"
 		]
 	},
 	"sacl-desc": "Tillater å sette adgangsbegrensninger med egenskaper fra Semantic MediaWiki",
 	"sacl-denied": "Du er ikke på adgangslisten for denne siden.",
+	"action-sacl-exempt": "unntas fra Semantic ACL",
 	"right-sacl-exempt": "Fritatt fra Semantic ACL-er",
 	"sacl-property-visibility": "Synlig for",
 	"sacl-property-visibility-wl-group": "Synlig for gruppe",
