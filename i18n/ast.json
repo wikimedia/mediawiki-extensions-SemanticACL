@@ -6,6 +6,7 @@
 	},
 	"sacl-desc": "Permite definir torgues d'accesu coles propiedaes de Semantic MediaWiki",
 	"sacl-denied": "Nun tas na llista d'accesu d'esta páxina.",
+	"action-sacl-exempt": "llibre de les llistes de control d'accesu semántiques",
 	"right-sacl-exempt": "Dispensáu de les llistes de control d'accesu semántiques",
 	"sacl-property-visibility": "Visible pa",
 	"sacl-property-visibility-wl-group": "Visible pal grupu",
