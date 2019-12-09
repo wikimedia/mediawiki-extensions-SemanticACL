@@ -3,11 +3,13 @@
 		"authors": [
 			"McDutchie",
 			"SPQRobin",
-			"Siebrand"
+			"Siebrand",
+			"Mainframe98"
 		]
 	},
 	"sacl-desc": "Maakt het mogelijk toegangsbeperkingen in te stellen met eigenschappen van Semantic MediaWiki",
 	"sacl-denied": "U staat niet op de toegangslijst voor deze pagina.",
+	"action-sacl-exempt": "vrijgesteld te zijn van semantische ACL's (toegangscontrolelijsten)",
 	"right-sacl-exempt": "Vrijgesteld van semantische ACL's (toegangscontrolelijsten)",
 	"sacl-property-visibility": "Zichtbaar voor",
 	"sacl-property-visibility-wl-group": "Zichtbaar voor de groep",
