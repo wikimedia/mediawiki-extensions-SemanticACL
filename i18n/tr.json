@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"BaRaN6161 TURK"
+		]
+	},
+	"sacl-desc": "Semantic MediaWiki özellikleriyle erişim kısıtlamalarının ayarlanmasına izin verir",
+	"sacl-denied": "Bu sayfanın erişim listesinde yoksunuz.",
+	"action-sacl-exempt": "Anlamsal ACL'lerden muaf",
+	"right-sacl-exempt": "Anlamsal ACL'lerden muaf",
+	"sacl-property-visibility": "Şunu görünür",
+	"sacl-property-visibility-wl-group": "Grubu görünebilir",
+	"sacl-property-visibility-wl-user": "Kullanıcıya görülebilir",
+	"sacl-property-editable": "Şunu düzenleyebilir",
+	"sacl-property-editable-wl-group": "Gruba göre düzenlenebilir",
+	"sacl-property-editable-wl-user": "Kullanıcıya göre düzenlenebilir"
+}
