@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Sherbrooke",
-			"Gomoko"
+			"Gomoko",
+			"Thibaut120094"
 		]
 	},
 	"sacl-desc": "Gère les restrictions d'accès ''via'' des propriétés de Semantic MediaWiki",
@@ -15,6 +16,6 @@
 	"sacl-property-editable": "Modifiable par",
 	"sacl-property-editable-wl-group": "Modifiable par le groupe",
 	"sacl-property-editable-wl-user": "Modifiable par l'utilisateur",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Vous devez vous [[Special:UserLogin|enregistrer]] pour voir ce modèle.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Vous n'avez pas les permissions requises pour voir ce modèle.</div>"
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Vous devez vous [[Special:UserLogin|connecter]] pour voir ce modèle.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Vous n’avez pas les permissions requises pour voir ce modèle.</div>"
 }
