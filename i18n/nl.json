@@ -4,7 +4,8 @@
 			"McDutchie",
 			"SPQRobin",
 			"Siebrand",
-			"Mainframe98"
+			"Mainframe98",
+			"Elroy"
 		]
 	},
 	"sacl-desc": "Maakt het mogelijk toegangsbeperkingen in te stellen met eigenschappen van Semantic MediaWiki",
@@ -16,5 +17,7 @@
 	"sacl-property-visibility-wl-user": "Zichtbaar voor gebruiker",
 	"sacl-property-editable": "Te bewerken door",
 	"sacl-property-editable-wl-group": "Te bewerken door groep",
-	"sacl-property-editable-wl-user": "Te bewerken door gebruiker"
+	"sacl-property-editable-wl-user": "Te bewerken door gebruiker",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">U moet zich [[Special:UserLogin|aanmelden]] om dit sjabloon weer te geven.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">U beschikt niet over de vereiste machtigingen om dit sjabloon weer te geven.</div>"
 }
