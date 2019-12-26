@@ -13,5 +13,7 @@
 	"sacl-property-visibility-wl-user": "Kullanıcıya görülebilir",
 	"sacl-property-editable": "Şunu düzenleyebilir",
 	"sacl-property-editable-wl-group": "Gruba göre düzenlenebilir",
-	"sacl-property-editable-wl-user": "Kullanıcıya göre düzenlenebilir"
+	"sacl-property-editable-wl-user": "Kullanıcıya göre düzenlenebilir",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Bu şablonu görüntülemek için [[Special:UserLogin|giriş]] gerekir.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Bu şablonu görüntülemek için gerekli izinlere sahip değilsiniz.</div>"
 }

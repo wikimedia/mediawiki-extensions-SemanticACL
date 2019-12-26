@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"K Messaoudi"
+		]
+	},
+	"sacl-template-render-denied-anonymous": "<div class=\"erronbox\">Yessefk [[Spécial:UserLogin|qqen]] iwakken ad teẓreḍ taneɣruft-a.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"erronbox\">Ur tesɛiḍ ara tisirag i ilaqen iwakken ad teẓreḍ taneɣruft-a.</div>"
+}

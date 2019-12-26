@@ -13,5 +13,7 @@
 	"sacl-property-visibility-wl-user": "Видливо за корисникот",
 	"sacl-property-editable": "Уредливо за",
 	"sacl-property-editable-wl-group": "Уредливо за групата",
-	"sacl-property-editable-wl-user": "Уредливо за корисникот"
+	"sacl-property-editable-wl-user": "Уредливо за корисникот",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Ќе мора да [[Special:UserLogin|се најавите]] за да го гледате шаблонов.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Ги немате потребните дозволи за да го гледате шаблонов.</div>"
 }
