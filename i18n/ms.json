@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"CyberTroopers"
+		]
+	},
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Anda perlu [[Special:UserLogin|log masuk]] untuk memaparkan templat ini.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Anda tidak mempunyai kebenaran untuk memaparkan templat ini.</div>"
+}
