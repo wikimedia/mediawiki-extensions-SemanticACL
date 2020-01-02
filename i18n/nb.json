@@ -14,5 +14,7 @@
 	"sacl-property-visibility-wl-user": "Synlig for bruker",
 	"sacl-property-editable": "Redigerbar av",
 	"sacl-property-editable-wl-group": "Redigerbar av gruppe",
-	"sacl-property-editable-wl-user": "Redigerbar av bruker"
+	"sacl-property-editable-wl-user": "Redigerbar av bruker",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du må [[Special:UserLogin|logge inn]] for å vise denne malen.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Du har ikke de nødvendige tillatelsene for å vise denne malen.</div>"
 }

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Martinwiss"
+			"Martinwiss",
+			"WikiPhoenix"
 		]
 	},
 	"sacl-desc": "Möjliggör att rättigheter tilldelas med hjälp av egenskaper från Semantiska MediaWiki",
@@ -12,5 +13,6 @@
 	"sacl-property-visibility-wl-user": "Synlig för användare",
 	"sacl-property-editable": "Redigerbar för",
 	"sacl-property-editable-wl-group": "Redigerbar för grupp",
-	"sacl-property-editable-wl-user": "Redigerbar för användare"
+	"sacl-property-editable-wl-user": "Redigerbar för användare",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du måste [[Special:UserLogin|logga in]] för att visa denna mall.</div>"
 }

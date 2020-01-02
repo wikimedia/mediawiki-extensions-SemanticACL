@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Priviet",
-			"아라"
+			"아라",
+			"Ykhwong"
 		]
 	},
 	"sacl-desc": "시맨틱 미디어위키 속성으로 설정된 접근 제한을 할 수 있게 합니다",
@@ -13,5 +14,6 @@
 	"sacl-property-visibility-wl-user": "사용자에게 보이기",
 	"sacl-property-editable": "편집 가능",
 	"sacl-property-editable-wl-group": "그룹이 편집 가능",
-	"sacl-property-editable-wl-user": "사용자가 편집 가능"
+	"sacl-property-editable-wl-user": "사용자가 편집 가능",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">이 틀을 보려면 [[Special:UserLogin|로그인]]해야 합니다.</div>"
 }

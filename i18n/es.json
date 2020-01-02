@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Armando-Martin"
+			"Armando-Martin",
+			"Fitoschido"
 		]
 	},
 	"sacl-desc": "Permite definir restricciones de acceso con las propiedades de Semantic MediaWiki",
@@ -12,5 +13,6 @@
 	"sacl-property-visibility-wl-user": "Visible para el usuario",
 	"sacl-property-editable": "Editable por",
 	"sacl-property-editable-wl-group": "Editable por el grupo",
-	"sacl-property-editable-wl-user": "Editable por el usuario"
+	"sacl-property-editable-wl-user": "Editable por el usuario",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Es necesario [[Special:UserLogin|acceder a una cuenta]] para ver esta plantilla.</div>"
 }
