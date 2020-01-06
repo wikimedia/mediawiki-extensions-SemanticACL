@@ -14,5 +14,6 @@
 	"sacl-property-editable": "Redigerbar för",
 	"sacl-property-editable-wl-group": "Redigerbar för grupp",
 	"sacl-property-editable-wl-user": "Redigerbar för användare",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du måste [[Special:UserLogin|logga in]] för att visa denna mall.</div>"
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du måste [[Special:UserLogin|logga in]] för att visa denna mall.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Du har inte de nödvändiga behörigheterna för att visa denna mall.</div>"
 }
