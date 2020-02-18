@@ -1,5 +1,4 @@
 <?php
-
 /**
  * SemanticACL extension - Allows per-page read and edit restrictions to be set with properties.
  *
@@ -26,6 +25,7 @@ $wgExtensionCredits['semantic'][] = array(
 	'name' => 'Semantic ACL',
 	'author' => array(
 		'Andrew Garrett',
+	    'Antoine Mercier-Linteau',
 		'...'
 	),
 	'descriptionmsg' => 'sacl-desc',
@@ -45,7 +45,7 @@ $wgHooks['BadImage'][] = 'saclBadImage';
 $wgGroupPermissions['sysop']['sacl-exempt'] = true;
 $wgAvailableRights[] = 'sacl-exempt';
 
-/** Initialise predefined properties. */
+/* Initialise predefined properties. */
 \Hooks::register( 'SMW::Property::initProperties', function( $propertyRegistry ) {
 
 	// VISIBLE
@@ -69,6 +69,78 @@ $wgAvailableRights[] = 'sacl-exempt';
 	$propertyRegistry->registerPropertyDescriptionByMsgKey('__EDITABLE_WL_USER', 'sacl-property-editable-wl-user');
 
 	return true;
+} );
+
+/* Filter results  out of queries the current user is not supposed to see. */
+\Hooks::register( 'SMW::Store::AfterQueryResultLookupComplete', function( SMW\Store $store, SMWQueryResult &$queryResult ) {
+    
+    // NOTE: this filtering does not work with count queries.
+    
+    global $wgUser;
+    $filtered = [];
+    $changed = false; // If the result list was changed.
+    
+    foreach($queryResult->getResults() as $result) {
+        
+        $title = $result->getTitle();
+        $accessible = true;
+        
+        /* Check if the current user has permission to view that item.
+         * Disable the handling of caching so we can do it ourselves.
+         * */
+        if(!hasPermission($title, 'read', $wgUser, false)) {
+            
+            disableCaching(); // That item is not always visible, disable caching.
+            $accessible = false;
+        }
+        else if($title->getNamespace() == NS_FILE && !fileHasRequiredCategory($title)) {
+            
+            disableCaching(); // That item is not always visible, disable caching.
+            $accessible = false;
+        }
+        else {
+            
+            $semanticData = $store->getSemanticData($result);
+            
+            // Look for a SemanticACL property in the page's list of properties.
+            foreach($semanticData->getProperties() as $property) {
+                
+                $key = $property->getKey();
+                
+                foreach(['___VISIBLE', '___EDITABLE'] as $semanticACLProperty) {
+                    
+                    // If this is a SemanticACL property.
+                    if($key == $semanticACLProperty) {
+                        
+                        foreach($semanticData->getPropertyValues($property) as $dataItem) {
+                            
+                            // If this is a not a public item.
+                            if($dataItem->getSerialization() != 'public') {
+                                
+                                disableCaching(); // That item is not always visible, disable caching.
+                                break 3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if($accessible) { $filtered[] = $result; } 
+        else { $changed = true; } // Skip that item.
+    }
+    
+    if(!$changed) { return; } // No changes to the query results.
+    
+    // Build a new query result object
+    $queryResult = new SMWQueryResult(
+        $queryResult->getPrintRequests(),
+        $queryResult->getQuery(),
+        $filtered,
+        $store,
+        $queryResult->hasFurtherResults()
+    );
+    
 } );
 
 /** When checking against the bad image list. Change $bad and return
@@ -261,6 +333,7 @@ function hasPermission($title, $action, $user, $disableCaching = true) {
 				return false;
 			}
 		} elseif ( $value == 'public' ) {
+		    
 			return true;
 		}
 	}
