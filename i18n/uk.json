@@ -3,13 +3,14 @@
 		"authors": [
 			"Base",
 			"Vlad5250",
-			"Movses"
+			"Movses",
+			"Piramidion"
 		]
 	},
 	"sacl-desc": "Дозволяє обмежувати доступ через властивості Semantic MediaWiki",
 	"sacl-denied": "Ви не у списку доступу до цієї сторінки",
 	"action-sacl-exempt": "виняток із семантичного списку контролю доступу",
-	"right-sacl-exempt": "Вийняток із семантичних списків котролю доступу (Semantic ACL)",
+	"right-sacl-exempt": "Виняток із семантичних списків контролю доступу (Semantic ACL)",
 	"sacl-property-visibility": "Видима",
 	"sacl-property-visibility-wl-group": "Видима групі",
 	"sacl-property-visibility-wl-user": "Видима користувачу",
