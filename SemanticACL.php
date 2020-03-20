@@ -74,7 +74,9 @@ $wgAvailableRights[] = 'sacl-exempt';
 /* Filter results  out of queries the current user is not supposed to see. */
 \Hooks::register( 'SMW::Store::AfterQueryResultLookupComplete', function( SMW\Store $store, SMWQueryResult &$queryResult ) {
     
-    // NOTE: this filtering does not work with count queries.
+    /* NOTE: this filtering does not work with count queries. To do filtering on count queries, we would
+     * have to use SMW::Store::BeforeQueryResultLookupComplete to add conditions on ACL properties. 
+     * However, doing that would make it extremely difficult to tweak caching on results.*/
     
     global $wgUser;
     $filtered = [];
@@ -309,14 +311,20 @@ function hasPermission($title, $action, $user, $disableCaching = true) {
 			$groupProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
 			$userProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
 			$whitelistValues = $store->getPropertyValues( $groupProperty );
-
+            
+			// Check if the current user is part of a whitelisted group.
 			foreach( $whitelistValues as $whitelistValue ) {
-				$group = strtolower($whitelistValue->getString());
-
-				if ( in_array( $group, $user->getEffectiveGroups() ) ) {
-					$isWhitelisted = true;
-					break;
-				}
+			    /* MediaWiki does not seem to specify whether groups are case sensitive or not.
+			     * To account for all cases group comparison is done in a case insentitive way.
+			     * See: https://www.mediawiki.org/wiki/Topic:Vi9pg5qywcfjpqox
+			     * */
+			    $group = strtolower($whitelistValue->getString());
+			    
+			    if (in_array($group, array_map('strtolower', $user->getEffectiveGroups())))
+			    {
+			        $isWhitelisted = true;
+			        break;
+			    }
 			}
 
 			$whitelistValues = $store->getPropertyValues( $userProperty );
