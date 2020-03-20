@@ -1,0 +1,47 @@
+{
+	"name": "SemanticACL",
+	"version": "0.2b",
+	"author": [
+		"[https://wikimedi.ca/wiki/Utilisateur:Antoine_Mercier-Linteau Antoine Mercier-Linteau]",
+		"Andrew Garrett"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:SemanticACL",
+	"descriptionmsg": "sacl-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "semantic",
+	"requires": {
+		"MediaWiki": ">= 1.31.0",
+		"extensions": { "SemanticMediaWiki": "> 3.0" }
+	},
+	"AvailableRights": [
+		"sacl-exempt",
+		"view-non-categorized-media"
+	],
+	"GroupPermissions": {"sysop": {"sacl-exempt": true}},
+	"AutoloadClasses": {
+		"MediaWiki\\Extension\\SemanticACL\\SemanticACL": "SemanticACL.class.php"
+	},
+	"config": {
+		"SemanticACLWhitelistIPs": {
+			"value": null,
+			"description": "IPs listed in this array are granted full access."
+		},
+		"PublicImagesCategory": {
+			"value": null,
+			"description": "Only files within this category are shown to unregistered users. This feature is useful for wikis that make use of copyrighted images that have not been cleared for public viewing."
+		}
+	},
+	"Hooks": {
+		"SMW::Property::initProperties" : "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWPropertyinitProperties",
+		"SMW::Store::AfterQueryResultLookupComplete": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWStoreAfterQueryResultLookupComplete",
+		"BadImage": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onBadImage",
+		"ParserFetchTemplate": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFetchTemplate",
+		"userCan": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onUserCan"
+	},
+	"MessagesDirs": {
+		"SemanticACL": [
+			"i18n"
+		]
+	},
+	"manifest_version": 2
+}
