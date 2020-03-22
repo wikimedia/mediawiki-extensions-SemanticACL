@@ -29,6 +29,10 @@
 		"PublicImagesCategory": {
 			"value": null,
 			"description": "Only files within this category are shown to unregistered users. This feature is useful for wikis that make use of copyrighted images that have not been cleared for public viewing."
+		},
+		"EnablePrivateLinks": {
+			"value": true,
+			"description": "If protected pages can be viewed by anyone using a private link with a key."
 		}
 	},
 	"Hooks": {
@@ -36,12 +40,14 @@
 		"SMW::Store::AfterQueryResultLookupComplete": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWStoreAfterQueryResultLookupComplete",
 		"BadImage": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onBadImage",
 		"ParserFetchTemplate": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFetchTemplate",
-		"userCan": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onUserCan"
+		"userCan": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onUserCan",
+		"ParserFirstCallInit": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFirstCallInit"
 	},
 	"MessagesDirs": {
 		"SemanticACL": [
 			"i18n"
 		]
-	},
+	},	
+	"ExtensionMessagesFiles": {	"SemanticACLMagic": "i18n/SemanticACL.magic.php" },
 	"manifest_version": 2
 }

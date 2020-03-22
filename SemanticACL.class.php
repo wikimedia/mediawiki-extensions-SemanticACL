@@ -29,6 +29,12 @@ use SMWQueryResult;
  * */
 class SemanticACL
 {
+    /** The minimum key length for private link access. */
+    const MIN_KEY_LENGTH = 6;
+    
+    /** The name of URL argument for private link access. */
+    const URL_ARG_NAME = 'sematicacl-key';
+    
     /**
      * Initialize SMW properties.
      * */
@@ -204,7 +210,7 @@ class SemanticACL
     }
     
     /**
-     *  To interrupt/advise the "user can do X to Y article" check.
+     * To interrupt/advise the "user can do X to Y article" check.
      * @param Title $title Title object being checked against
      * @param \User $user Current user object
      * @param string $action Action being checked
@@ -216,6 +222,32 @@ class SemanticACL
     	// This hook is also triggered when displaying search results.
         
     	return self::hasPermission($title, $action, $user, false);
+    }
+    
+    /**
+     * Register render callbacks with the parser.
+     * */
+    public static function onParserFirstCallInit( &$parser )
+    {
+        $parser->setFunctionHook('SEMANTICACL_PRIVATE_LINK', __CLASS__.'::getPrivateLink');
+    }
+    
+    /**
+     * Render callback to get a private link.
+     * @var \Parser $parser the current parser
+     * @var string $key the key for the private link
+     * */
+    public static function getPrivateLink(\Parser &$parser, $key = '')
+    {
+        global $wgEnablePrivateLinks;
+        
+        if(!$wgEnablePrivateLinks) { $key = wfMessage('sacl-private-links-disabled')->text(); }
+        
+        if(strlen($key) <= self::MIN_KEY_LENGTH ) { return wfMessage('sacl-key-too-short'); } // Must specify a key.
+        
+        self::disableCaching();
+        
+        return RequestContext::getMain()->getTitle()->getFullURL([self::URL_ARG_NAME => urlencode($key)]);
     }
     
     /** 
@@ -284,64 +316,86 @@ class SemanticACL
     	{
     		return true;
     	}
-    
+        
     	if($title->getNamespace() == NS_FILE)
     	{
-    
     		if(!self::fileHasRequiredCategory($title) && !$user->isAllowed('view-non-categorized-media'))
     		{
     			return false;
     		}
     	}
-    
-    	foreach($aclTypes as $valueObj)
+    	
+    	$hasPermission = true;
+    	
+    	foreach($aclTypes as $valueObj) // For each ACL specifier.
     	{
-    
-    		$value = strtolower($valueObj->getString());
-    
-    		if($value == 'users') 
+    		switch(strtolower($valueObj->getString()))
     		{
-    			if($user->isAnon()) { return false; }
-    		} 
-    		elseif($value == 'whitelist') 
-    		{
-    			$isWhitelisted = false;
-    
-    			$groupProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
-    			$userProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
-    			$whitelistValues = $store->getPropertyValues( $groupProperty );
-                
-    			// Check if the current user is part of a whitelisted group.
-    			foreach($whitelistValues as $whitelistValue) 
-    			{
-    			    /* MediaWiki does not seem to specify whether groups are case sensitive or not.
-    			     * To account for all cases group comparison is done in a case insentitive way.
-    			     * See: https://www.mediawiki.org/wiki/Topic:Vi9pg5qywcfjpqox
-    			     * */
-    			    $group = strtolower($whitelistValue->getString());
+        		case 'whitelist':
+        			$isWhitelisted = false;
+        
+        			$groupProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
+        			$userProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
+        			$whitelistValues = $store->getPropertyValues( $groupProperty );
+                    
+        			// Check if the current user is part of a whitelisted group.
+        			foreach($whitelistValues as $whitelistValue) 
+        			{
+        			    /* MediaWiki does not seem to specify whether groups are case sensitive or not.
+        			     * To account for all cases group comparison is done in a case insentitive way.
+        			     * See: https://www.mediawiki.org/wiki/Topic:Vi9pg5qywcfjpqox
+        			     * */
+        			    $group = strtolower($whitelistValue->getString());
+        			    
+        			    if(in_array($group, array_map('strtolower', $user->getEffectiveGroups())))
+        			    {
+        			        $isWhitelisted = true;
+        			        break;
+        			    }
+        			}
+        
+        			$whitelistValues = $store->getPropertyValues($userProperty);
+        
+        			foreach($whitelistValues as $whitelistValue) 
+        			{
+        				$title = Title::newFromDBkey($whitelistValue->getString());
+        
+        				if($user->getUserPage()->equals($title)) { $isWhitelisted = true; }
+        			}
+        
+        			if(!$isWhitelisted) { $hasPermission = false;; }
+    			    break;
     			    
-    			    if(in_array($group, array_map('strtolower', $user->getEffectiveGroups())))
-    			    {
-    			        $isWhitelisted = true;
-    			        break;
-    			    }
-    			}
-    
-    			$whitelistValues = $store->getPropertyValues($userProperty);
-    
-    			foreach($whitelistValues as $whitelistValue) 
-    			{
-    				$title = Title::newFromDBkey($whitelistValue->getString());
-    
-    				if($user->getUserPage()->equals($title)) { $isWhitelisted = true; }
-    			}
-    
-    			if(!$isWhitelisted) { return false; }
-    		} 
-    		elseif($value == 'public') { return true; }
+        		case 'key':
+        		    
+        		    global $wgEnablePrivateLinks;
+        		    if(!$wgEnablePrivateLinks) { break; } // Private links have been disabled.
+        		    
+        		    // Retrieve the content of the magic word, this is the key for the private link.
+        		    preg_match_all('/{{#SEMANTICACL_PRIVATE_LINK:(.*?)}}/', Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(), $matches);
+        		    $key = isset($matches[1][0]) ? urlencode($matches[1][0]): '';
+        		    
+        		    if(strlen($key) > self::MIN_KEY_LENGTH && // The key must be a certain length.
+        		        ($action == 'read' || $action == 'raw') && // Keys cannot be used to edit pages.
+        		        // If the key provided in the request aguments matches the key in the page.
+        		        RequestContext::getMain()->getRequest()->getVal(self::URL_ARG_NAME, false) === $key)
+        		    {
+        		        return true;
+        		    }
+        		    
+        		    break;
+        		    
+        		case 'users':
+        		    $hasPermission = !$user->isAnon();
+        		    break;
+        		    
+        		case 'public':
+        		    $hasPermission = true;
+        		    break;
+    		}
     	}
     
-    	return true;
+    	return $hasPermission;
     }
     
     
