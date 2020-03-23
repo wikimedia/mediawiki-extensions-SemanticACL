@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"Sayginer"
 		]
 	},
 	"sacl-desc": "Semantic MediaWiki özellikleriyle erişim kısıtlamalarının ayarlanmasına izin verir",
@@ -15,5 +16,7 @@
 	"sacl-property-editable-wl-group": "Gruba göre düzenlenebilir",
 	"sacl-property-editable-wl-user": "Kullanıcıya göre düzenlenebilir",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Bu şablonu görüntülemek için [[Special:UserLogin|giriş]] gerekir.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Bu şablonu görüntülemek için gerekli izinlere sahip değilsiniz.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Bu şablonu görüntülemek için gerekli izinlere sahip değilsiniz.</div>",
+	"sacl-key-too-short": "Anahtar 6 karakterden daha uzun olmalı.",
+	"sacl-private-links-disabled": "Özel_bağlantılar_yöneticiniz_tarafından_devre_dışı_bırakıldı"
 }
