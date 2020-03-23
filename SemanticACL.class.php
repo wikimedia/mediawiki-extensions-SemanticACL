@@ -232,6 +232,9 @@ class SemanticACL
         $parser->setFunctionHook('SEMANTICACL_PRIVATE_LINK', __CLASS__.'::getPrivateLink');
     }
     
+    /** @param string the key used for the private link. */
+    private static $_key = '';
+    
     /**
      * Render callback to get a private link.
      * @var \Parser $parser the current parser
@@ -246,6 +249,10 @@ class SemanticACL
         if(strlen($key) <= self::MIN_KEY_LENGTH ) { return wfMessage('sacl-key-too-short'); } // Must specify a key.
         
         self::disableCaching();
+        
+        /* Save the key. If this function is called within hasPermission() through template
+         * expansion, it will be used to confirm access using a private link. */
+        self::$_key = $key;
         
         return RequestContext::getMain()->getTitle()->getFullURL([self::URL_ARG_NAME => urlencode($key)]);
     }
@@ -367,13 +374,20 @@ class SemanticACL
     			    break;
     			    
         		case 'key':
+        		    /* The key is parsed out of the page's content because it cannot be set as semantic
+        		     * property. Doing so would expose it to searches and queries. */
         		    
         		    global $wgEnablePrivateLinks;
         		    if(!$wgEnablePrivateLinks) { break; } // Private links have been disabled.
         		    
-        		    // Retrieve the content of the magic word, this is the key for the private link.
-        		    preg_match_all('/{{#SEMANTICACL_PRIVATE_LINK:(.*?)}}/', Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(), $matches);
-        		    $key = isset($matches[1][0]) ? urlencode($matches[1][0]): '';
+        		    // Expand all the templates in the accessed page to retrieve the magic word.
+        		    $output = \MediaWiki\MediaWikiServices::getInstance()->getParser()->preprocess(
+        		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(), 
+        		        $title, 
+        		        \ParserOptions::newFromContext(RequestContext::getMain())
+    		        );
+        		    
+        		    $key = self::$_key; // The key normally should have been set during page parsing and template expansion.
         		    
         		    if(strlen($key) > self::MIN_KEY_LENGTH && // The key must be a certain length.
         		        ($action == 'read' || $action == 'raw') && // Keys cannot be used to edit pages.
