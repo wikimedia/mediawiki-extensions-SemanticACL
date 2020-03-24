@@ -18,5 +18,7 @@
 	"sacl-property-editable-wl-group": "Може редагуватись групою",
 	"sacl-property-editable-wl-user": "Може редагуватись користувачем",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Ви маєте [[Special:UserLogin|увійти]], щоб переглянути цей шаблон.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Ви не маєте достатнього доступу для перегляду цього шаблону.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Ви не маєте достатнього доступу для перегляду цього шаблону.</div>",
+	"sacl-key-too-short": "Довжина ключа має бути більшою ніж 6 символів.",
+	"sacl-private-links-disabled": "Приватні_посилання_вимкнено_вашим_адміністратором"
 }
