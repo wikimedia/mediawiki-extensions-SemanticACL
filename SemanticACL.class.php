@@ -33,7 +33,7 @@ class SemanticACL
     const MIN_KEY_LENGTH = 6;
     
     /** The name of URL argument for private link access. */
-    const URL_ARG_NAME = 'sematicacl-key';
+    const URL_ARG_NAME = 'semanticacl-key';
     
     /**
      * Initialize SMW properties.
@@ -380,6 +380,9 @@ class SemanticACL
         		    global $wgEnablePrivateLinks;
         		    if(!$wgEnablePrivateLinks) { break; } // Private links have been disabled.
         		    
+        		    // Only works when viewing pages.
+        		    if($action != 'read' && $action != 'raw') { break; }
+        		    
         		    // Expand all the templates in the accessed page to retrieve the magic word.
         		    $output = \MediaWiki\MediaWikiServices::getInstance()->getParser()->preprocess(
         		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(), 
@@ -387,12 +390,14 @@ class SemanticACL
         		        \ParserOptions::newFromContext(RequestContext::getMain())
     		        );
         		    
+        		    $query = RequestContext::getMain()->getRequest()->getQueryValues();
+        		    
         		    $key = self::$_key; // The key normally should have been set during page parsing and template expansion.
         		    
         		    if(strlen($key) > self::MIN_KEY_LENGTH && // The key must be a certain length.
-        		        ($action == 'read' || $action == 'raw') && // Keys cannot be used to edit pages.
+        		        isset($query[self::URL_ARG_NAME]) &&
         		        // If the key provided in the request aguments matches the key in the page.
-        		        RequestContext::getMain()->getRequest()->getVal(self::URL_ARG_NAME, false) === $key)
+        		        $query[self::URL_ARG_NAME] === $key)
         		    {
         		        return true;
         		    }
@@ -404,8 +409,7 @@ class SemanticACL
         		    break;
         		    
         		case 'public':
-        		    $hasPermission = true;
-        		    break;
+        		    return true;
     		}
     	}
     
