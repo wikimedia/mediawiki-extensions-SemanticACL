@@ -371,9 +371,14 @@ class SemanticACL
         		    // Only works when viewing pages.
         		    if($action != 'read' && $action != 'raw') { break; }
         		    
-        		    // Expand all the templates in the accessed page to retrieve the magic word.
-        		    $output = \MediaWiki\MediaWikiServices::getInstance()->getParser()->recursivePreprocess(
-        		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData()
+        		    /* Expand all the templates in the accessed page to retrieve the magic word.
+        		     * The magic word will be stored in self::$_key and set there by the getPrivateLink() parser hook.*/
+        		    $parser = \MediaWiki\MediaWikiServices::getInstance()->getParser();
+        		    $parser->startExternalParse( $title, \ParserOptions::newFromContext(RequestContext::getMain()), \Parser::OT_PREPROCESS );
+        		    $text = $parser->recursivePreprocess(
+        		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(),
+        		        $title,
+        		        $parser->mOptions
     		        );
         		    
         		    $query = RequestContext::getMain()->getRequest()->getQueryValues();
