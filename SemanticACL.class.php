@@ -384,10 +384,8 @@ class SemanticACL
         		    if($action != 'read' && $action != 'raw') { break; }
         		    
         		    // Expand all the templates in the accessed page to retrieve the magic word.
-        		    $output = \MediaWiki\MediaWikiServices::getInstance()->getParser()->preprocess(
-        		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(), 
-        		        $title, 
-        		        \ParserOptions::newFromContext(RequestContext::getMain())
+        		    $output = \MediaWiki\MediaWikiServices::getInstance()->getParser()->recursivePreprocess(
+        		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData()
     		        );
         		    
         		    $query = RequestContext::getMain()->getRequest()->getQueryValues();
