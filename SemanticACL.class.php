@@ -190,21 +190,9 @@ class SemanticACL
     	{
     		return true; // User is allowed to view that template.
     	}
-    
-    	global $wgHooks;
-    
-    	$hookName = 'MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFetchTemplate';
-    	if($hookIndex = array_search($hookName, $wgHooks['ParserFetchTemplate']) === false) 
-    	{
-    		throw new \Exception('Function name could no be found in hook.'); // This would only happen with a code refactoring mistake.
-    	}
-    
-    	// Since we will be rendering wikicode, unset the hook to prevent a recursive permission error on templates.
-    	unset($wgHooks['ParserFetchTemplate'][$hookIndex]);
-    
+        
+    	// Display error text instead of template.
     	$text = wfMessage(RequestContext::getMain()->getUser()->isAnon() ? 'sacl-template-render-denied-anonymous' : 'sacl-template-render-denied-registered')->plain();
-    
-    	$wgHooks['ParserFetchTemplate'] = $hookName; // Reset the hook.
     
     	return false;
     }
