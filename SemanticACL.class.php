@@ -434,7 +434,7 @@ class SemanticACL
     		$inCategory = false;
     
     		$page = Article::newFromTitle($title, RequestContext::getMain());
-    		$file = $page->getFile(); //wfFindFile( $this->getTitle() )
+    		$file = $page->getFile();
     
     		if(!$file->isLocal()) { return true; } // Foreign files are always shown.
     
