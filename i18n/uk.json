@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Base",
-			"Vlad5250",
 			"Movses",
-			"Piramidion"
+			"Piramidion",
+			"Vlad5250"
 		]
 	},
 	"sacl-desc": "Дозволяє обмежувати доступ через властивості Semantic MediaWiki",

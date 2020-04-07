@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Elroy",
+			"Mainframe98",
 			"McDutchie",
 			"SPQRobin",
-			"Siebrand",
-			"Mainframe98",
-			"Elroy"
+			"Siebrand"
 		]
 	},
 	"sacl-desc": "Maakt het mogelijk toegangsbeperkingen in te stellen met eigenschappen van Semantic MediaWiki",
