@@ -242,7 +242,7 @@ class SemanticACL
          * expansion, it will be used to confirm access using a private link. */
         self::$_key = $key;
         
-        return RequestContext::getMain()->getTitle()->getFullURL([self::URL_ARG_NAME => urlencode($key)]);
+        return $parser->getTitle()->getFullURL([self::URL_ARG_NAME => urlencode($key)]);
     }
     
     /** 
