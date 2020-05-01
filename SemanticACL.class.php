@@ -373,7 +373,7 @@ class SemanticACL
         		    
         		    /* Expand all the templates in the accessed page to retrieve the magic word.
         		     * The magic word will be stored in self::$_key and set there by the getPrivateLink() parser hook.*/
-        		    $parser = \MediaWiki\MediaWikiServices::getInstance()->getParser();
+        		    $parser =  \MediaWiki\MediaWikiServices::getInstance()->getParserFactory()->create(); // Use a new parser to avoid interfering with the current parser.
         		    $parser->startExternalParse( $title, \ParserOptions::newFromContext(RequestContext::getMain()), \Parser::OT_PREPROCESS );
         		    $text = $parser->recursivePreprocess(
         		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(),
