@@ -17,5 +17,6 @@
 	"sacl-property-editable-wl-user": "Editável pelo usuário",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Você deve [[Special:UserLogin|entrar]] para visualizar essa predefinição.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Você não tem as permissões necessárias para visualizar essa predefinição.</div>",
-	"sacl-key-too-short": "A chave deve ter mais de 6 caracteres."
+	"sacl-key-too-short": "A chave deve ter mais de 6 caracteres.",
+	"sacl-private-links-disabled": "Private_links_disabled_by_your_administrator"
 }
