@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Druesenfieber",
 			"Kghbln",
 			"Metalhead64"
 		]
@@ -14,5 +15,6 @@
 	"sacl-property-visibility-wl-user": "Sichtbar für Benutzer",
 	"sacl-property-editable": "Bearbeitbar von",
 	"sacl-property-editable-wl-group": "Bearbeitbar von Benutzergruppe",
-	"sacl-property-editable-wl-user": "Bearbeitbar von Benutzer"
+	"sacl-property-editable-wl-user": "Bearbeitbar von Benutzer",
+	"sacl-key-too-short": "Der Schlüssel muss mindestens 6 Zeichen lang sein."
 }
