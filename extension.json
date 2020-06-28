@@ -11,13 +11,19 @@
 	"type": "semantic",
 	"requires": {
 		"MediaWiki": ">= 1.31.0",
-		"extensions": { "SemanticMediaWiki": "> 3.0" }
+		"extensions": {
+			"SemanticMediaWiki": "> 3.0"
+		}
 	},
 	"AvailableRights": [
 		"sacl-exempt",
 		"view-non-categorized-media"
 	],
-	"GroupPermissions": {"sysop": {"sacl-exempt": true}},
+	"GroupPermissions": {
+		"sysop": {
+			"sacl-exempt": true
+		}
+	},
 	"AutoloadClasses": {
 		"MediaWiki\\Extension\\SemanticACL\\SemanticACL": "SemanticACL.class.php"
 	},
@@ -36,7 +42,7 @@
 		}
 	},
 	"Hooks": {
-		"SMW::Property::initProperties" : "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWPropertyinitProperties",
+		"SMW::Property::initProperties": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWPropertyinitProperties",
 		"SMW::Store::AfterQueryResultLookupComplete": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWStoreAfterQueryResultLookupComplete",
 		"BadImage": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onBadImage",
 		"ParserFetchTemplate": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFetchTemplate",
@@ -47,7 +53,9 @@
 		"SemanticACL": [
 			"i18n"
 		]
-	},	
-	"ExtensionMessagesFiles": {	"SemanticACLMagic": "i18n/SemanticACL.magic.php" },
+	},
+	"ExtensionMessagesFiles": {
+		"SemanticACLMagic": "i18n/SemanticACL.magic.php"
+	},
 	"manifest_version": 2
 }
