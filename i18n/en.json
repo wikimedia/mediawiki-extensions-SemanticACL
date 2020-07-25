@@ -8,6 +8,8 @@
 	"sacl-denied": "You are not on the access list for this page.",
 	"action-sacl-exempt": "exempt from Semantic ACLs",
 	"right-sacl-exempt": "Exempt from Semantic ACLs",
+	"action-view-non-categorized-media": "allowed to view non categorized media files",
+	"right-view-non-categorized-media": "Allowed to view non categorized media files",
 	"sacl-property-visibility": "Visible to",
 	"sacl-property-visibility-wl-group": "Visible to group",
 	"sacl-property-visibility-wl-user": "Visible to user",
