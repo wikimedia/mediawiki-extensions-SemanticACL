@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"BeginaFelicysym",
+			"Rail",
 			"Woytecr"
 		]
 	},
 	"sacl-desc": "Umożliwia ograniczenia dostępu przy użyciu właściwości Semantycznej MediaWiki",
 	"sacl-denied": "Nie jesteś na liście dostępu do tej strony.",
 	"right-sacl-exempt": "Zwolniony z listy ACL Semantycznej MediaWiki",
+	"action-view-non-categorized-media": "podglądu nieskategoryzowanych plików multimedialnych",
+	"right-view-non-categorized-media": "Podgląd nieskategoryzowanych plików multimedialnych",
 	"sacl-property-visibility": "Widoczne dla",
 	"sacl-property-visibility-wl-group": "Widoczne dla grupy",
 	"sacl-property-visibility-wl-user": "Widoczne dla użytkownika",

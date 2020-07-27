@@ -10,11 +10,16 @@
 	"sacl-denied": "Du befindest dich nicht auf der Liste der für diese Seite Zugriffsberechtigten.",
 	"action-sacl-exempt": "von Zugriffsbeschränkungen auf semantische Attribute ausgenommen zu sein",
 	"right-sacl-exempt": "Ausgenommen von Zugriffsbeschränkungen auf semantische Attribute",
+	"action-view-non-categorized-media": "erlaubt, nicht kategorisierte Mediendateien anzusehen",
+	"right-view-non-categorized-media": "Erlaubnis, nicht kategorisierte Mediendateien anzusehen",
 	"sacl-property-visibility": "Sichtbar für",
 	"sacl-property-visibility-wl-group": "Sichtbar für Benutzergruppe",
 	"sacl-property-visibility-wl-user": "Sichtbar für Benutzer",
 	"sacl-property-editable": "Bearbeitbar von",
 	"sacl-property-editable-wl-group": "Bearbeitbar von Benutzergruppe",
 	"sacl-property-editable-wl-user": "Bearbeitbar von Benutzer",
-	"sacl-key-too-short": "Der Schlüssel muss mindestens 6 Zeichen lang sein."
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du musst [[Special:UserLogin|angemeldet sein]], um diese Vorlage zu sehen.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Du hast nicht die erforderlichen Berechtigungen, um diese Vorlage zu sehen.</div>",
+	"sacl-key-too-short": "Der Schlüssel muss mindestens 6 Zeichen lang sein.",
+	"sacl-private-links-disabled": "Private_links_deaktiviert_von_deinem_Verwalter"
 }

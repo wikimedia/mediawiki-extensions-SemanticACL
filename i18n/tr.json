@@ -9,6 +9,8 @@
 	"sacl-denied": "Bu sayfanın erişim listesinde yoksunuz.",
 	"action-sacl-exempt": "Anlamsal ACL'lerden muaf",
 	"right-sacl-exempt": "Anlamsal ACL'lerden muaf",
+	"action-view-non-categorized-media": "kategorilere ayrılmamış medya dosyalarını görüntüleme izni var",
+	"right-view-non-categorized-media": "Kategorilere ayrılmamış medya dosyalarını görüntüleme izni var",
 	"sacl-property-visibility": "Şunu görünür",
 	"sacl-property-visibility-wl-group": "Grubu görünebilir",
 	"sacl-property-visibility-wl-user": "Kullanıcıya görülebilir",
