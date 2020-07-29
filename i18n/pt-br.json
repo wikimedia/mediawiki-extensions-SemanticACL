@@ -9,6 +9,8 @@
 	"sacl-denied": "Você não está na lista de acesso para esta página.",
 	"action-sacl-exempt": "isenta de ACLs semânticos",
 	"right-sacl-exempt": "Isenta das Listas de Controle de Acesso Semânticas",
+	"action-view-non-categorized-media": "permissão para visualizar arquivos de mídia não categorizados",
+	"right-view-non-categorized-media": "Permitido visualizar arquivos de mídia não categorizados",
 	"sacl-property-visibility": "Visível para",
 	"sacl-property-visibility-wl-group": "Visível para o grupo",
 	"sacl-property-visibility-wl-user": "Visível para o usuário",
