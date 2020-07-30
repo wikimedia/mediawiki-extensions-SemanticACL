@@ -9,6 +9,8 @@
 	"sacl-denied": "Du er ikke på adgangslisten for denne siden.",
 	"action-sacl-exempt": "unntas fra Semantic ACL",
 	"right-sacl-exempt": "Fritatt fra Semantic ACL-er",
+	"action-view-non-categorized-media": "vise ukategoriserte mediefiler",
+	"right-view-non-categorized-media": "Vise ukategoriserte mediefiler",
 	"sacl-property-visibility": "Synlig for",
 	"sacl-property-visibility-wl-group": "Synlig for gruppe",
 	"sacl-property-visibility-wl-user": "Synlig for bruker",
