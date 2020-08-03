@@ -8,6 +8,8 @@
 	"sacl-denied": "Не сте на списокот за пристап до оваа страница.",
 	"action-sacl-exempt": "изземеност од семантичкиот список за конрола на пристап",
 	"right-sacl-exempt": "Изземен од семантичкиот список за конрола на пристап",
+	"action-view-non-categorized-media": "преглед на некатегоризирани слики и снимки",
+	"right-view-non-categorized-media": "Дозвола за преглед на некатегоризирани слики и снимки",
 	"sacl-property-visibility": "Видливо за",
 	"sacl-property-visibility-wl-group": "Видливо за групата",
 	"sacl-property-visibility-wl-user": "Видливо за корисникот",
