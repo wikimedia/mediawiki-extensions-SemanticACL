@@ -353,12 +353,12 @@ class SemanticACL
         
         			foreach($whitelistValues as $whitelistValue) 
         			{
-        				$title = Title::newFromDBkey($whitelistValue->getString());
+        				$userPage = Title::newFromDBkey($whitelistValue->getString());
         
-        				if($user->getUserPage()->equals($title)) { $isWhitelisted = true; }
+        				if($user->getUserPage()->equals($userPage)) { $isWhitelisted = true; }
         			}
         
-        			if(!$isWhitelisted) { $hasPermission = false;; }
+        			if(!$isWhitelisted) { $hasPermission = false; }
     			    break;
     			    
         		case 'key':
@@ -374,12 +374,12 @@ class SemanticACL
         		    /* Expand all the templates in the accessed page to retrieve the magic word.
         		     * The magic word will be stored in self::$_key and set there by the getPrivateLink() parser hook.*/
         		    $parser =  \MediaWiki\MediaWikiServices::getInstance()->getParserFactory()->create(); // Use a new parser to avoid interfering with the current parser.
-        		    $parser->startExternalParse( $title, \ParserOptions::newFromContext(RequestContext::getMain()), \Parser::OT_PREPROCESS );
-        		    $text = $parser->recursivePreprocess(
+					$parser->startExternalParse( $title, \ParserOptions::newFromContext(RequestContext::getMain()), \Parser::OT_PREPROCESS );
+					$text = $parser->recursivePreprocess(
         		        Article::newFromTitle($title, RequestContext::getMain())->getRevision()->getContent()->getNativeData(),
         		        $title,
         		        $parser->mOptions
-    		        );
+					);
         		    
         		    $query = RequestContext::getMain()->getRequest()->getQueryValues();
         		    
