@@ -16,13 +16,14 @@
 
 namespace MediaWiki\Extension\SemanticACL;
 
-use Title;
 use Article;
+use MediaWiki\MediaWikiServices;
 use RequestContext;
 use SMW;
-use SMWDIWikiPage;
 use SMWDIProperty;
+use SMWDIWikiPage;
 use SMWQueryResult;
+use Title;
 
 /**
  * SemanticACL extension main class.
@@ -342,7 +343,14 @@ class SemanticACL
 						 */
 						$group = strtolower($whitelistValue->getString());
 
-						if(in_array($group, array_map('strtolower', $user->getEffectiveGroups())))
+						if ( method_exists( MediaWikiServices::class, 'getUserGroupManager' ) ) {
+							// MW 1.35+
+							$effectiveGroups = MediaWikiServices::getInstance()->getUserGroupManager()
+								->getUserEffectiveGroups( $user );
+						} else {
+							$effectiveGroups = $user->getEffectiveGroups();
+						}
+						if(in_array($group, array_map('strtolower', $effectiveGroups)))
 						{
 							$isWhitelisted = true;
 							break;
