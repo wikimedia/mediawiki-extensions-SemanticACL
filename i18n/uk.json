@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Base",
+			"DDPAT",
 			"Movses",
 			"Piramidion",
 			"Vlad5250"
@@ -11,6 +12,8 @@
 	"sacl-denied": "Ви не у списку доступу до цієї сторінки",
 	"action-sacl-exempt": "виняток із семантичного списку контролю доступу",
 	"right-sacl-exempt": "Виняток із семантичних списків контролю доступу (Semantic ACL)",
+	"action-view-non-categorized-media": "дозволено переглядати медіафайли без категорії",
+	"right-view-non-categorized-media": "Дозволено перегляд некатегорізованих медіафайлів",
 	"sacl-property-visibility": "Видима",
 	"sacl-property-visibility-wl-group": "Видима групі",
 	"sacl-property-visibility-wl-user": "Видима користувачу",
