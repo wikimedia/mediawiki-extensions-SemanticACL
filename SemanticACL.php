@@ -1,8 +1,8 @@
 <?php
 /**
- * 
+ *
  * SemanticACL extension - Allows per-page read and edit restrictions to be set with properties.
- * 
+ *
  * This PHP entry point is deprecated. Please use wfLoadExtension() and the extension.json file
  * instead. See https://www.mediawiki.org/wiki/Manual:Extension_registration for more details.
  *
