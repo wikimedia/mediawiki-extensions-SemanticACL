@@ -178,6 +178,7 @@ class SemanticACL {
 	 * @param \Revision $rev Revision object of the template
 	 * @param string|false|null $text transclusion text of the template or false or null
 	 * @param array $deps array of template dependencies with 'title', 'page_id', 'rev_id' keys
+	 * @return bool False if an error text oughta be shown, else true
 	 */
 	public static function onParserFetchTemplate( $parser, $title, $rev, &$text, &$deps ) {
 		$user = RequestContext::getMain()->getUser();
@@ -215,19 +216,23 @@ class SemanticACL {
 
 	/**
 	 * Register render callbacks with the parser.
+	 *
+	 * @param \Parser &$parser
 	 */
 	public static function onParserFirstCallInit( &$parser ) {
 		$parser->setFunctionHook( 'SEMANTICACL_PRIVATE_LINK', __CLASS__ . '::getPrivateLink' );
 	}
 
-	/** @param string the key used for the private link. */
+	/** @var string The key used for the private link. */
 	private static $_key = '';
 
 	/**
 	 * Render callback to get a private link.
 	 *
-	 * @var \Parser $parser the current parser
-	 * @var string $key the key for the private link
+	 * @param \Parser &$parser The current parser
+	 * @param string $key The key for the private link
+	 * @return string A full URL with the correct arguments set on success, error message if $key
+	 *   is too short
 	 */
 	public static function getPrivateLink( \Parser &$parser, $key = '' ) {
 		global $wgEnablePrivateLinks;
@@ -258,7 +263,7 @@ class SemanticACL {
 	 * @param string $action the action the user wants to do
 	 * @param \User $user the user to check permissions for
 	 * @param bool $disableCaching force the page being checked to be rerendered for each user
-	 * @return boolean if the user is allowed to conduct the action
+	 * @return bool if the user is allowed to conduct the action
 	 */
 	protected static function hasPermission( $title, $action, $user, $disableCaching = true ) {
 		global $smwgNamespacesWithSemanticLinks;
