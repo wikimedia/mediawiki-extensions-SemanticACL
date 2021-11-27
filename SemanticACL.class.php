@@ -238,7 +238,7 @@ class SemanticACL {
 
 		if ( strlen( $key ) <= self::MIN_KEY_LENGTH ) {
 			// Must specify a key.
-			return wfMessage( 'sacl-key-too-short' );
+			return wfMessage( 'sacl-key-too-short' )->text();
 		}
 
 		self::disableCaching();
