@@ -90,7 +90,7 @@ class SemanticACL {
 			if ( !self::hasPermission( $title, 'read', $wgUser, false ) ) {
 				self::disableCaching(); // That item is not always visible, disable caching.
 				$accessible = false;
-			} else if ( $title->getNamespace() == NS_FILE && !self::fileHasRequiredCategory( $title ) ) {
+			} elseif ( $title->getNamespace() == NS_FILE && !self::fileHasRequiredCategory( $title ) ) {
 				self::disableCaching(); // That item is not always visible, disable caching.
 				$accessible = false;
 			} else {
@@ -268,7 +268,7 @@ class SemanticACL {
 		if ( $title->isTalkPage() ) {
 			// Talk pages get the same permission as their subject page.
 			$title = $title->getSubjectPage();
-		} else if ( \ExtensionRegistry::getInstance()->isLoaded( 'Flow' ) ) {
+		} elseif ( \ExtensionRegistry::getInstance()->isLoaded( 'Flow' ) ) {
 			// If the Flow extension is installed.
 			if ( $title->getNamespace() == NS_TOPIC ) {
 				// Retrieve the board associated with the topic.
