@@ -81,6 +81,12 @@ class SemanticACL
 		{
 
 			$title = $result->getTitle();
+			if ( !$title instanceof Title )
+			{
+				// T296559
+				continue;
+			}
+
 			$accessible = true;
 
 			/* Check if the current user has permission to view that item.
