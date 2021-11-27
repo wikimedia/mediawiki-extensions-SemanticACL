@@ -180,13 +180,19 @@ class SemanticACL {
 	 * @param array $deps array of template dependencies with 'title', 'page_id', 'rev_id' keys
 	 */
 	public static function onParserFetchTemplate( $parser, $title, $rev, &$text, &$deps ) {
-		if ( self::hasPermission( $title, 'read', RequestContext::getMain()->getUser(), true ) ) {
+		$user = RequestContext::getMain()->getUser();
+		if ( self::hasPermission( $title, 'read', $user, true ) ) {
 			// User is allowed to view that template.
 			return true;
 		}
 
 		// Display error text instead of template.
-		$text = wfMessage( RequestContext::getMain()->getUser()->isAnon() ? 'sacl-template-render-denied-anonymous' : 'sacl-template-render-denied-registered' )->plain();
+		if ( $user->isAnon() ) {
+			$msgKey = 'sacl-template-render-denied-anonymous';
+		} else {
+			$msgKey = 'sacl-template-render-denied-registered';
+		}
+		$text = wfMessage( $msgKey )->plain();
 
 		return false;
 	}
