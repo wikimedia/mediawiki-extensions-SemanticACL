@@ -4,7 +4,7 @@
  *
  * @link https://www.mediawiki.org/wiki/Extension:SemanticACL Documentation
  *
- * @file SemanticACL.php
+ * @file SemanticACL.class.php
  * @ingroup Extensions
  * @defgroup SemanticACL
  * @package MediaWiki
