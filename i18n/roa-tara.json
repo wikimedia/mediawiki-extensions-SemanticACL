@@ -8,10 +8,16 @@
 	"sacl-denied": "Non ge stè jndr'à l'elenghe d'accesse pe sta pàgene.",
 	"action-sacl-exempt": "escluse da 'a Semandeche ACL",
 	"right-sacl-exempt": "Escluse da 'a Semandeche ACL",
+	"action-view-non-categorized-media": "puè 'ndrucà file multimediale non categorizzate",
+	"right-view-non-categorized-media": "Puè 'ndrucà file multimediale non categorizzate",
 	"sacl-property-visibility": "Vesibbile a",
 	"sacl-property-visibility-wl-group": "Visibbile a 'u gruppe",
 	"sacl-property-visibility-wl-user": "Visibbile a l'utende",
 	"sacl-property-editable": "Cangiabbile da",
 	"sacl-property-editable-wl-group": "Cangiabbile da 'u gruppe",
-	"sacl-property-editable-wl-user": "Cangiabbile da l'utende"
+	"sacl-property-editable-wl-user": "Cangiabbile da l'utende",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">A [[Special:UserLogin|trasè]] pe 'ndrucà stu template.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Non ge tìne 'u permesse richieste pe 'ndrucà stu template.</div>",
+	"sacl-key-too-short": "'A chiave adda essere ninde ninde de 6 carattere.",
+	"sacl-private-links-disabled": "Private_links_disabled_by_your_administrator"
 }
