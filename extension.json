@@ -10,7 +10,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "semantic",
 	"requires": {
-		"MediaWiki": ">= 1.31.0",
+		"MediaWiki": ">= 1.38.0",
 		"extensions": {
 			"SemanticMediaWiki": "> 3.0"
 		}

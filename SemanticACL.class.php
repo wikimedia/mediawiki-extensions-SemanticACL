@@ -452,7 +452,7 @@ class SemanticACL {
 			$wgParser->getOutput()->updateCacheExpiry( 0 );
 		}
 
-		RequestContext::getMain()->getOutput()->enableClientCache( false );
+		RequestContext::getMain()->getOutput()->disableClientCache();
 	}
 
 	/**
