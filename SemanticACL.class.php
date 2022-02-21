@@ -17,6 +17,7 @@
 namespace MediaWiki\Extension\SemanticACL;
 
 use Article;
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use RequestContext;
@@ -24,6 +25,7 @@ use SMW;
 use SMWDIProperty;
 use SMWDIWikiPage;
 use SMWQueryResult;
+use TextContent;
 use Title;
 
 /**
@@ -409,8 +411,18 @@ class SemanticACL {
 					// Use a new parser to avoid interfering with the current parser.
 					$parser = \MediaWiki\MediaWikiServices::getInstance()->getParserFactory()->create();
 					$parser->startExternalParse( $title, \ParserOptions::newFromContext( RequestContext::getMain() ), \Parser::OT_PREPROCESS );
+					$revision = Article::newFromTitle( $title, RequestContext::getMain() )->getPage()->getRevisionRecord();
+					if ( !$revision ) {
+						// Should not happen
+						throw new LogicException( 'SemanticACL: unknown revision with the \'key\' mechanism' );
+					}
+					$content = $revision->getContent( SlotRecord::MAIN );
+					if ( !( $content instanceof TextContent ) ) {
+						// Not implemented on non-text contents
+						break;
+					}
 					$text = $parser->recursivePreprocess(
-						Article::newFromTitle( $title, RequestContext::getMain() )->getPage()->getRevisionRecord()->getContent( SlotRecord::MAIN )->getNativeData(),
+						$content->getText(),
 						$title,
 						$parser->mOptions
 					);
