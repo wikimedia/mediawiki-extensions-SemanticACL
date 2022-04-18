@@ -3,23 +3,24 @@
 		"authors": [
 			"Gomoko",
 			"Sherbrooke",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Verdy p"
 		]
 	},
-	"sacl-desc": "Gère les restrictions d'accès ''via'' des propriétés de Semantic MediaWiki",
-	"sacl-denied": "Vous n'êtes pas sur la liste d'accès pour cette page.",
-	"action-sacl-exempt": "dispenser des ACL sémantiques",
-	"right-sacl-exempt": "Exempté de la liste d'accès de Semantic MediaWiki",
+	"sacl-desc": "Permet de gérer des restrictions d’accès au moyen de propriétés de Semantic MediaWiki",
+	"sacl-denied": "Vous n’êtes pas habilité selon la liste d’accès pour cette page.",
+	"action-sacl-exempt": "dispenser des listes d’accès Sémantiques",
+	"right-sacl-exempt": "Exempté de la liste d’accès Sémantiques",
 	"action-view-non-categorized-media": "autorisé à afficher les fichiers de média sans catégorie",
 	"right-view-non-categorized-media": "Autorisé à afficher les fichiers de média sans catégorie",
-	"sacl-property-visibility": "Visible à",
-	"sacl-property-visibility-wl-group": "Visible pour les groupes",
-	"sacl-property-visibility-wl-user": "Visible pour l'utilisateur",
+	"sacl-property-visibility": "Visible pour",
+	"sacl-property-visibility-wl-group": "Visible pour le(s) groupe(s)",
+	"sacl-property-visibility-wl-user": "Visible pour le(s) utilisateur(s)",
 	"sacl-property-editable": "Modifiable par",
-	"sacl-property-editable-wl-group": "Modifiable par le groupe",
-	"sacl-property-editable-wl-user": "Modifiable par l'utilisateur",
+	"sacl-property-editable-wl-group": "Modifiable par le(s) groupe(s)",
+	"sacl-property-editable-wl-user": "Modifiable par le(s) utilisateur(s)",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Vous devez vous [[Special:UserLogin|connecter]] pour voir ce modèle.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Vous n’avez pas les permissions requises pour voir ce modèle.</div>",
-	"sacl-key-too-short": "La clé doit faire plus de six caractères de long.",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Vous n’avez pas les droits nécessaires pour visualiser ce modèle.</div>",
+	"sacl-key-too-short": "La clé doit comporter plus de six caractères.",
 	"sacl-private-links-disabled": "Liens_privés_désactivés_par_votre_administrateur"
 }
