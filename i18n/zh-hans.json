@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A Retired User",
+			"GuoPC",
 			"Hzy980512",
 			"Linforest",
 			"Liuxinyu970226",
@@ -13,6 +14,8 @@
 	"sacl-denied": "您不在该页面的可视列表中。",
 	"action-sacl-exempt": "不受Semantic ACL限制",
 	"right-sacl-exempt": "Semantic ACL豁免权",
+	"action-view-non-categorized-media": "查看未分类的媒体文件",
+	"right-view-non-categorized-media": "查看未分类的媒体文件",
 	"sacl-property-visibility": "可见于",
 	"sacl-property-visibility-wl-group": "可见于组",
 	"sacl-property-visibility-wl-user": "可见于用户",
