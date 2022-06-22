@@ -6,7 +6,7 @@
 			"Jaideraf"
 		]
 	},
-	"sacl-desc": "Permite definir restrições de acesso com propriedades do Semantic Mediawiki",
+	"sacl-desc": "Permite definir restrições de acesso com propriedades do Semantic MediaWiki",
 	"sacl-denied": "Você não está na lista de acesso para esta página.",
 	"action-sacl-exempt": "isenta de ACLs semânticos",
 	"right-sacl-exempt": "Isenta das Listas de Controle de Acesso Semânticas",
