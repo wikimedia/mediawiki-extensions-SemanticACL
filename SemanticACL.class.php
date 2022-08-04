@@ -72,9 +72,9 @@ class SemanticACL {
 		 * However, doing that would make it extremely difficult to tweak caching on results.
 		 */
 
-		global $wgUser;
 		$filtered = [];
 		$changed = false; // If the result list was changed.
+		$user = RequestContext::getMain()->getUser();
 
 		foreach ( $queryResult->getResults() as $result ) {
 			$title = $result->getTitle();
@@ -88,7 +88,7 @@ class SemanticACL {
 			/* Check if the current user has permission to view that item.
 			 * Disable the handling of caching so we can do it ourselves.
 			 */
-			if ( !self::hasPermission( $title, 'read', $wgUser, false ) ) {
+			if ( !self::hasPermission( $title, 'read', $user, false ) ) {
 				self::disableCaching(); // That item is not always visible, disable caching.
 				$accessible = false;
 			} elseif ( $title->getNamespace() == NS_FILE && !self::fileHasRequiredCategory( $title ) ) {
