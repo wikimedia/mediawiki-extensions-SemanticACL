@@ -15,5 +15,7 @@
 	"sacl-property-editable-wl-group": "Editável pelo grupo",
 	"sacl-property-editable-wl-user": "Editável pelo utilizador",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Tem de [[Special:UserLogin|entrar]] para ver esta predefinição.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Não tem as permissões necessárias para ver esta predefinição.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Não tem as permissões necessárias para ver esta predefinição.</div>",
+	"sacl-key-too-short": "A chave tem de ter mais de 6 caracteres.",
+	"sacl-private-links-disabled": "Hiperligações_privadas_desativadas_pelo_seu_administrador"
 }
