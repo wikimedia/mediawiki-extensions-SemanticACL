@@ -7,11 +7,18 @@
 	},
 	"sacl-desc": "הוספת אפשרות להגדיר הגבלות על מאפיינים של מדיה־ויקי סמנטית",
 	"sacl-denied": "אינך מופיע ברשימת הגישה לדף הזה.",
+	"action-sacl-exempt": "חסינות מרשימות בקרת גישה סמנטיות",
 	"right-sacl-exempt": "חסינות מרשימות בקרת גישה סמנטיות",
-	"sacl-property-visibility": "גלוי ל",
+	"action-view-non-categorized-media": "לצפות בקובצי מדיה ללא קטגוריה",
+	"right-view-non-categorized-media": "צפייה בקובצי מדיה ללא קטגוריה",
+	"sacl-property-visibility": "גלוי ל־",
 	"sacl-property-visibility-wl-group": "גלוי לקבוצה",
 	"sacl-property-visibility-wl-user": "גלוי למשתמש",
 	"sacl-property-editable": "ניתן לעריכה על־ידי",
 	"sacl-property-editable-wl-group": "ניתן לעריכה על־ידי קבוצה",
-	"sacl-property-editable-wl-user": "ניתן לעריכה על־ידי המשתמש"
+	"sacl-property-editable-wl-user": "ניתן לעריכה על־ידי המשתמש",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">יש [[Special:UserLogin|להיכנס]] כדי להציג התבנית הזאת.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">אין לך את ההרשאות הנדרשות כדי להציג את התבנית הזאת.</div>",
+	"sacl-key-too-short": "המפתח חייב להיות באורך של יותר מ־6 תווים.",
+	"sacl-private-links-disabled": "קישורים_פרטיים_כובו_על־ידי_המפעיל_שלך"
 }
