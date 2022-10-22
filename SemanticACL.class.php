@@ -210,11 +210,16 @@ class SemanticACL {
 	 * @param array|string &$result User permissions error to add. If none, return true.
 	 *   $result can be returned as a single error message key (string), or an array of error message
 	 *   keys when multiple messages are needed (although it seems to take an array as one message key with parameters?).
-	 * @return bool if the user has permissions to do the action
+	 * @return bool False to abort execution of any other function in this hook, true to allow
+	 *   execution of other functions in this hook
 	 */
-	public static function onUserCan( &$title, &$user, $action, &$result ) {
+	public static function onUserCan( $title, $user, $action, &$result ) {
 		// This hook is also triggered when displaying search results.
-		return self::hasPermission( $title, $action, $user, false );
+		if( !self::hasPermission( $title, $action, $user, false ) ) {
+			$result = false;
+			return false;
+		}
+		return true;
 	}
 
 	/**
