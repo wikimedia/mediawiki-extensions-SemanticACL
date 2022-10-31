@@ -6,11 +6,18 @@
 	},
 	"sacl-desc": "Permitte definir restrictiones de accesso con proprietates de Semantic MediaWiki",
 	"sacl-denied": "Tu non es in le lista de accesso de iste pagina.",
+	"action-sacl-exempt": "esser exempte de ACLs Semantic",
 	"right-sacl-exempt": "Exempte del controlo de accesso de Semantic MediaWiki",
+	"action-view-non-categorized-media": "vider files multimedial non categorisate",
+	"right-view-non-categorized-media": "Vider files multimedial non categorisate",
 	"sacl-property-visibility": "Visibile pro",
 	"sacl-property-visibility-wl-group": "Visibile pro le gruppo",
 	"sacl-property-visibility-wl-user": "Visibile pro le usator",
 	"sacl-property-editable": "Modificabile per",
 	"sacl-property-editable-wl-group": "Modificabile per le gruppo",
-	"sacl-property-editable-wl-user": "Modificabile per le usator"
+	"sacl-property-editable-wl-user": "Modificabile per le usator",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Es necessari [[Special:UserLogin|aperir session]] pro vider iste patrono.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">~Tu non ha le permissiones necessari pro vider iste patrono.</div>",
+	"sacl-key-too-short": "Le clave debe haber plus de 6 characteres.",
+	"sacl-private-links-disabled": "Ligamines_private_disactivate_per_tu_administrator"
 }
