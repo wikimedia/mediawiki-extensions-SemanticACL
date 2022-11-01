@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Meno25",
 			"ديفيد"
 		]
 	},
@@ -8,6 +9,8 @@
 	"sacl-denied": "أنت لست في قائمة الوصول لهذه الصفحة.",
 	"action-sacl-exempt": "معفى من ACLs الدلالي",
 	"right-sacl-exempt": "معفى من ACLs الدلالي",
+	"action-view-non-categorized-media": "عرض ملفات الوسائط غير المصنفة",
+	"right-view-non-categorized-media": "عرض ملفات الوسائط غير المصنفة",
 	"sacl-property-visibility": "مرئي لـ",
 	"sacl-property-visibility-wl-group": "مرئي لمجموعة",
 	"sacl-property-visibility-wl-user": "مرئي للمستخدم",
@@ -15,5 +18,7 @@
 	"sacl-property-editable-wl-group": "قابل للتعديل من قبل مجموعة",
 	"sacl-property-editable-wl-user": "قابل للتحرير من قبل المستخدم",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">يجب عليك [[Special:UserLogin|تسجيل الدخول]] لعرض هذا القالب.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">ليست لديك الصلاحيات اللازمة لعرض هذا القالب.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">ليست لديك الصلاحيات اللازمة لعرض هذا القالب.</div>",
+	"sacl-key-too-short": "يجب أن يكون طول المفتاح أكثر من 6 أحرف.",
+	"sacl-private-links-disabled": "Private_links_disabled_by_your_ad Administrator"
 }
