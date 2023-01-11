@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"sacl-desc": "Omogućuje postavljanje ograničenja pristupa pomoću Semantic MediaWiki svojstava",
+	"sacl-denied": "Niste na pristupnoj listi za ovu stranicu."
+}
