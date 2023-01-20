@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"sacl-desc": "Omogoča nastavitev omejitev dostopa z lastnostmi Semantičnega MediaWikija",
+	"sacl-denied": "Niste na seznamu dostopa za to stran.",
+	"action-sacl-exempt": "izvzetje iz semantičnih seznamov dostopa",
+	"right-sacl-exempt": "Izvzetje iz semantičnih seznamov dostopa",
+	"action-view-non-categorized-media": "ogled nekategoriziranih predstavnostnih datotek",
+	"right-view-non-categorized-media": "Ogled nekategoriziranih predstavnostnih datotek",
+	"sacl-property-visibility": "Vidno za",
+	"sacl-property-visibility-wl-group": "Vidno za skupino",
+	"sacl-property-visibility-wl-user": "Vidno za uporabnika",
+	"sacl-property-editable": "Ureja lahko",
+	"sacl-property-editable-wl-group": "Ureja lahko skupina",
+	"sacl-property-editable-wl-user": "Ureja lahko uporabnik",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Za ogled te predloge se morate [[Special:UserLogin|prijaviti]].</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Nimate potrebnih dovoljenj za ogled te predloge.</div>",
+	"sacl-key-too-short": "Ključ mora biti dolg več kot 6 znakov.",
+	"sacl-private-links-disabled": "Zasebne_povezave_onemogočil_vaš_administrator"
+}
