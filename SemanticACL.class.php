@@ -213,7 +213,7 @@ class SemanticACL {
 	 * @return bool False to abort execution of any other function in this hook, true to allow
 	 *   execution of other functions in this hook
 	 */
-	public static function onUserCan( $title, $user, $action, &$result ) {
+	public static function onGetUserPermissionsErrors( $title, $user, $action, &$result ) {
 		// This hook is also triggered when displaying search results.
 		if( !self::hasPermission( $title, $action, $user, false ) ) {
 			$result = false;

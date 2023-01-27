@@ -46,7 +46,7 @@
 		"SMW::Store::AfterQueryResultLookupComplete": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWStoreAfterQueryResultLookupComplete",
 		"BadImage": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onBadImage",
 		"ParserFetchTemplate": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFetchTemplate",
-		"userCan": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onUserCan",
+		"getUserPermissionsErrors": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onGetUserPermissionsErrors",
 		"ParserFirstCallInit": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFirstCallInit"
 	},
 	"MessagesDirs": {
