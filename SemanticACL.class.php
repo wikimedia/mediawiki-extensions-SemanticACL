@@ -464,10 +464,10 @@ class SemanticACL {
 	 * Disable caching for the page currently being rendered.
 	 */
 	protected static function disableCaching() {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
-		if ( $wgParser->getOutput() ) {
-			$wgParser->getOutput()->updateCacheExpiry( 0 );
+		if ( $parser->getOutput() ) {
+			$parser->getOutput()->updateCacheExpiry( 0 );
 		}
 
 		RequestContext::getMain()->getOutput()->disableClientCache();
