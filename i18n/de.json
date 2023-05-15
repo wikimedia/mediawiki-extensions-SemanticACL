@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Druesenfieber",
+			"Justman10000",
 			"Kghbln",
 			"Metalhead64"
 		]
 	},
 	"sacl-desc": "Ermöglicht mit semantischen Attributen verknüpfte Zugriffsbeschränkungen auf Seiten",
 	"sacl-denied": "Du befindest dich nicht auf der Liste der für diese Seite Zugriffsberechtigten.",
-	"action-sacl-exempt": "von Zugriffsbeschränkungen auf semantische Attribute ausgenommen zu sein",
-	"right-sacl-exempt": "Ausgenommen von Zugriffsbeschränkungen auf semantische Attribute",
+	"action-sacl-exempt": "von Semantischen ACLs ausgenommen werden",
+	"right-sacl-exempt": "Von Semantischen ACLs ausgenommen werden",
 	"action-view-non-categorized-media": "ansehen nicht kategorisierter Mediendateien",
 	"right-view-non-categorized-media": "Ansehen nicht kategorisierter Mediendateien",
 	"sacl-property-visibility": "Sichtbar für",
