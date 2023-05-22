@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alshamiri1",
 			"Meno25",
 			"ديفيد"
 		]
 	},
 	"sacl-desc": "يسمح بضبط قيود الوصول مع خصائص ميدياويكي الدلالي",
 	"sacl-denied": "أنت لست في قائمة الوصول لهذه الصفحة.",
-	"action-sacl-exempt": "معفى من ACLs الدلالي",
+	"action-sacl-exempt": "يتم إعفاؤها من قوائم ACL الدلالية",
 	"right-sacl-exempt": "معفى من ACLs الدلالي",
 	"action-view-non-categorized-media": "عرض ملفات الوسائط غير المصنفة",
 	"right-view-non-categorized-media": "عرض ملفات الوسائط غير المصنفة",
