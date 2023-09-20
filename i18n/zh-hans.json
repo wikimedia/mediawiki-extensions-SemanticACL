@@ -22,5 +22,6 @@
 	"sacl-property-visibility-wl-user": "可见的用户",
 	"sacl-property-editable": "可编辑者",
 	"sacl-property-editable-wl-group": "可编辑的用户组",
-	"sacl-property-editable-wl-user": "可编辑的用户"
+	"sacl-property-editable-wl-user": "可编辑的用户",
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">您必须[[Special:UserLogin|登录]]才能查看此模板。</div>"
 }
