@@ -12,6 +12,8 @@
 	"sacl-denied": "U staat niet op de toegangslijst voor deze pagina.",
 	"action-sacl-exempt": "vrijgesteld te zijn van semantische ACL's (toegangscontrolelijsten)",
 	"right-sacl-exempt": "Vrijgesteld van semantische ACL's (toegangscontrolelijsten)",
+	"action-view-non-categorized-media": "niet-gecategoriseerde mediabestanden te bekijken",
+	"right-view-non-categorized-media": "Niet-gecategoriseerde mediabestanden bekijken",
 	"sacl-property-visibility": "Zichtbaar voor",
 	"sacl-property-visibility-wl-group": "Zichtbaar voor de groep",
 	"sacl-property-visibility-wl-user": "Zichtbaar voor gebruiker",
@@ -19,5 +21,7 @@
 	"sacl-property-editable-wl-group": "Te bewerken door groep",
 	"sacl-property-editable-wl-user": "Te bewerken door gebruiker",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">U moet zich [[Special:UserLogin|aanmelden]] om dit sjabloon weer te geven.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">U beschikt niet over de vereiste machtigingen om dit sjabloon weer te geven.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">U beschikt niet over de vereiste machtigingen om dit sjabloon weer te geven.</div>",
+	"sacl-key-too-short": "De sleutel moet meer dan 6 tekens lang zijn.",
+	"sacl-private-links-disabled": "Privékoppelingen_uitgeschakeld_door_uw_beheerder"
 }
