@@ -19,5 +19,7 @@
 	"sacl-property-editable-wl-group": "Te bewerken door groep",
 	"sacl-property-editable-wl-user": "Te bewerken door gebruiker",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">U moet zich [[Special:UserLogin|aanmelden]] om dit sjabloon weer te geven.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">U beschikt niet over de vereiste machtigingen om dit sjabloon weer te geven.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">U beschikt niet over de vereiste machtigingen om dit sjabloon weer te geven.</div>",
+	"sacl-key-too-short": "De sleutel moet meer dan 6 tekens lang zijn.",
+	"sacl-private-links-disabled": "Privékoppelingen_uitgeschakeld_door_uw_beheerder"
 }
