@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"ديفيد",
-			"Meno25"
+			"Meno25",
+			"Alshamiri1",
+			"علاء"
 		]
 	},
 	"sacl-desc": "يسمح بضبط قيود الوصول مع خصائص ميدياويكي الدلالي",
@@ -16,7 +18,7 @@
 	"sacl-property-editable-wl-group": "قابل للتعديل من قبل مجموعة",
 	"sacl-property-editable-wl-user": "قابل للتحرير من قبل المستخدم",
 	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">يجب عليك [[Special:UserLogin|تسجيل الدخول]] لعرض هذا القالب.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">ليست لديك الصلاحيات اللازمة لعرض هذا القالب.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">ليس لديك الصلاحيات اللازمة لعرض هذا القالب.</div>",
 	"sacl-key-too-short": "يجب أن يكون طول المفتاح أكثر من 6 أحرف.",
 	"sacl-private-links-disabled": "Private_links_disabled_by_your_ad Administrator"
 }
