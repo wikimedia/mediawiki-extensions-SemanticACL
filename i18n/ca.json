@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lluis Cat"
+		]
+	},
+	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Heu [[Special:UserLogin|d'iniciar sessió]] per veure aquesta plantilla.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"errorbox\">No teniu els permisos necessaris per veure aquesta plantilla.</div>"
+}
