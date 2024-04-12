@@ -429,7 +429,7 @@ class SemanticACL {
 					$text = $parser->recursivePreprocess(
 						$content->getText(),
 						$title,
-						$parser->mOptions
+						$parser->getOptions()
 					);
 
 					$query = RequestContext::getMain()->getRequest()->getQueryValues();
