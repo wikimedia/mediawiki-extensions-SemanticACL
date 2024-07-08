@@ -11,7 +11,7 @@
 	"action-sacl-exempt": "不受 Semantic ACL 限制",
 	"right-sacl-exempt": "不受 Semantic ACL 限制",
 	"action-view-non-categorized-media": "檢視未分類的媒體檔案",
-	"right-view-non-categorized-media": "允許檢視未分類的多媒體檔案",
+	"right-view-non-categorized-media": "檢視未分類的多媒體檔案",
 	"sacl-property-visibility": "可檢視",
 	"sacl-property-visibility-wl-group": "可檢視的群組",
 	"sacl-property-visibility-wl-user": "可檢視的使用者",
