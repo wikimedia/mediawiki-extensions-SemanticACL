@@ -22,5 +22,6 @@
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Vous devez vous [[Special:UserLogin|connecter]] pour voir ce modèle.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Vous n’avez pas les droits nécessaires pour visualiser ce modèle.</div>",
 	"sacl-key-too-short": "La clé doit comporter plus de six caractères.",
-	"sacl-private-links-disabled": "Liens_privés_désactivés_par_votre_administrateur"
+	"sacl-private-links-disabled": "Liens_privés_désactivés_par_votre_administrateur",
+	"sacl-property-cascade-permissions": "Permissions en cascade pour les sous-pages"
 }

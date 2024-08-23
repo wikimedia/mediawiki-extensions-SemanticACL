@@ -39,6 +39,10 @@
 		"SemanticACLEnablePrivateLinks": {
 			"value": true,
 			"description": "If protected pages can be viewed by anyone using a private link with a key."
+		},
+		"SemanticACLEnableCascadingACL": {
+			"value": false,
+			"description": "Parent pages can override the permissions of subpages."
 		}
 	},
 	"Hooks": {
