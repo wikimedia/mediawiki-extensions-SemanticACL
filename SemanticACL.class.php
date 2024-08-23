@@ -338,7 +338,7 @@ class SemanticACL {
 		}
 
 		// Do not use ACL in command line mode.
-		if( !(defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli')) { 
+		if( defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') { 
 			return true;
 		}
 
