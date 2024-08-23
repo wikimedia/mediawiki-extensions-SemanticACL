@@ -20,6 +20,7 @@ use Article;
 use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\MutableRevisionRecord;
 use RequestContext;
 use SMW;
 use SMWDIProperty;
@@ -196,11 +197,7 @@ class SemanticACL {
 		}
 
 		// Fetch the RevisionRecord for the replacement messages (used as a template).
-		if (!$revRecord = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionByTitle(Title::newFromText($msgKey, NS_MEDIAWIKI))){
-		/* If the message does no exist in the DB (null is returned), display a link to the template instead.
-		 * Messages simply defined in i18n files will not work here, they have to be saved in the DB. */
-		    $skip = true; // Skip this template.
-		}
+		$revRecord = new MutableRevisionRecord(Title::newFromText($msgKey, NS_MEDIAWIKI));
 
 		return true;
 	}
@@ -340,9 +337,13 @@ class SemanticACL {
 			return true;
 		}
 
-		// Always allow whitelisted IPs through unless the command line is used.
-		if ( !(defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') && 
-			isset( $wgSemanticACLWhitelistIPs ) &&
+		// Do not use ACL in command line mode.
+		if( !(defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli')) { 
+			return true;
+		}
+
+		// Always allow whitelisted IPs through.
+		if ( isset( $wgSemanticACLWhitelistIPs ) &&
 			in_array( RequestContext::getMain()->getRequest()->getIP(), $wgSemanticACLWhitelistIPs )
 		) {
 			return true;
@@ -510,7 +511,7 @@ class SemanticACL {
 				return true;
 			}
 
-			foreach ( $page->getForeignCategories() as $category ) {
+			foreach ( $page->getCategories() as $category ) {
 				if ( $category->getDBkey() == str_replace( ' ', '_', $wgSemanticACLPublicImagesCategory ) ) {
 					return true;
 				}
