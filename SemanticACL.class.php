@@ -247,9 +247,15 @@ class SemanticACL {
 	 *   is too short
 	 */
 	public static function getPrivateLink( \Parser &$parser, $key = '' ) {
-		global $wgEnablePrivateLinks;
+		global $wgSemanticACLEnablePrivateLinks;
+		global $wgEnablePrivateLinks; // Old name.
 
-		if ( !$wgEnablePrivateLinks ) {
+		if($wgEnablePrivateLinks) { 
+			$wgSemanticACLEnablePrivateLinks = $wgEnablePrivateLinks;
+			wfDeprecated( 'EnablePrivateLinks was replaced with SemanticACLEnablePrivateLinks' );
+		}
+
+		if ( !$wgSemanticACLEnablePrivateLinks ) {
 			$key = wfMessage( 'sacl-private-links-disabled' )->text();
 		}
 
@@ -396,8 +402,15 @@ class SemanticACL {
 					 * property. Doing so would expose it to searches and queries.
 					 */
 
-					global $wgEnablePrivateLinks;
-					if ( !$wgEnablePrivateLinks ) {
+					 global $wgSemanticACLEnablePrivateLinks;
+					 global $wgEnablePrivateLinks; // Old name.
+			 
+					 if($wgEnablePrivateLinks) { 
+						 $wgSemanticACLEnablePrivateLinks = $wgEnablePrivateLinks;
+						 wfDeprecated( 'EnablePrivateLinks was replaced with SemanticACLEnablePrivateLinks' );
+					 }
+					 
+					if ( !$wgSemanticACLEnablePrivateLinks ) {
 						// Private links have been disabled.
 						break;
 					}
@@ -478,9 +491,15 @@ class SemanticACL {
 	 * @return bool if the file has been properly categorized
 	 */
 	protected static function fileHasRequiredCategory( $title ) {
-		global $wgPublicImagesCategory;
+		global $wgSemanticACLPublicImagesCategory;
+		global $wgPublicImagesCategory; // Old name.
 
-		if ( isset( $wgPublicImagesCategory ) && $wgPublicImagesCategory &&
+		if($wgPublicImagesCategory) { 
+			$wgSemanticACLPublicImagesCategory = $wgPublicImagesCategory;
+			wfDeprecated( 'PublicImagesCategory as replaced with SemanticACLPublicImagesCategory' );
+		}
+
+		if ( isset( $wgSemanticACLPublicImagesCategory ) && $wgSemanticACLPublicImagesCategory &&
 			$title->getNamespace() == NS_FILE
 		) {
 			$page = Article::newFromTitle( $title, RequestContext::getMain() );
@@ -492,7 +511,7 @@ class SemanticACL {
 			}
 
 			foreach ( $page->getForeignCategories() as $category ) {
-				if ( $category->getDBkey() == str_replace( ' ', '_', $wgPublicImagesCategory ) ) {
+				if ( $category->getDBkey() == str_replace( ' ', '_', $wgSemanticACLPublicImagesCategory ) ) {
 					return true;
 				}
 			}

@@ -32,11 +32,11 @@
 			"value": null,
 			"description": "IPs listed in this array are granted full access."
 		},
-		"PublicImagesCategory": {
+		"SemanticACLPublicImagesCategory": {
 			"value": null,
 			"description": "Only files within this category are shown to unregistered users. This feature is useful for wikis that make use of copyrighted images that have not been cleared for public viewing."
 		},
-		"EnablePrivateLinks": {
+		"SemanticACLEnablePrivateLinks": {
 			"value": true,
 			"description": "If protected pages can be viewed by anyone using a private link with a key."
 		}
