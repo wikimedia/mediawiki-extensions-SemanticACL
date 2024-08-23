@@ -1,6 +1,6 @@
 {
 	"name": "SemanticACL",
-	"version": "0.2b",
+	"version": "0.3",
 	"author": [
 		"[https://wikimedi.ca/wiki/Utilisateur:Antoine_Mercier-Linteau Antoine Mercier-Linteau]",
 		"Andrew Garrett"
@@ -12,7 +12,7 @@
 	"requires": {
 		"MediaWiki": ">= 1.38.0",
 		"extensions": {
-			"SemanticMediaWiki": "> 3.0"
+			"SemanticMediaWiki": "> 4.0"
 		}
 	},
 	"AvailableRights": [
@@ -45,7 +45,7 @@
 		"SMW::Property::initProperties": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWPropertyinitProperties",
 		"SMW::Store::AfterQueryResultLookupComplete": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onSMWStoreAfterQueryResultLookupComplete",
 		"BadImage": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onBadImage",
-		"ParserFetchTemplate": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFetchTemplate",
+		"BeforeParserFetchTemplateRevisionRecord": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onBeforeParserFetchTemplateRevisionRecord",
 		"getUserPermissionsErrors": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onGetUserPermissionsErrors",
 		"ParserFirstCallInit": "MediaWiki\\Extension\\SemanticACL\\SemanticACL::onParserFirstCallInit"
 	},

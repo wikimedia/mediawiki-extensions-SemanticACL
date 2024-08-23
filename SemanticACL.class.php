@@ -173,17 +173,15 @@ class SemanticACL {
 	}
 
 	/**
-	 * Called when the parser fetches a template.
-	 * Replaces the template with an error message if the user cannot view the template.
-	 *
-	 * @param \Parser|false $parser Parser object or false
-	 * @param Title $title Title object of the template to be fetched
-	 * @param \Revision $rev Revision object of the template
-	 * @param string|false|null $text transclusion text of the template or false or null
-	 * @param array $deps array of template dependencies with 'title', 'page_id', 'rev_id' keys
-	 * @return bool False if an error text oughta be shown, else true
+	 * This hook is called before a template is fetched by Parser.
+
+     * @param ?LinkTarget $contextTitle The top-level page title, if any
+     * @param LinkTarget $title The template link (from the literal wikitext)
+     * @param bool &$skip Skip this template and link it?
+     * @param ?RevisionRecord &$revRecord The desired revision record
+     * @return bool|void True or no return value to continue or false to abort
 	 */
-	public static function onParserFetchTemplate( $parser, $title, $rev, &$text, &$deps ) {
+	public static function onBeforeParserFetchTemplateRevisionRecord( $contextTitle, $title, &$skip, &$revRecord ) {
 		$user = RequestContext::getMain()->getUser();
 		if ( self::hasPermission( $title, 'read', $user, true ) ) {
 			// User is allowed to view that template.
@@ -196,9 +194,15 @@ class SemanticACL {
 		} else {
 			$msgKey = 'sacl-template-render-denied-registered';
 		}
-		$text = wfMessage( $msgKey )->plain();
 
-		return false;
+		// Fetch the RevisionRecord for the replacement messages (used as a template).
+		if (!$revRecord = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionByTitle(Title::newFromText($msgKey, NS_MEDIAWIKI))){
+		/* If the message does no exist in the DB (null is returned), display a link to the template instead.
+		 * Messages simply defined in i18n files will not work here, they have to be saved in the DB. */
+		    $skip = true; // Skip this template.
+		}
+
+		return true;
 	}
 
 	/**
@@ -276,7 +280,6 @@ class SemanticACL {
 	protected static function hasPermission( $title, $action, $user, $disableCaching = true ) {
 		global $smwgNamespacesWithSemanticLinks;
 		global $wgSemanticACLWhitelistIPs;
-		global $wgRequest;
 
 		if ( $title->isTalkPage() ) {
 			// Talk pages get the same permission as their subject page.
@@ -331,10 +334,10 @@ class SemanticACL {
 			return true;
 		}
 
-		// Always allow whitelisted IPs through.
-		if (
+		// Always allow whitelisted IPs through unless the command line is used.
+		if ( !(defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') && 
 			isset( $wgSemanticACLWhitelistIPs ) &&
-			in_array( $wgRequest->getIP(), $wgSemanticACLWhitelistIPs )
+			in_array( RequestContext::getMain()->getRequest()->getIP(), $wgSemanticACLWhitelistIPs )
 		) {
 			return true;
 		}
@@ -364,13 +367,7 @@ class SemanticACL {
 						 */
 						$group = strtolower( $whitelistValue->getString() );
 
-						if ( method_exists( MediaWikiServices::class, 'getUserGroupManager' ) ) {
-							// MW 1.35+
-							$effectiveGroups = MediaWikiServices::getInstance()->getUserGroupManager()
-								->getUserEffectiveGroups( $user );
-						} else {
-							$effectiveGroups = $user->getEffectiveGroups();
-						}
+						$effectiveGroups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserEffectiveGroups( $user );
 
 						if ( in_array( $group, array_map( 'strtolower', $effectiveGroups ) ) ) {
 							$isWhitelisted = true;
@@ -483,12 +480,9 @@ class SemanticACL {
 	protected static function fileHasRequiredCategory( $title ) {
 		global $wgPublicImagesCategory;
 
-		if (
-			isset( $wgPublicImagesCategory ) && $wgPublicImagesCategory &&
+		if ( isset( $wgPublicImagesCategory ) && $wgPublicImagesCategory &&
 			$title->getNamespace() == NS_FILE
 		) {
-			$inCategory = false;
-
 			$page = Article::newFromTitle( $title, RequestContext::getMain() );
 			$file = $page->getFile();
 
@@ -497,7 +491,7 @@ class SemanticACL {
 				return true;
 			}
 
-			foreach ( $page->getCategories() as $category ) {
+			foreach ( $page->getForeignCategories() as $category ) {
 				if ( $category->getDBkey() == str_replace( ' ', '_', $wgPublicImagesCategory ) ) {
 					return true;
 				}
