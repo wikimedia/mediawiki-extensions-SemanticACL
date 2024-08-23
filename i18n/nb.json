@@ -17,8 +17,8 @@
 	"sacl-property-editable": "Redigerbar av",
 	"sacl-property-editable-wl-group": "Redigerbar av gruppe",
 	"sacl-property-editable-wl-user": "Redigerbar av bruker",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du må [[Special:UserLogin|logge inn]] for å vise denne malen.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Du har ikke de nødvendige tillatelsene for å vise denne malen.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Du må [[Special:UserLogin|logge inn]] for å vise denne malen.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Du har ikke de nødvendige tillatelsene for å vise denne malen.</div>",
 	"sacl-key-too-short": "Nøkkelen må være lengre enn 6 tegn.",
 	"sacl-private-links-disabled": "Private_links_disabled_by_your_administrator"
 }

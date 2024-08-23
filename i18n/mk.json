@@ -16,8 +16,8 @@
 	"sacl-property-editable": "Уредливо за",
 	"sacl-property-editable-wl-group": "Уредливо за групата",
 	"sacl-property-editable-wl-user": "Уредливо за корисникот",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Ќе мора да [[Special:UserLogin|се најавите]] за да ја гледате предлошкава.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Ги немате потребните дозволи за да ја гледате предлошкава.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Ќе мора да [[Special:UserLogin|се најавите]] за да ја гледате предлошкава.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Ги немате потребните дозволи за да ја гледате предлошкава.</div>",
 	"sacl-key-too-short": "Клучот мора да содржи барем 6 знаци.",
 	"sacl-private-links-disabled": "Приватните_врски_се_оневозможени_од_вашиот_администратор"
 }

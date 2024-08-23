@@ -19,8 +19,8 @@
 	"sacl-property-editable": "Bearbeitbar von",
 	"sacl-property-editable-wl-group": "Bearbeitbar von Benutzergruppe",
 	"sacl-property-editable-wl-user": "Bearbeitbar von Benutzer",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Du musst [[Special:UserLogin|angemeldet sein]], um diese Vorlage zu sehen.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Du hast nicht die erforderlichen Berechtigungen, um diese Vorlage zu sehen.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Du musst [[Special:UserLogin|angemeldet sein]], um diese Vorlage zu sehen.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Du hast nicht die erforderlichen Berechtigungen, um diese Vorlage zu sehen.</div>",
 	"sacl-key-too-short": "Der Schlüssel muss mindestens 6 Zeichen lang sein.",
 	"sacl-private-links-disabled": "Private_links_deaktiviert_von_deinem_Verwalter"
 }

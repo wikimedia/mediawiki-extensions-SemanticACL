@@ -16,8 +16,8 @@
 	"sacl-property-editable": "Ureja lahko",
 	"sacl-property-editable-wl-group": "Ureja lahko skupina",
 	"sacl-property-editable-wl-user": "Ureja lahko uporabnik",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Za ogled te predloge se morate [[Special:UserLogin|prijaviti]].</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">Nimate potrebnih dovoljenj za ogled te predloge.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Za ogled te predloge se morate [[Special:UserLogin|prijaviti]].</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Nimate potrebnih dovoljenj za ogled te predloge.</div>",
 	"sacl-key-too-short": "Ključ mora biti dolg več kot 6 znakov.",
 	"sacl-private-links-disabled": "Zasebne_povezave_onemogočil_vaš_administrator"
 }

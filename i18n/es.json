@@ -14,6 +14,6 @@
 	"sacl-property-editable": "Editable por",
 	"sacl-property-editable-wl-group": "Editable por el grupo",
 	"sacl-property-editable-wl-user": "Editable por el usuario",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">Es necesario [[Special:UserLogin|acceder a una cuenta]] para ver esta plantilla.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Es necesario [[Special:UserLogin|acceder a una cuenta]] para ver esta plantilla.</div>",
 	"sacl-key-too-short": "La clave debe tener más de 6 caracteres."
 }

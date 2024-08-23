@@ -23,8 +23,8 @@
 	"sacl-property-editable": "可编辑者",
 	"sacl-property-editable-wl-group": "可编辑的用户组",
 	"sacl-property-editable-wl-user": "可编辑的用户",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">您必须[[Special:UserLogin|登录]]才能查看此模板。</div>",
-	"sacl-template-render-denied-registered": "<div class=\"errorbox\">您没有查看此模板所必需的权限。</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">您必须[[Special:UserLogin|登录]]才能查看此模板。</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">您没有查看此模板所必需的权限。</div>",
 	"sacl-key-too-short": "密钥长度必须超过6个字符。",
 	"sacl-private-links-disabled": "管理员已禁用私人链接"
 }

@@ -17,6 +17,6 @@
 	"sacl-property-editable": "편집 가능",
 	"sacl-property-editable-wl-group": "그룹이 편집 가능",
 	"sacl-property-editable-wl-user": "사용자가 편집 가능",
-	"sacl-template-render-denied-anonymous": "<div class=\"errorbox\">이 틀을 보려면 [[Special:UserLogin|로그인]]해야 합니다.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">이 틀을 보려면 [[Special:UserLogin|로그인]]해야 합니다.</div>",
 	"sacl-key-too-short": "키의 길이는 6자를 초과해야 합니다."
 }
