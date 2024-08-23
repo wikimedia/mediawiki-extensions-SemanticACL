@@ -511,7 +511,7 @@ class SemanticACL {
 				return true;
 			}
 
-			foreach ( $page->getCategories() as $category ) {
+			foreach ( $page->getForeignCategories() as $category ) {
 				if ( $category->getDBkey() == str_replace( ' ', '_', $wgSemanticACLPublicImagesCategory ) ) {
 					return true;
 				}
