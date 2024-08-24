@@ -63,6 +63,14 @@ class SemanticACL {
 		$propertyRegistry->registerProperty( '___EDITABLE_WL_USER', '_txt', 'Editable by user' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey( '__EDITABLE_WL_USER', 'sacl-property-editable-wl-user' );
 
+		global $wgSemanticACLEnableCascadingACL;
+
+		if($wgSemanticACLEnableCascadingACL) {
+			// CASCADE
+			$propertyRegistry->registerProperty( '___CASCADE_PERMISSIONS', '_boo', 'Cascade permissions to subpages' );
+			$propertyRegistry->registerPropertyDescriptionByMsgKey( '___CASCADE_PERMISSIONS', 'sacl-property-cascade-permissions' );
+		}
+
 		return true;
 	}
 
@@ -280,7 +288,7 @@ class SemanticACL {
 	 * @param bool $disableCaching force the page being checked to be rerendered for each user
 	 * @return bool if the user is allowed to conduct the action
 	 */
-	protected static function hasPermission( $title, $action, $user, $disableCaching = true ) {
+	protected static function hasPermission( $title, $action, $user, $disableCaching = true) {
 		global $smwgNamespacesWithSemanticLinks;
 		global $wgSemanticACLWhitelistIPs;
 
@@ -354,6 +362,11 @@ class SemanticACL {
 				return false;
 			}
 		}
+
+		static $_permissionCache = []; // Cache computed permissions because lookups are expensive.
+
+		// Return the permission if it was computed before.
+		if(isset($_permissionCache[$title->getFullText().'-'.$action])) { return $_permissionCache[$title->getFullText().'-'.$action]; }
 
 		$hasPermission = true;
 
@@ -453,7 +466,7 @@ class SemanticACL {
 						// If the key provided in the request arguments matches the key in the page.
 						$query[self::URL_ARG_NAME] === $key
 					) {
-						return true;
+						$hasPermission = true;
 					}
 
 					break;
@@ -463,13 +476,48 @@ class SemanticACL {
 					break;
 
 				case 'public':
-					return true;
+					$hasPermission = true;
 			}
 		}
 
+		// Check for cascading permissions.
+
+		global $wgSemanticACLEnableCascadingACL;
+
+		if(!$aclTypes && // Subpages can always override access control.
+			$wgSemanticACLEnableCascadingACL && // Cascading ACL is enabled.
+			$title->isSubPage() // Only cascade for subpages.
+		) {
+			$parent = $title;
+
+			do {
+				$parent = $parent->getBaseTitle();
+
+				if(!$parent->exists()) { 
+					if(!$parent->isSubPage()) { break; }
+					continue; // Skip page, it does not exist.
+				} 
+
+				// Check if cascading is enabled for the parent page.
+				$subject = SMWDIWikiPage::newFromTitle( $parent );
+				$store = SMW\StoreFactory::getStore()->getSemanticData( $subject );
+				$cascade = $store->getPropertyValues( new SMWDIProperty( '___CASCADE_PERMISSIONS' ) );
+
+				if( isset($cascade[0]) && $cascade[0]->getBoolean() ) { // Get permissions from the parent page.
+					$wgSemanticACLEnableCascadingACL = false; // Disable cascading during the lookup.
+					$hasPermission = self::hasPermission($parent, $action, $user, $disableCaching); 
+					$wgSemanticACLEnableCascadingACL = true;
+					break;
+				} 
+			
+				// No cascading on that page, keep going.
+			} while ($parent->isSubPage());
+		}
+
+		$_permissionCache[$title->getFullText().'-'.$action] = $hasPermission; // Cache the permission.
+
 		return $hasPermission;
 	}
-
 
 	/**
 	 * Disable caching for the page currently being rendered.
