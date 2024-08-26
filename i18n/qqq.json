@@ -20,9 +20,9 @@
 	"sacl-property-editable": "This is the name of the property that will hold the values defining the user(s) or user group(s) which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable-wl-group}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
 	"sacl-property-editable-wl-group": "This is the name of the property that will hold the values defining the group of user groups the members of which may edit a page.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-user}}",
 	"sacl-property-editable-wl-user": "This is the name of the property that will hold the values defining the user(s) who may edit a page. Translate it as you would translate the header of a table column/row.\n\nSee also:\n* {{msg-mw|Sacl-property-editable}}\n* {{msg-mw|Sacl-property-editable-wl-group}}",
-	"sacl-property-cascade-permissions": "This porperty is set if permissions are to be cascaded.  Translate it as you would translate the header of a table column/row.",
 	"sacl-template-render-denied-anonymous": "Error message seen by an anonymous user when being denied access",
 	"sacl-template-render-denied-registered": "Error message seen by registered user when being denied access",
 	"sacl-key-too-short": "Error message given when the private link key is too short",
-	"sacl-private-links-disabled": "Message appended to a private link when the feature has been disabled by an admin"
+	"sacl-private-links-disabled": "Message appended to a private link when the feature has been disabled by an admin",
+	"sacl-property-cascade-permissions": "This porperty is set if permissions are to be cascaded.  Translate it as you would translate the header of a table column/row."
 }

@@ -17,7 +17,7 @@
 	"sacl-property-editable": "ניתן לעריכה על־ידי",
 	"sacl-property-editable-wl-group": "ניתן לעריכה על־ידי קבוצה",
 	"sacl-property-editable-wl-user": "ניתן לעריכה על־ידי המשתמש",
-	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">יש [[Special:UserLogin|להיכנס]] כדי להציג התבנית הזאת.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">יש [[Special:UserLogin|להיכנס]] כדי להציג את התבנית הזאת.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">אין לך את ההרשאות הנדרשות כדי להציג את התבנית הזאת.</div>",
 	"sacl-key-too-short": "המפתח חייב להיות באורך של יותר מ־6 תווים.",
 	"sacl-private-links-disabled": "קישורים_פרטיים_כובו_על־ידי_המפעיל_שלך"

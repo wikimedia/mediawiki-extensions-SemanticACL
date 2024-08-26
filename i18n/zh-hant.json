@@ -21,5 +21,6 @@
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">您必須[[Special:UserLogin|登入]]來檢視此模板。</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">您尚未請求來檢視此模板的權限。</div>",
 	"sacl-key-too-short": "密鑰必須大於 6 個字元長度。",
-	"sacl-private-links-disabled": "私有連結被您的管理員給停用"
+	"sacl-private-links-disabled": "私有連結被您的管理員給停用",
+	"sacl-property-cascade-permissions": "子頁面串聯權限"
 }
