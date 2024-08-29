@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ebrahim",
-			"Ebraminio"
+			"Ebraminio",
+			"Jeeputer"
 		]
 	},
 	"sacl-desc": "اجازه می‌دهد محدودیت‌های دسترسی با مشخصات معنایی مدیاویکی تنظیم شوند",
@@ -13,5 +14,6 @@
 	"sacl-property-visibility-wl-user": "قابل نمایش برای کاربر",
 	"sacl-property-editable": "قابل ویرایش برای",
 	"sacl-property-editable-wl-group": "قابل ویرایش برای گروه",
-	"sacl-property-editable-wl-user": "قابل ویرایش برای کاربر"
+	"sacl-property-editable-wl-user": "قابل ویرایش برای کاربر",
+	"sacl-property-cascade-permissions": "جاری شدن مجوزها به زیرصفحه‌ها"
 }
