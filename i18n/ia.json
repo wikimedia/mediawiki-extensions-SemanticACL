@@ -19,5 +19,6 @@
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Es necessari [[Special:UserLogin|aperir session]] pro vider iste patrono.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">~Tu non ha le permissiones necessari pro vider iste patrono.</div>",
 	"sacl-key-too-short": "Le clave debe haber plus de 6 characteres.",
-	"sacl-private-links-disabled": "Ligamines_private_disactivate_per_tu_administrator"
+	"sacl-private-links-disabled": "Ligamines_private_disactivate_per_tu_administrator",
+	"sacl-property-cascade-permissions": "Permissiones in cascada pro subpaginas"
 }
