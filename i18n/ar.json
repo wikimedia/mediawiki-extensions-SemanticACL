@@ -19,8 +19,8 @@
 	"sacl-property-editable": "قابل للتعديل بواسطة",
 	"sacl-property-editable-wl-group": "قابل للتعديل من قبل مجموعة",
 	"sacl-property-editable-wl-user": "قابل للتحرير من قبل المستخدم",
-	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">يجب عليك [[Special:UserLogin|تسجيل الدخول]] لعرض هذا القالب.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">ليس لديك الصلاحيات اللازمة لعرض هذا القالب.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\" style=\";text-align:right;direction:rtl\">يجب عليك [[Special:UserLogin|تسجيل الدخول]] لعرض هذا القالب.</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\" style=\";text-align:right;direction:rtl\">ليس لديك الأذونات المطلوبة لعرض هذا القالب.</div>",
 	"sacl-key-too-short": "يجب أن يكون طول المفتاح أكثر من 6 أحرف.",
 	"sacl-private-links-disabled": "Private_links_disabled_by_your_ad Administrator"
 }
