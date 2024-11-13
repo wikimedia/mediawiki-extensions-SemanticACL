@@ -23,5 +23,6 @@
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">U moet zich [[Special:UserLogin|aanmelden]] om dit sjabloon weer te geven.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">U beschikt niet over de vereiste machtigingen om dit sjabloon weer te geven.</div>",
 	"sacl-key-too-short": "De sleutel moet meer dan 6 tekens lang zijn.",
-	"sacl-private-links-disabled": "Privékoppelingen_uitgeschakeld_door_uw_beheerder"
+	"sacl-private-links-disabled": "Privékoppelingen_uitgeschakeld_door_uw_beheerder",
+	"sacl-property-cascade-permissions": "Subpagina’s erven rechten"
 }
