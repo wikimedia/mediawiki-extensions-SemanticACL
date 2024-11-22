@@ -22,5 +22,6 @@
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">يجب عليك [[Special:UserLogin|تسجيل الدخول]] لعرض هذا القالب.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">ليس لديك الأذونات المطلوبة لعرض هذا القالب.</div>",
 	"sacl-key-too-short": "يجب أن يكون طول المفتاح أكثر من 6 أحرف.",
-	"sacl-private-links-disabled": "Private_links_disabled_by_your_ad Administrator"
+	"sacl-private-links-disabled": "Private_links_disabled_by_your_ad Administrator",
+	"sacl-property-cascade-permissions": "أذونات متسلسلة للصفحات الفرعية"
 }
