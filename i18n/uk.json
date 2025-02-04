@@ -6,15 +6,16 @@
 			"Ice bulldog",
 			"Movses",
 			"Piramidion",
-			"Vlad5250"
+			"Vlad5250",
+			"Ата"
 		]
 	},
 	"sacl-desc": "Дозволяє обмежувати доступ через властивості Semantic MediaWiki",
 	"sacl-denied": "Ви не у списку доступу до цієї сторінки",
-	"action-sacl-exempt": "виняток із семантичного списку контролю доступу",
+	"action-sacl-exempt": "виняток із семантичних списків контролю доступу (Semantic ACL)",
 	"right-sacl-exempt": "Виняток із семантичних списків контролю доступу (Semantic ACL)",
-	"action-view-non-categorized-media": "дозволено переглядати медіафайли без категорії",
-	"right-view-non-categorized-media": "Дозволено перегляд некатегорізованих медіафайлів",
+	"action-view-non-categorized-media": "перегляд некатегоризованих медіафайлів",
+	"right-view-non-categorized-media": "Перегляд некатегоризованих медіафайлів",
 	"sacl-property-visibility": "Видима",
 	"sacl-property-visibility-wl-group": "Видима групі",
 	"sacl-property-visibility-wl-user": "Видима користувачу",
