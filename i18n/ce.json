@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"sacl-property-visibility": "Гуш ду",
+	"sacl-property-visibility-wl-group": "Тобанна гуш ду",
+	"sacl-property-visibility-wl-user": "Декъашхочунна гуш ду",
+	"sacl-property-editable": "Хийца йиш йу",
+	"sacl-property-editable-wl-group": "Тобанан хийцамаш бан йиш йу",
+	"sacl-property-editable-wl-user": "Декъашхочо хийца йиш йу"
+}
