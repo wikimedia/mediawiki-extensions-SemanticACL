@@ -18,16 +18,18 @@ namespace MediaWiki\Extension\SemanticACL;
 
 use Article;
 use LogicException;
+use MediaWiki\Content\TextContent;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\MutableRevisionRecord;
-use RequestContext;
-use SMW;
-use SMWDIProperty;
-use SMWDIWikiPage;
-use SMWQueryResult;
-use TextContent;
-use Title;
+use MediaWiki\Title\Title;
+use SMW\StoreFactory;
+use SMW\DIProperty;
+use SMW\DIWikiPage;
+use SMW\Query\QueryResult;
+use SMW\Store;
 
 /**
  * SemanticACL extension main class.
@@ -77,7 +79,7 @@ class SemanticACL {
 	/**
 	 * Filter results out of queries the current user is not supposed to see.
 	 */
-	public static function onSMWStoreAfterQueryResultLookupComplete( SMW\Store $store, SMWQueryResult &$queryResult ) {
+	public static function onSMWStoreAfterQueryResultLookupComplete( Store $store, QueryResult &$queryResult ) {
 		/* NOTE: this filtering does not work with count queries. To do filtering on count queries, we would
 		 * have to use SMW::Store::BeforeQueryResultLookupComplete to add conditions on ACL properties.
 		 * However, doing that would make it extremely difficult to tweak caching on results.
@@ -141,7 +143,7 @@ class SemanticACL {
 		}
 
 		// Build a new query result object
-		$queryResult = new SMWQueryResult(
+		$queryResult = new QueryResult(
 			$queryResult->getPrintRequests(),
 			$queryResult->getQuery(),
 			$filtered,
@@ -214,7 +216,7 @@ class SemanticACL {
 	 * To interrupt/advise the "user can do X to Y article" check.
 	 *
 	 * @param Title $title Title object being checked against
-	 * @param \User $user Current user object
+	 * @param \MediaWiki\User\User $user Current user object
 	 * @param string $action Action being checked
 	 * @param array|string &$result User permissions error to add. If none, return true.
 	 *   $result can be returned as a single error message key (string), or an array of error message
@@ -234,7 +236,7 @@ class SemanticACL {
 	/**
 	 * Register render callbacks with the parser.
 	 *
-	 * @param \Parser &$parser
+	 * @param Parser &$parser
 	 */
 	public static function onParserFirstCallInit( &$parser ) {
 		$parser->setFunctionHook( 'SEMANTICACL_PRIVATE_LINK', __CLASS__ . '::getPrivateLink' );
@@ -246,16 +248,16 @@ class SemanticACL {
 	/**
 	 * Render callback to get a private link.
 	 *
-	 * @param \Parser &$parser The current parser
+	 * @param Parser &$parser The current parser
 	 * @param string $key The key for the private link
 	 * @return string A full URL with the correct arguments set on success, error message if $key
 	 *   is too short
 	 */
-	public static function getPrivateLink( \Parser &$parser, $key = '' ) {
+	public static function getPrivateLink( Parser &$parser, $key = '' ) {
 		global $wgSemanticACLEnablePrivateLinks;
 		global $wgEnablePrivateLinks; // Old name.
 
-		if($wgEnablePrivateLinks) { 
+		if($wgEnablePrivateLinks) {
 			$wgSemanticACLEnablePrivateLinks = $wgEnablePrivateLinks;
 			wfDeprecated( 'EnablePrivateLinks was replaced with SemanticACLEnablePrivateLinks' );
 		}
@@ -284,7 +286,7 @@ class SemanticACL {
 	 *
 	 * @param Title $title the title object to check permission on
 	 * @param string $action the action the user wants to do
-	 * @param \User $user the user to check permissions for
+	 * @param \MediaWiki\User\User $user the user to check permissions for
 	 * @param bool $disableCaching force the page being checked to be rerendered for each user
 	 * @return bool if the user is allowed to conduct the action
 	 */
@@ -328,9 +330,9 @@ class SemanticACL {
 			$prefix = '___EDITABLE';
 		}
 
-		$subject = SMWDIWikiPage::newFromTitle( $title );
-		$store = SMW\StoreFactory::getStore()->getSemanticData( $subject );
-		$property = new SMWDIProperty( $prefix );
+		$subject = DIWikiPage::newFromTitle( $title );
+		$store = StoreFactory::getStore()->getSemanticData( $subject );
+		$property = new DIProperty( $prefix );
 		$aclTypes = $store->getPropertyValues( $property );
 
 		if ( $disableCaching ) {
@@ -346,7 +348,7 @@ class SemanticACL {
 		}
 
 		// Do not use ACL in command line mode.
-		if( defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') { 
+		if( defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') {
 			return true;
 		}
 
@@ -375,8 +377,8 @@ class SemanticACL {
 				case 'whitelist':
 					$isWhitelisted = false;
 
-					$groupProperty = new SMWDIProperty( "{$prefix}_WL_GROUP" );
-					$userProperty = new SMWDIProperty( "{$prefix}_WL_USER" );
+					$groupProperty = new DIProperty( "{$prefix}_WL_GROUP" );
+					$userProperty = new DIProperty( "{$prefix}_WL_USER" );
 					$whitelistValues = $store->getPropertyValues( $groupProperty );
 
 					// Check if the current user is part of a whitelisted group.
@@ -418,12 +420,12 @@ class SemanticACL {
 
 					 global $wgSemanticACLEnablePrivateLinks;
 					 global $wgEnablePrivateLinks; // Old name.
-			 
-					 if($wgEnablePrivateLinks) { 
+
+					if($wgEnablePrivateLinks) {
 						 $wgSemanticACLEnablePrivateLinks = $wgEnablePrivateLinks;
 						 wfDeprecated( 'EnablePrivateLinks was replaced with SemanticACLEnablePrivateLinks' );
-					 }
-					 
+					}
+
 					if ( !$wgSemanticACLEnablePrivateLinks ) {
 						// Private links have been disabled.
 						break;
@@ -493,23 +495,23 @@ class SemanticACL {
 			do {
 				$parent = $parent->getBaseTitle();
 
-				if(!$parent->exists()) { 
+				if(!$parent->exists()) {
 					if(!$parent->isSubPage()) { break; }
 					continue; // Skip page, it does not exist.
-				} 
+				}
 
 				// Check if cascading is enabled for the parent page.
-				$subject = SMWDIWikiPage::newFromTitle( $parent );
-				$store = SMW\StoreFactory::getStore()->getSemanticData( $subject );
-				$cascade = $store->getPropertyValues( new SMWDIProperty( '___CASCADE_PERMISSIONS' ) );
+				$subject = DIWikiPage::newFromTitle( $parent );
+				$store = StoreFactory::getStore()->getSemanticData( $subject );
+				$cascade = $store->getPropertyValues( new DIProperty( '___CASCADE_PERMISSIONS' ) );
 
 				if( isset($cascade[0]) && $cascade[0]->getBoolean() ) { // Get permissions from the parent page.
 					$wgSemanticACLEnableCascadingACL = false; // Disable cascading during the lookup.
-					$hasPermission = self::hasPermission($parent, $action, $user, $disableCaching); 
+					$hasPermission = self::hasPermission($parent, $action, $user, $disableCaching);
 					$wgSemanticACLEnableCascadingACL = true;
 					break;
-				} 
-			
+				}
+
 				// No cascading on that page, keep going.
 			} while ($parent->isSubPage());
 		}
@@ -543,7 +545,7 @@ class SemanticACL {
 		global $wgSemanticACLPublicImagesCategory;
 		global $wgPublicImagesCategory; // Old name.
 
-		if($wgPublicImagesCategory) { 
+		if($wgPublicImagesCategory) {
 			$wgSemanticACLPublicImagesCategory = $wgPublicImagesCategory;
 			wfDeprecated( 'PublicImagesCategory as replaced with SemanticACLPublicImagesCategory' );
 		}

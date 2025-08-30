@@ -1,6 +1,6 @@
 {
 	"name": "SemanticACL",
-	"version": "0.3",
+	"version": "0.4",
 	"author": [
 		"[https://wikimedi.ca/wiki/Utilisateur:Antoine_Mercier-Linteau Antoine Mercier-Linteau]",
 		"Andrew Garrett"
@@ -10,9 +10,9 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "semantic",
 	"requires": {
-		"MediaWiki": ">= 1.38.0",
+		"MediaWiki": ">= 1.43.0",
 		"extensions": {
-			"SemanticMediaWiki": "> 4.0"
+			"SemanticMediaWiki": "> 5.0"
 		}
 	},
 	"AvailableRights": [
