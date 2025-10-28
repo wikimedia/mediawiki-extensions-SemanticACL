@@ -2,22 +2,23 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
+			"SaldırganSincap",
 			"Sayginer"
 		]
 	},
 	"sacl-desc": "Semantic MediaWiki özellikleriyle erişim kısıtlamalarının ayarlanmasına izin verir",
 	"sacl-denied": "Bu sayfanın erişim listesinde yoksunuz.",
-	"action-sacl-exempt": "Anlamsal ACL'lerden muaf",
-	"right-sacl-exempt": "Anlamsal ACL'lerden muaf",
-	"action-view-non-categorized-media": "kategorilere ayrılmamış medya dosyalarını görüntüleme izni var",
-	"right-view-non-categorized-media": "Kategorilere ayrılmamış medya dosyalarını görüntüleme izni var",
+	"action-sacl-exempt": "Anlamsal ACL'lerden muaf tutulma",
+	"right-sacl-exempt": "Anlamsal ACL'lerden muaf tut",
+	"action-view-non-categorized-media": "kategorilendirilmemiş medya dosyalarını görme",
+	"right-view-non-categorized-media": "Kategorilendirilmemiş medya dosyalarını gör",
 	"sacl-property-visibility": "Şunu görünür",
 	"sacl-property-visibility-wl-group": "Grubu görünebilir",
 	"sacl-property-visibility-wl-user": "Kullanıcıya görülebilir",
 	"sacl-property-editable": "Şunu düzenleyebilir",
 	"sacl-property-editable-wl-group": "Gruba göre düzenlenebilir",
 	"sacl-property-editable-wl-user": "Kullanıcıya göre düzenlenebilir",
-	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Bu şablonu görüntülemek için [[Special:UserLogin|giriş]] gerekir.</div>",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Bu şablonu görüntülemek için [[Special:UserLogin|oturum açmalısınız]].</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Bu şablonu görüntülemek için gerekli izinlere sahip değilsiniz.</div>",
 	"sacl-key-too-short": "Anahtar 6 karakterden daha uzun olmalı.",
 	"sacl-private-links-disabled": "Özel_bağlantılar_yöneticiniz_tarafından_devre_dışı_bırakıldı"
