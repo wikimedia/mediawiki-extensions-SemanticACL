@@ -5,12 +5,16 @@
 		]
 	},
 	"sacl-desc": "Permite definir restricións de acceso coas propiedades de Semantic MediaWiki",
-	"sacl-denied": "Non está na lista de acceso desta páxina.",
+	"sacl-denied": "Non estás na lista de acceso desta páxina.",
 	"right-sacl-exempt": "Exento da lista de control de acceso semántica",
+	"action-view-non-categorized-media": "ver ficheiros multimedia non categorizados",
+	"right-view-non-categorized-media": "Ver ficheiros multimedia non categorizados",
 	"sacl-property-visibility": "Visible para",
 	"sacl-property-visibility-wl-group": "Visible para o grupo",
 	"sacl-property-visibility-wl-user": "Visible para o usuario",
 	"sacl-property-editable": "Editable por",
 	"sacl-property-editable-wl-group": "Editable polo grupo",
-	"sacl-property-editable-wl-user": "Editable polo usuario"
+	"sacl-property-editable-wl-user": "Editable polo usuario",
+	"sacl-key-too-short": "A clave debe ter máis de 6 caracteres.",
+	"sacl-private-links-disabled": "Ligazóns_privadas_desactivadas_pola_administración"
 }
