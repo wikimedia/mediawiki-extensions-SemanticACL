@@ -2,12 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Martinwiss",
+			"Stefan2255",
 			"WikiPhoenix"
 		]
 	},
 	"sacl-desc": "Möjliggör att rättigheter tilldelas med hjälp av egenskaper från Semantiska MediaWiki",
 	"sacl-denied": "Du finns inte med på listan över de som har tillgång till den här sidan.",
-	"right-sacl-exempt": "Utdrag från Semantic ACL:er",
+	"action-sacl-exempt": "bli undantagen från semantiska ACL:er",
+	"right-sacl-exempt": "Vara undantagen från semantiska ACL:er",
+	"action-view-non-categorized-media": "visa okategoriserade mediefiler",
+	"right-view-non-categorized-media": "Visa okategoriserade mediefiler",
 	"sacl-property-visibility": "Synlig för",
 	"sacl-property-visibility-wl-group": "Synlig för grupp",
 	"sacl-property-visibility-wl-user": "Synlig för användare",
@@ -15,5 +19,8 @@
 	"sacl-property-editable-wl-group": "Redigerbar för grupp",
 	"sacl-property-editable-wl-user": "Redigerbar för användare",
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Du måste [[Special:UserLogin|logga in]] för att visa denna mall.</div>",
-	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Du har inte de nödvändiga behörigheterna för att visa denna mall.</div>"
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Du har inte de nödvändiga behörigheterna för att visa denna mall.</div>",
+	"sacl-key-too-short": "Nyckeln måste vara mer än 6 tecken lång.",
+	"sacl-private-links-disabled": "Privata_länkar_inaktiverade_av_din_administratör",
+	"sacl-property-cascade-permissions": "Kaskera behörighter till undersidor"
 }
