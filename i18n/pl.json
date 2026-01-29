@@ -8,7 +8,8 @@
 	},
 	"sacl-desc": "Umożliwia ograniczenia dostępu przy użyciu właściwości Semantycznej MediaWiki",
 	"sacl-denied": "Nie jesteś na liście dostępu do tej strony.",
-	"right-sacl-exempt": "Zwolniony z listy ACL Semantycznej MediaWiki",
+	"action-sacl-exempt": "bycia zwolnionym z semantycznych list kontroli dostępu",
+	"right-sacl-exempt": "Zwolniony z ACL Semantycznej MediaWiki",
 	"action-view-non-categorized-media": "podglądu nieskategoryzowanych plików multimedialnych",
 	"right-view-non-categorized-media": "Podgląd nieskategoryzowanych plików multimedialnych",
 	"sacl-property-visibility": "Widoczne dla",
@@ -16,5 +17,8 @@
 	"sacl-property-visibility-wl-user": "Widoczne dla użytkownika",
 	"sacl-property-editable": "Możliwość edytowania przez",
 	"sacl-property-editable-wl-group": "Edycja dla grup",
-	"sacl-property-editable-wl-user": "Edycja przez użytkownika"
+	"sacl-property-editable-wl-user": "Edycja przez użytkownika",
+	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Aby zobaczyć ten szablon, musisz się [[Special:UserLogin|zalogować]].</div>",
+	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Nie masz uprawnień, aby wyświetlić ten szablon.</div>",
+	"sacl-property-cascade-permissions": "Dziedziczenie uprawnień przez podstrony"
 }
