@@ -21,5 +21,6 @@
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Você deve [[Special:UserLogin|entrar]] para visualizar essa predefinição.</div>",
 	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Você não tem as permissões necessárias para visualizar essa predefinição.</div>",
 	"sacl-key-too-short": "A chave deve ter mais de 6 caracteres.",
-	"sacl-private-links-disabled": "Private_links_disabled_by_your_administrator"
+	"sacl-private-links-disabled": "Private_links_disabled_by_your_administrator",
+	"sacl-property-cascade-permissions": "Aplicar permissões em cascata às subpáginas"
 }
