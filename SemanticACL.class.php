@@ -19,7 +19,9 @@ namespace MediaWiki\Extension\SemanticACL;
 use Article;
 use LogicException;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\SlotRecord;
@@ -207,7 +209,12 @@ class SemanticACL {
 		}
 
 		// Fetch the RevisionRecord for the replacement messages (used as a template).
-		$revRecord = new MutableRevisionRecord(Title::newFromText($msgKey, NS_MEDIAWIKI));
+		// Use a placeholder so the wikitext message (which may contain [[links]]) is embedded
+		// inside the error box div without being pre-rendered to HTML (which would strip <a> tags).
+		$placeholder = 'SEMACL_MSG';
+		$wikitext = str_replace( $placeholder, wfMessage( $msgKey )->plain(), Html::errorBox( $placeholder ) );
+		$revRecord = new MutableRevisionRecord( Title::newFromText( $msgKey, NS_MEDIAWIKI ) );
+		$revRecord->setContent( SlotRecord::MAIN, new WikitextContent( $wikitext ) );
 
 		return true;
 	}

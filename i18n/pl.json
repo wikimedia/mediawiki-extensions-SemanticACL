@@ -18,7 +18,7 @@
 	"sacl-property-editable": "Możliwość edytowania przez",
 	"sacl-property-editable-wl-group": "Edycja dla grup",
 	"sacl-property-editable-wl-user": "Edycja przez użytkownika",
-	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">Aby zobaczyć ten szablon, musisz się [[Special:UserLogin|zalogować]].</div>",
-	"sacl-template-render-denied-registered": "<div class=\"mw-message-box-error\">Nie masz uprawnień, aby wyświetlić ten szablon.</div>",
+	"sacl-template-render-denied-anonymous": "Aby zobaczyć ten szablon, musisz się [[Special:UserLogin|zalogować]].",
+	"sacl-template-render-denied-registered": "Nie masz uprawnień, aby wyświetlić ten szablon.",
 	"sacl-property-cascade-permissions": "Dziedziczenie uprawnień przez podstrony"
 }
