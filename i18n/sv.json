@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Martinwiss",
-			"WikiPhoenix",
-			"Stefan2255"
+			"Stefan2255",
+			"WikiPhoenix"
 		]
 	},
 	"sacl-desc": "Möjliggör att rättigheter tilldelas med hjälp av egenskaper från Semantiska MediaWiki",
