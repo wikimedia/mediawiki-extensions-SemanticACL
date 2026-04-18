@@ -17,6 +17,15 @@ To run a single test:
 PHPUNIT_USE_NORMAL_TABLES=1 composer phpunit -- --testdox --configuration extensions/SemanticACL/phpunit.xml.dist --filter testName
 ```
 
+## After any change
+
+Run the test suite after every code change to catch regressions:
+
+```bash
+cd /home/antoine/Projects/Wikimedica/development/MediaWiki
+PHPUNIT_USE_NORMAL_TABLES=1 composer phpunit -- --testdox --configuration extensions/SemanticACL/phpunit.xml.dist
+```
+
 ## Changelog
 
 When making user-facing changes (features, bug fixes, deprecations), update `CHANGELOG.md` under the current unreleased version heading. The version number lives in `extension.json`.

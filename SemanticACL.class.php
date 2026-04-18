@@ -501,6 +501,20 @@ class SemanticACL {
 			}
 		}
 
+		// When a page has no explicit edit restrictions, fall back to its
+		// visibility restrictions — a page that is not visible should not
+		// be editable either.
+		if ( !$aclTypes && $prefix === '___EDITABLE' ) {
+			$visibleProperty = new DIProperty( '___VISIBLE' );
+			$visibleTypes = $store->getPropertyValues( $visibleProperty );
+
+			if ( $visibleTypes ) {
+				// Re-check using the read permission: if the user cannot
+				// read the page, they certainly cannot edit it.
+				return static::hasPermission( $title, 'read', $user, $disableCaching );
+			}
+		}
+
 		// Check for cascading permissions.
 
 		global $wgSemanticACLEnableCascadingACL;

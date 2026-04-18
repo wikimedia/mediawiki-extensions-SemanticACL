@@ -626,12 +626,6 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * A page restricted with 'Visible to' but no explicit 'Editable by'
 	 * must also deny editing to users who cannot read it.  If the page is
 	 * not visible, it should not be editable either.
-	 *
-	 * TODO: Fix in SemanticACL::hasPermission() — when no ___EDITABLE
-	 * properties exist, it should fall back to checking ___VISIBLE so
-	 * that a visibility restriction implies an edit restriction.
-	 *
-	 * @group Broken
 	 */
 	public function testVisibilityRestrictionImpliesEditRestriction(): void {
 		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );

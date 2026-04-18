@@ -11,12 +11,9 @@ All notable changes to the SemanticACL extension are documented in this file.
   transclusion denial, and end-to-end rendering
 * Add TODO for allowing talk pages to define their own ACL annotations
   before falling back to the subject page
-
-### Known bugs
-
-* Visibility-only restriction does not imply edit restriction: a page
-  with `[[Visible to::users]]` but no `Editable by` annotation still
-  allows anonymous editing
+* Fix visibility-only restriction not implying edit restriction: a page
+  with `[[Visible to::users]]` but no `Editable by` annotation now
+  correctly denies editing to users who cannot read it
 
 ## 0.4 (2025-08-30)
 
