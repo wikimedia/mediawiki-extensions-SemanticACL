@@ -4,13 +4,16 @@ All notable changes to the SemanticACL extension are documented in this file.
 
 ## 0.5 (2026-04-18)
 
-* Add comprehensive PHPUnit integration test suite (45 tests, 96
+* Add comprehensive PHPUnit integration test suite (49 tests, 107
   assertions) covering visibility, editability, whitelist, private
   links, cascading ACL, talk pages, Flow topics, SMW query filtering,
   search result filtering, IP whitelist, image/file protection, template
   transclusion denial, and end-to-end rendering
-* Add TODO for allowing talk pages to define their own ACL annotations
-  before falling back to the subject page
+* Allow talk pages to define their own ACL annotations before falling
+  back to the subject page (requires the talk namespace to have
+  semantic links enabled in `$smwgNamespacesWithSemanticLinks`);
+  missing permission types fall back to the subject page individually
+  and cascading ACL is not supported for talk pages
 * Fix visibility-only restriction not implying edit restriction: a page
   with `[[Visible to::users]]` but no `Editable by` annotation now
   correctly denies editing to users who cannot read it

@@ -310,12 +310,29 @@ class SemanticACL {
 		global $smwgNamespacesWithSemanticLinks;
 		global $wgSemanticACLWhitelistIPs;
 
+		$isTalkPageWithOwnAcl = false;
+
 		if ( $title->isTalkPage() ) {
-			// TODO: Allow talk pages to define their own ACL annotations. Currently
-			// we unconditionally fall back to the subject page. Instead, check if the
-			// talk page has its own ACL properties first and only fall back when none
-			// are defined (similar to cascading ACL logic).
-			$title = $title->getSubjectPage();
+			// Talk pages can define their own ACL annotations. If the talk
+			// namespace supports semantic links and the talk page has any
+			// ACL property (visible or editable), it owns its ACL. Missing
+			// permission types fall back to the subject page individually.
+			$talkNs = $title->getNamespace();
+
+			if (
+				isset( $smwgNamespacesWithSemanticLinks[$talkNs] ) &&
+				$smwgNamespacesWithSemanticLinks[$talkNs]
+			) {
+				$talkSubject = DIWikiPage::newFromTitle( $title );
+				$talkStore = StoreFactory::getStore()->getSemanticData( $talkSubject );
+				$hasVisible = (bool)$talkStore->getPropertyValues( new DIProperty( '___VISIBLE' ) );
+				$hasEditable = (bool)$talkStore->getPropertyValues( new DIProperty( '___EDITABLE' ) );
+				$isTalkPageWithOwnAcl = $hasVisible || $hasEditable;
+			}
+
+			if ( !$isTalkPageWithOwnAcl ) {
+				$title = $title->getSubjectPage();
+			}
 		} elseif ( \ExtensionRegistry::getInstance()->isLoaded( 'Flow' ) ) {
 			// If the Flow extension is installed.
 			if ( $title->getNamespace() == NS_TOPIC ) {
@@ -499,6 +516,15 @@ class SemanticACL {
 				case 'public':
 					$hasPermission = true;
 			}
+		}
+
+		// Talk pages with their own ACL fall back to the subject page for
+		// any missing permission type (e.g. has Visible to but no Editable by).
+		// Cascading ACL is not supported for talk pages.
+		if ( !$aclTypes && $isTalkPageWithOwnAcl ) {
+			$hasPermission = static::hasPermission( $title->getSubjectPage(), $action, $user, $disableCaching );
+			self::$_permissionCache[$title->getFullText() . '-' . $action . '-' . $user->getId()] = $hasPermission;
+			return $hasPermission;
 		}
 
 		// When a page has no explicit edit restrictions, fall back to its

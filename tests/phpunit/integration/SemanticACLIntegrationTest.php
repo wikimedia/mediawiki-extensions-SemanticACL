@@ -55,7 +55,7 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Ensure NS_MAIN, NS_TEMPLATE, and NS_FILE are SMW-enabled so hasPermission() checks them.
 		// These must be set BEFORE clearing ServicesFactory, so the new singleton picks them up.
 		$GLOBALS['smwgNamespacesWithSemanticLinks'] = [
-			NS_MAIN => true, NS_TEMPLATE => true, NS_FILE => true,
+			NS_MAIN => true, NS_TALK => true, NS_TEMPLATE => true, NS_FILE => true,
 		];
 
 		// Enable cascading ACL so the ___CASCADE_PERMISSIONS property is
@@ -218,6 +218,128 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertTrue( $result, 'Talk page should be allowed when subject page is allowed' );
+	}
+
+	/**
+	 * A talk page with its own ACL annotations must use those instead of
+	 * inheriting from its subject page.  Here the subject page is public
+	 * but the talk page is restricted to registered users.
+	 *
+	 * Note: the content model for NS_TALK must be wikitext (not flow-board)
+	 * so that SMW can extract semantic annotations from the talk page.
+	 */
+	public function testTalkPageOwnAclOverridesSubjectPage(): void {
+		// Remove NS_TALK from Flow content model so SMW can process
+		// wikitext annotations.  On wikis where talk pages use Flow,
+		// talk pages cannot carry their own semantic ACL annotations.
+		unset( $GLOBALS['wgNamespaceContentModels'][NS_TALK] );
+
+		$subjectTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $subjectTitle, '[[Visible to::public]] Public page.' );
+
+		$talkTitle = $subjectTitle->getTalkPageIfDefined();
+		$this->assertNotNull( $talkTitle );
+		$this->createPage( $talkTitle, '[[Visible to::users]] Talk restricted to users.' );
+
+		// Anonymous can read the subject page but not the talk page.
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$subjectTitle, $this->getAnonUser(), 'read', $result
+		);
+		$this->assertTrue( $result, 'Subject page should be public' );
+
+		TestableSemanticACL::resetPermissionCache();
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkTitle, $this->getAnonUser(), 'read', $result
+		);
+		$this->assertFalse( $result, 'Talk page with own ACL should deny anonymous' );
+
+		// Registered user can read both.
+		TestableSemanticACL::resetPermissionCache();
+		$user = $this->getMutableTestUser()->getUser();
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkTitle, $user, 'read', $result
+		);
+		$this->assertTrue( $result, 'Talk page with own ACL should allow registered user' );
+	}
+
+	/**
+	 * A talk page that defines only visibility (no edit ACL) should fall
+	 * back to the subject page's edit permissions for the edit action.
+	 */
+	public function testTalkPageIncompleteAclFallsBackToSubjectPage(): void {
+		unset( $GLOBALS['wgNamespaceContentModels'][NS_TALK] );
+
+		// Subject page restricts editing to registered users.
+		$subjectTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $subjectTitle, '[[Editable by::users]] Subject edit restricted.' );
+
+		// Talk page restricts visibility only — no Editable by annotation.
+		$talkTitle = $subjectTitle->getTalkPageIfDefined();
+		$this->assertNotNull( $talkTitle );
+		$this->createPage( $talkTitle, '[[Visible to::users]] Talk visible to users only.' );
+
+		$anon = $this->getAnonUser();
+
+		// Read: talk page's own visibility denies anonymous.
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkTitle, $anon, 'read', $result
+		);
+		$this->assertFalse( $result, 'Talk page should deny anonymous read via own ACL' );
+
+		// Edit: talk page has no Editable by → falls back to subject page
+		// which restricts editing to users.
+		TestableSemanticACL::resetPermissionCache();
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkTitle, $anon, 'edit', $result
+		);
+		$this->assertFalse( $result, 'Talk page edit should fall back to subject page and deny anonymous' );
+
+		// Registered user can both read and edit.
+		$user = $this->getMutableTestUser()->getUser();
+
+		TestableSemanticACL::resetPermissionCache();
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkTitle, $user, 'read', $result
+		);
+		$this->assertTrue( $result, 'Talk page should allow registered user to read' );
+
+		TestableSemanticACL::resetPermissionCache();
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkTitle, $user, 'edit', $result
+		);
+		$this->assertTrue( $result, 'Talk page should allow registered user to edit via subject fallback' );
+	}
+
+	/**
+	 * Cascading ACL must not apply to talk pages. A talk subpage with
+	 * its own ACL should not inherit permissions from a parent talk page.
+	 */
+	public function testTalkPageDoesNotCascade(): void {
+		unset( $GLOBALS['wgNamespaceContentModels'][NS_TALK] );
+
+		// Create a subject parent that cascades and restricts visibility.
+		$parentSubject = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $parentSubject,
+			'[[Visible to::users]] [[Cascade permissions to subpages::true]] Restricted parent.' );
+
+		// Create a talk subpage with its own public ACL.
+		$talkSubpage = Title::newFromText( 'Talk:SemanticACLTest_' . __FUNCTION__ . '/Child' );
+		$this->createPage( $talkSubpage, '[[Visible to::public]] Public talk subpage.' );
+
+		// Anonymous should be able to read the talk subpage — cascading
+		// from the parent should NOT override the talk page's own ACL.
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$talkSubpage, $this->getAnonUser(), 'read', $result
+		);
+		$this->assertTrue( $result, 'Talk subpage with own ACL should not cascade from parent' );
 	}
 
 	// --- Flow topic tests ---
