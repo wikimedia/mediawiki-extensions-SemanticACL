@@ -44,6 +44,12 @@ class SemanticACL {
 	const URL_ARG_NAME = 'semanticacl-key';
 
 	/**
+	 * When true, the CLI mode bypass in hasPermission() is skipped.
+	 * Intended for use in integration tests, where MW_ENTRY_POINT is always 'cli'.
+	 */
+	protected static bool $ignoreCliMode = false;
+
+	/**
 	 * Initialize SMW properties.
 	 */
 	public static function onSMWPropertyinitProperties( $propertyRegistry ) {
@@ -103,11 +109,11 @@ class SemanticACL {
 			/* Check if the current user has permission to view that item.
 			 * Disable the handling of caching so we can do it ourselves.
 			 */
-			if ( !self::hasPermission( $title, 'read', $user, false ) ) {
-				self::disableCaching(); // That item is not always visible, disable caching.
+			if ( !static::hasPermission( $title, 'read', $user, false ) ) {
+				static::disableCaching(); // That item is not always visible, disable caching.
 				$accessible = false;
-			} elseif ( $title->getNamespace() == NS_FILE && !self::fileHasRequiredCategory( $title ) ) {
-				self::disableCaching(); // That item is not always visible, disable caching.
+			} elseif ( $title->getNamespace() == NS_FILE && !static::fileHasRequiredCategory( $title ) ) {
+				static::disableCaching(); // That item is not always visible, disable caching.
 				$accessible = false;
 			} else {
 				$semanticData = $store->getSemanticData( $result );
@@ -122,7 +128,7 @@ class SemanticACL {
 							foreach ( $semanticData->getPropertyValues( $property ) as $dataItem ) {
 								// If this is a not a public item.
 								if ( $dataItem->getSerialization() != 'public' ) {
-									self::disableCaching(); // That item is not always visible, disable caching.
+									static::disableCaching(); // That item is not always visible, disable caching.
 									break 3;
 								}
 							}
@@ -168,18 +174,18 @@ class SemanticACL {
 		$title = Title::newFromText( $name, NS_FILE );
 		$user = RequestContext::getMain()->getUser();
 
-		if ( !self::fileHasRequiredCategory( $title ) && !$user->isAllowed( 'view-non-categorized-media' ) ) {
-			self::disableCaching();
+		if ( !static::fileHasRequiredCategory( $title ) && !$user->isAllowed( 'view-non-categorized-media' ) ) {
+			static::disableCaching();
 			$bad = true;
 			return false;
 		}
 
-		if ( self::hasPermission( $title, 'read', $user, true ) ) {
+		if ( static::hasPermission( $title, 'read', $user, true ) ) {
 			// The user is allowed to view that file.
 			return true;
 		}
 
-		self::disableCaching();
+		static::disableCaching();
 
 		$bad = true;
 		return false;
@@ -196,7 +202,7 @@ class SemanticACL {
 	 */
 	public static function onBeforeParserFetchTemplateRevisionRecord( $contextTitle, $title, &$skip, &$revRecord ) {
 		$user = RequestContext::getMain()->getUser();
-		if ( self::hasPermission( $title, 'read', $user, true ) ) {
+		if ( static::hasPermission( $title, 'read', $user, true ) ) {
 			// User is allowed to view that template.
 			return true;
 		}
@@ -233,7 +239,7 @@ class SemanticACL {
 	 */
 	public static function onGetUserPermissionsErrors( $title, $user, $action, &$result ) {
 		// This hook is also triggered when displaying search results.
-		if( !self::hasPermission( $title, $action, $user, false ) ) {
+		if( !static::hasPermission( $title, $action, $user, false ) ) {
 			$result = false;
 			return false;
 		}
@@ -251,6 +257,9 @@ class SemanticACL {
 
 	/** @var string The key used for the private link. */
 	private static $_key = '';
+
+	/** @var array Permission cache to avoid repeated expensive SMW store lookups. */
+	private static array $_permissionCache = [];
 
 	/**
 	 * Render callback to get a private link.
@@ -278,7 +287,7 @@ class SemanticACL {
 			return wfMessage( 'sacl-key-too-short' )->text();
 		}
 
-		self::disableCaching();
+		static::disableCaching();
 
 		/* Save the key. If this function is called within hasPermission() through template
 		 * expansion, it will be used to confirm access using a private link.
@@ -302,7 +311,10 @@ class SemanticACL {
 		global $wgSemanticACLWhitelistIPs;
 
 		if ( $title->isTalkPage() ) {
-			// Talk pages get the same permission as their subject page.
+			// TODO: Allow talk pages to define their own ACL annotations. Currently
+			// we unconditionally fall back to the subject page. Instead, check if the
+			// talk page has its own ACL properties first and only fall back when none
+			// are defined (similar to cascading ACL logic).
 			$title = $title->getSubjectPage();
 		} elseif ( \ExtensionRegistry::getInstance()->isLoaded( 'Flow' ) ) {
 			// If the Flow extension is installed.
@@ -313,7 +325,7 @@ class SemanticACL {
 				$workflow = $storage->get( $uuid );
 				if ( $workflow ) {
 					// If for some reason there is no associated workflow, do not fail.
-					return self::hasPermission( $workflow->getOwnerTitle(), $action, $user, $disableCaching );
+					return static::hasPermission( $workflow->getOwnerTitle(), $action, $user, $disableCaching );
 				}
 			}
 		}
@@ -346,7 +358,7 @@ class SemanticACL {
 			/* If the parser caches the page, the same page will be returned without consideration for the user viewing the page.
 			 * Disable the cache to it gets rendered anew for every user.
 			 */
-			self::disableCaching();
+			static::disableCaching();
 		}
 
 		// Failsafe: Some users are exempt from Semantic ACLs.
@@ -355,7 +367,7 @@ class SemanticACL {
 		}
 
 		// Do not use ACL in command line mode.
-		if( defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') {
+		if( !static::$ignoreCliMode && defined( 'MW_ENTRY_POINT' ) && MW_ENTRY_POINT == 'cli') {
 			return true;
 		}
 
@@ -367,15 +379,15 @@ class SemanticACL {
 		}
 
 		if ( $title->getNamespace() == NS_FILE ) {
-			if ( !self::fileHasRequiredCategory( $title ) && !$user->isAllowed( 'view-non-categorized-media' ) ) {
+			if ( !static::fileHasRequiredCategory( $title ) && !$user->isAllowed( 'view-non-categorized-media' ) ) {
 				return false;
 			}
 		}
 
-		static $_permissionCache = []; // Cache computed permissions because lookups are expensive.
-
 		// Return the permission if it was computed before.
-		if(isset($_permissionCache[$title->getFullText().'-'.$action])) { return $_permissionCache[$title->getFullText().'-'.$action]; }
+		if ( isset( self::$_permissionCache[$title->getFullText() . '-' . $action . '-' . $user->getId()] ) ) {
+			return self::$_permissionCache[$title->getFullText() . '-' . $action . '-' . $user->getId()];
+		}
 
 		$hasPermission = true;
 
@@ -514,7 +526,7 @@ class SemanticACL {
 
 				if( isset($cascade[0]) && $cascade[0]->getBoolean() ) { // Get permissions from the parent page.
 					$wgSemanticACLEnableCascadingACL = false; // Disable cascading during the lookup.
-					$hasPermission = self::hasPermission($parent, $action, $user, $disableCaching);
+					$hasPermission = static::hasPermission($parent, $action, $user, $disableCaching);
 					$wgSemanticACLEnableCascadingACL = true;
 					break;
 				}
@@ -523,7 +535,7 @@ class SemanticACL {
 			} while ($parent->isSubPage());
 		}
 
-		$_permissionCache[$title->getFullText().'-'.$action] = $hasPermission; // Cache the permission.
+		self::$_permissionCache[$title->getFullText() . '-' . $action . '-' . $user->getId()] = $hasPermission; // Cache the permission.
 
 		return $hasPermission;
 	}
@@ -534,11 +546,24 @@ class SemanticACL {
 	protected static function disableCaching() {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
-		if ( $parser->getOutput() ) {
+		// Parser::getOutput() emits E_USER_DEPRECATED when called before the
+		// parser has been initialized (since MW 1.42). PHP offers no public API
+		// to test for this, so we inspect the uninitialized typed property via
+		// reflection (safe on PHP 8.1+ without setAccessible).
+		$ref = new \ReflectionProperty( $parser, 'mOutput' );
+		if ( $ref->isInitialized( $parser ) ) {
 			$parser->getOutput()->updateCacheExpiry( 0 );
 		}
 
 		RequestContext::getMain()->getOutput()->disableClientCache();
+	}
+
+	/**
+	 * Reset the permission cache. Intended for use in integration tests where
+	 * multiple users are checked against the same page within a single test.
+	 */
+	public static function resetPermissionCache(): void {
+		self::$_permissionCache = [];
 	}
 
 	/**
