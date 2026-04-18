@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="SemanticACL">
+	<rule ref="./../../vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
+
+	<!-- SemanticACL.class.php predates the convention; renaming would break autoload. -->
+	<rule ref="MediaWiki.Files.ClassMatchesFilename">
+		<exclude-pattern>SemanticACL\.class\.php</exclude-pattern>
+	</rule>
+
+	<!-- TestableSemanticACL helper lives alongside the test class. -->
+	<rule ref="MediaWiki.Files.ClassMatchesFilename">
+		<exclude-pattern>tests/phpunit/integration/SemanticACLIntegrationTest\.php</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Files.OneObjectStructurePerFile">
+		<exclude-pattern>tests/phpunit/integration/SemanticACLIntegrationTest\.php</exclude-pattern>
+	</rule>
+
+	<!-- SMW uses $smwg prefix for its globals; we cannot rename them. -->
+	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
+		<properties>
+			<property name="ignoreList[]" value="$smwgNamespacesWithSemanticLinks" />
+		</properties>
+	</rule>
+
+	<!-- Underscore-prefixed properties are intentional in this codebase. -->
+	<rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+		<exclude-pattern>SemanticACL\.class\.php</exclude-pattern>
+	</rule>
+	<exclude-pattern type="relative">^vendor/*</exclude-pattern>
+	<exclude-pattern type="relative">^node_modules/*</exclude-pattern>
+
+	<file>.</file>
+	<arg name="encoding" value="UTF-8" />
+	<arg name="extensions" value="php" />
+</ruleset>

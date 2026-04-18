@@ -437,7 +437,8 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$topicTitle = $this->createFlowTopic( $boardTitle );
 
-		$user = $this->getMutableTestUser()->getUser(); // not a sysop
+		// Not a sysop.
+		$user = $this->getMutableTestUser()->getUser();
 		$result = true;
 		TestableSemanticACL::onGetUserPermissionsErrors(
 			$topicTitle, $user, 'edit', $result
@@ -458,7 +459,8 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
 		$this->createPage( $title, '[[Visible to::whitelist]][[Visible to group::editors]]' );
 
-		$user = $this->getMutableTestUser()->getUser(); // plain user, not in 'editors'
+		// Plain user, not in 'editors'.
+		$user = $this->getMutableTestUser()->getUser();
 		$result = true;
 		$hookResult = TestableSemanticACL::onGetUserPermissionsErrors( $title, $user, 'read', $result );
 
@@ -961,7 +963,8 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__, NS_TEMPLATE );
 		$this->createPage( $title, '[[Visible to::whitelist]][[Visible to group::editors]] Editors only.' );
 
-		$user = $this->getMutableTestUser()->getUser(); // logged in, but not an editor
+		// Logged in, but not an editor.
+		$user = $this->getMutableTestUser()->getUser();
 		RequestContext::getMain()->setUser( $user );
 
 		$contextTitle = null;
@@ -1203,7 +1206,8 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 			. '{{#SEMANTICACL_PRIVATE_LINK:' . $key . '}}'
 		);
 
-		$user = $this->getMutableTestUser()->getUser(); // not a sysop
+		// Not a sysop.
+		$user = $this->getMutableTestUser()->getUser();
 		$request = new FauxRequest( [ 'semanticacl-key' => $key ] );
 		RequestContext::getMain()->setRequest( $request );
 		RequestContext::getMain()->setUser( $user );
@@ -1226,15 +1230,12 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-
-
 	/**
 	 * A page restricted to registered users + private link transcludes a
 	 * users-only template.  An anonymous visitor with the correct key can
 	 * read the page, but the template's own ACL (users-only) must still
 	 * block the transclusion — the private link key only grants access to
 	 * the page itself, not to its included resources.
-	 *
 	 */
 	public function testPrivateLinkDoesNotGrantAccessToRestrictedInclusion(): void {
 		$key = 'my_secret_key_123';
