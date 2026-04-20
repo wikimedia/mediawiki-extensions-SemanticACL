@@ -3,6 +3,7 @@ vendor/
 composer.lock
 .eslintcache
 .claude/
+.phpunit.result.cache
 
 .svn
 *~
