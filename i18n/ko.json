@@ -3,11 +3,13 @@
 		"authors": [
 			"Priviet",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"Tensama0415"
 		]
 	},
 	"sacl-desc": "시맨틱 미디어위키 속성으로 설정된 접근 제한을 할 수 있게 합니다",
 	"sacl-denied": "이 문서에 접근할 권한이 없습니다.",
+	"action-sacl-exempt": "시맨틱 ACL에서 면제될",
 	"right-sacl-exempt": "시맨틱 ACL에서 면제",
 	"action-view-non-categorized-media": "분류되지 않은 미디어 파일을 볼",
 	"right-view-non-categorized-media": "분류되지 않은 미디어 파일 보기",
@@ -18,5 +20,7 @@
 	"sacl-property-editable-wl-group": "그룹이 편집 가능",
 	"sacl-property-editable-wl-user": "사용자가 편집 가능",
 	"sacl-template-render-denied-anonymous": "<div class=\"mw-message-box-error\">이 틀을 보려면 [[Special:UserLogin|로그인]]해야 합니다.</div>",
-	"sacl-key-too-short": "키의 길이는 6자를 초과해야 합니다."
+	"sacl-key-too-short": "키의 길이는 6자를 초과해야 합니다.",
+	"sacl-private-links-disabled": "관리자가_비공개_링크를_비활성화했습니다",
+	"sacl-property-cascade-permissions": "하위 문서에 대한 계층화 권한"
 }
