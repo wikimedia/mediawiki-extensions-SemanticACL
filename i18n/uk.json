@@ -25,5 +25,6 @@
 	"sacl-template-render-denied-anonymous": "Ви маєте [[Special:UserLogin|увійти]], щоб переглянути цей шаблон.",
 	"sacl-template-render-denied-registered": "Ви не маєте достатнього доступу для перегляду цього шаблону.",
 	"sacl-key-too-short": "Довжина ключа має бути більшою ніж 6 символів.",
-	"sacl-private-links-disabled": "Приватні_посилання_вимкнено_вашим_адміністратором"
+	"sacl-private-links-disabled": "Приватні_посилання_вимкнено_вашим_адміністратором",
+	"sacl-property-cascade-permissions": "Успадкування прав доступу підсторінками"
 }
