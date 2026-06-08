@@ -1385,7 +1385,6 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function enableBaseClassAcl(): void {
 		$ref = new \ReflectionProperty( SemanticACL::class, 'ignoreCliMode' );
-		$ref->setAccessible( true );
 		$ref->setValue( null, true );
 	}
 
@@ -1394,7 +1393,6 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function disableBaseClassAcl(): void {
 		$ref = new \ReflectionProperty( SemanticACL::class, 'ignoreCliMode' );
-		$ref->setAccessible( true );
 		$ref->setValue( null, false );
 	}
 
@@ -1548,7 +1546,6 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		// protected WebRequest::$ip property.
 		$request = new FauxRequest();
 		$ipRef = new \ReflectionProperty( \MediaWiki\Request\WebRequest::class, 'ip' );
-		$ipRef->setAccessible( true );
 		$ipRef->setValue( $request, '192.168.1.100' );
 		RequestContext::getMain()->setRequest( $request );
 		RequestContext::getMain()->setUser( $anonUser );

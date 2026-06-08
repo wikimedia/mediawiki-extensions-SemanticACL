@@ -650,7 +650,7 @@ class SemanticACL {
 		// Parser::getOutput() emits E_USER_DEPRECATED when called before the
 		// parser has been initialized (since MW 1.42). PHP offers no public API
 		// to test for this, so we inspect the uninitialized typed property via
-		// reflection (safe on PHP 8.1+ without setAccessible).
+		// reflection
 		self::$mOutputRef ??= new \ReflectionProperty( $parser, 'mOutput' );
 		if ( self::$mOutputRef->isInitialized( $parser ) ) {
 			$parser->getOutput()->updateCacheExpiry( 0 );
