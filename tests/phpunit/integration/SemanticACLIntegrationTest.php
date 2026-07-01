@@ -707,6 +707,46 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * A page that combines a group whitelist and a private link key on the same
+	 * page (as produced by the {{Protection d'une page}} template with both a
+	 * group and a key) must grant access to an anonymous user presenting the
+	 * correct key.  Multiple 'Visible to' specifiers are an OR: the whitelist
+	 * denial must not override the key grant, regardless of the order in which
+	 * the SMW store returns the values.
+	 */
+	public function testKeyGrantsAccessAlongsideWhitelistOnSamePage(): void {
+		$key = 'whitelist_and_key_secret';
+
+		// The 'key' specifier is annotated before the whitelist so that, in the
+		// order the SMW store yields the values, a key match is computed before
+		// the whitelist denial — the order that reproduces the original bug
+		// where the whitelist denial overrode the key grant. (In production the
+		// SMW store sorts the '___VISIBLE' values, returning 'key' before
+		// 'whitelist' regardless of their order in the wikitext.)
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title,
+			'[[Visible to::key]] '
+			. '[[Visible to group::sysop]][[Visible to::whitelist]] '
+			. '{{#SEMANTICACL_PRIVATE_LINK:' . $key . '}} '
+		);
+
+		$anonUser = $this->getAnonUser();
+		$request = new FauxRequest( [ 'semanticacl-key' => $key ] );
+		RequestContext::getMain()->setRequest( $request );
+		RequestContext::getMain()->setUser( $anonUser );
+
+		TestableSemanticACL::resetPermissionCache();
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$title, $anonUser, 'read', $result
+		);
+		$this->assertTrue( $result,
+			'Page should be readable by anonymous with the correct key even when a '
+			. 'group whitelist is also set on the same page'
+		);
+	}
+
 	// --- sacl-exempt right ---
 
 	/**
