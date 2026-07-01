@@ -2,6 +2,15 @@
 
 All notable changes to the SemanticACL extension are documented in this file.
 
+## 0.5.1 (unreleased)
+
+* Fix a private link key being ignored on a page that also defines a group
+  or user whitelist. Multiple `Visible to` audience specifiers are now
+  combined as a logical AND (the safest, most restrictive verdict wins),
+  while a matching private link key acts as a separate override that grants
+  read access regardless of the audience verdict, independent of the order
+  in which the Semantic MediaWiki store returns the values
+
 ## 0.5 (2026-04-18)
 
 * Add comprehensive PHPUnit integration test suite (49 tests, 107

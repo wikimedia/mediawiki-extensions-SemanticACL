@@ -439,6 +439,17 @@ class SemanticACL {
 
 		$hasPermission = true;
 
+		/* Audience specifiers ('whitelist', 'users', 'public') are combined as a
+		 * logical AND: when more than one is set on a page (which is not a
+		 * recommended configuration) the safest, most restrictive verdict wins,
+		 * so any single denial denies access. The private link 'key' is a
+		 * separate override mechanism rather than an audience: a matching key
+		 * grants read access regardless of the audience verdict.
+		 */
+		$audienceChecked = false;
+		$audienceGranted = true;
+		$keyGrantsAccess = false;
+
 		// For each ACL specifier.
 		foreach ( $aclTypes as $valueObj ) {
 			switch ( strtolower( $valueObj->getString() ) ) {
@@ -481,9 +492,8 @@ class SemanticACL {
 						}
 					}
 
-					if ( !$isWhitelisted ) {
-						$hasPermission = false;
-					}
+					$audienceChecked = true;
+					$audienceGranted = $audienceGranted && $isWhitelisted;
 
 					break;
 
@@ -547,18 +557,27 @@ class SemanticACL {
 						// If the key provided in the request arguments matches the key in the page.
 						$query[self::URL_ARG_NAME] === $key
 					) {
-						$hasPermission = true;
+						// A matching key overrides the audience verdict.
+						$keyGrantsAccess = true;
 					}
 
 					break;
 
 				case 'users':
-					$hasPermission = !$user->isAnon();
+					$audienceChecked = true;
+					$audienceGranted = $audienceGranted && !$user->isAnon();
 					break;
 
 				case 'public':
-					$hasPermission = true;
+					$audienceChecked = true;
 			}
+		}
+
+		// Combine the audience verdict with the private link key override.
+		if ( $keyGrantsAccess ) {
+			$hasPermission = true;
+		} elseif ( $audienceChecked ) {
+			$hasPermission = $audienceGranted;
 		}
 
 		// Talk pages with their own ACL fall back to the subject page for
