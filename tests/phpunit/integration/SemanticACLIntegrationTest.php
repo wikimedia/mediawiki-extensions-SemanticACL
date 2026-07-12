@@ -26,6 +26,16 @@ use SMWQuery;
  */
 class TestableSemanticACL extends SemanticACL {
 	protected static bool $ignoreCliMode = true;
+
+	/**
+	 * Expose the protected hasPermission() so caching-behaviour tests can
+	 * exercise the $disableCaching = true path used by the file/bad-image
+	 * and template checks (the permission hook passes false and manages
+	 * caching itself).
+	 */
+	public static function checkPermission( $title, $action, $user, $disableCaching = true ) {
+		return static::hasPermission( $title, $action, $user, $disableCaching );
+	}
 }
 
 /**
@@ -1789,5 +1799,149 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $result,
 			'Reviewer should be able to edit (subpage editable by reviewers)'
 		);
+	}
+
+	// --- Caching behaviour tests ---
+
+	/**
+	 * Whether the main-context OutputPage still allows client caching.
+	 * SemanticACL::disableCaching() flips OutputPage::$mEnableClientCache,
+	 * for which there is no public getter.
+	 */
+	private function clientCacheEnabled(): bool {
+		$out = RequestContext::getMain()->getOutput();
+		$ref = new \ReflectionProperty( $out, 'mEnableClientCache' );
+
+		return $ref->getValue( $out );
+	}
+
+	/** Restore the cacheable baseline before exercising a permission check. */
+	private function resetClientCache(): void {
+		RequestContext::getMain()->getOutput()->enableClientCache();
+	}
+
+	/**
+	 * A page without any ACL property renders identically for every user, so
+	 * a permission check on it must NOT disable caching. This guards against
+	 * the historic behaviour of disabling caching on every check — notably
+	 * the image and template checks that run during every parse — which kept
+	 * pretty much the whole wiki out of HTTP and parser caches.
+	 */
+	public function testCachingStaysEnabledOnPageWithoutAcl(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, 'A plain page without any ACL.' );
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $this->getAnonUser() );
+
+		$this->assertTrue( $allowed );
+		$this->assertTrue( $this->clientCacheEnabled(),
+			'Permission check on a page without ACL should leave caching enabled' );
+	}
+
+	/**
+	 * A page carrying an ACL property renders differently depending on the
+	 * user, so a permission check on it must disable caching.
+	 */
+	public function testCachingDisabledOnAclPage(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $this->getAnonUser() );
+
+		$this->assertFalse( $allowed );
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Permission check on an ACL page should disable caching' );
+	}
+
+	/**
+	 * Users exempted from ACLs (sacl-exempt) get access to protected pages
+	 * without evaluation — but their privileged rendering must still not be
+	 * cacheable, or it would leak to unprivileged users through a shared
+	 * cache. Guards the ordering of the caching decision, which must happen
+	 * before the exemption early-return.
+	 */
+	public function testCachingDisabledForExemptUserOnAclPage(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		$user = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $user );
+
+		$this->assertTrue( $allowed );
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Exempt user rendering of an ACL page must not be cacheable' );
+	}
+
+	/**
+	 * A subpage without own ACL that inherits from a cascading parent is
+	 * user-dependent and must disable caching, even though the subpage
+	 * itself carries no ACL property. Covered by the recursive parent
+	 * lookup, which disables caching when it finds ACLs on the parent.
+	 */
+	public function testCachingDisabledOnCascadeSubpage(): void {
+		$parentTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $parentTitle,
+			'[[Visible to::users]] [[Cascade permissions to subpages::true]] Parent.'
+		);
+
+		$subTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ . '/Sub' );
+		$this->createPage( $subTitle, 'Subpage without own ACL.' );
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $subTitle, 'read', $this->getAnonUser() );
+
+		$this->assertFalse( $allowed );
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Subpage inheriting a cascading ACL must not be cacheable' );
+	}
+
+	/**
+	 * An exempt user viewing a subpage protected only through a cascading
+	 * parent is allowed by the sacl-exempt early-return, which fires BEFORE
+	 * the recursive cascade lookup would get a chance to disable caching.
+	 * Their privileged rendering must still not be cacheable: were such a
+	 * subpage a transcluded template, its content would be baked into the
+	 * host page's parser cache and leak to unprivileged users. Guards the
+	 * up-front cascade check in the caching decision.
+	 */
+	public function testCachingDisabledForExemptUserOnCascadeSubpage(): void {
+		$parentTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $parentTitle,
+			'[[Visible to::whitelist]][[Visible to group::reviewers]] '
+			. '[[Cascade permissions to subpages::true]] Parent.'
+		);
+
+		$subTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ . '/Sub' );
+		$this->createPage( $subTitle, 'Subpage without own ACL.' );
+
+		$user = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $subTitle, 'read', $user );
+
+		$this->assertTrue( $allowed, 'Exempt user should be allowed through' );
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Exempt user rendering of a cascade-protected subpage must not be cacheable' );
+	}
+
+	/**
+	 * An edit-permission check on a page that only restricts visibility must
+	 * still disable caching: editability falls back to visibility, so the
+	 * verdict is user-dependent.
+	 */
+	public function testCachingDisabledOnEditCheckWithVisibilityFallback(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'edit', $this->getAnonUser() );
+
+		$this->assertFalse( $allowed );
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Edit check falling back to visibility ACL must disable caching' );
 	}
 }

@@ -330,7 +330,9 @@ class SemanticACL {
 	 * @param Title $title the title object to check permission on
 	 * @param string $action the action the user wants to do
 	 * @param \MediaWiki\User\User $user the user to check permissions for
-	 * @param bool $disableCaching force the page being checked to be rerendered for each user
+	 * @param bool $disableCaching disable caching of the page being rendered when the
+	 *   verdict can vary by user, so it is rerendered for each user; pass false when
+	 *   the caller manages caching itself
 	 * @return bool if the user is allowed to conduct the action
 	 */
 	protected static function hasPermission( $title, $action, $user, $disableCaching = true ) {
@@ -394,12 +396,44 @@ class SemanticACL {
 			$prefix = '___EDITABLE';
 		}
 
+		/* Disable caching (parser cache and client/CDN cache) only when the
+		 * verdict can vary from one user to another — otherwise every image
+		 * and transcluded template check would make its host page
+		 * uncacheable. If the page were cached in those cases, the same
+		 * rendering would be served without consideration for the user
+		 * viewing it.
+		 *
+		 * This must stay ahead of the sacl-exempt / whitelisted-IP
+		 * early-returns below: a privileged rendering of protected content,
+		 * baked into a host page's parser cache, would leak to other users.
+		 */
 		if ( $disableCaching ) {
-			/* If the parser caches the page, the same page will be returned
-			 * without consideration for the user viewing the page. Disable the
-			 * cache so it gets rendered anew for every user.
-			 */
-			static::disableCaching();
+			if ( $title->getNamespace() === NS_FILE && !static::fileHasRequiredCategory( $title ) ) {
+				// Visibility depends on the view-non-categorized-media right.
+				static::disableCaching();
+			} else {
+				$semanticData = StoreFactory::getStore()->getSemanticData(
+					DIWikiPage::newFromTitle( $title )
+				);
+
+				if ( $semanticData->getPropertyValues( new DIProperty( $prefix ) ) ||
+					// Editability falls back to visibility restrictions.
+					( $prefix === '___EDITABLE' &&
+						$semanticData->getPropertyValues( new DIProperty( '___VISIBLE' ) ) )
+				) {
+					// The page carries ACL properties relevant to the action.
+					static::disableCaching();
+				} elseif ( static::inheritsCascadingPermissions( $title ) ) {
+					/* A parent cascades its permissions onto this subpage, so
+					 * the verdict may vary by user whatever the parent's ACLs
+					 * grant. Checked here rather than relying only on the
+					 * recursive lookup at the end of this method, because the
+					 * exemption early-returns below would skip that lookup
+					 * for privileged users — whose rendering must not be
+					 * cached either. */
+					static::disableCaching();
+				}
+			}
 		}
 
 		// Failsafe: Some users are exempt from Semantic ACLs.
@@ -655,6 +689,50 @@ class SemanticACL {
 		self::$_permissionCache[$cacheKey] = $hasPermission;
 
 		return $hasPermission;
+	}
+
+	/**
+	 * Whether a parent page cascades its permissions onto this subpage.
+	 * Walks the parent chain the same way the cascading lookup in
+	 * hasPermission() does, but only checks for the cascade flag — the
+	 * actual ACL evaluation is left to that lookup.
+	 *
+	 * @param Title $title
+	 * @return bool
+	 */
+	protected static function inheritsCascadingPermissions( $title ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		if ( self::$inCascadingLookup ||
+			!$config->get( 'SemanticACLEnableCascadingACL' ) ||
+			!$title->isSubPage()
+		) {
+			return false;
+		}
+
+		$parent = $title;
+
+		do {
+			$parent = $parent->getBaseTitle();
+
+			if ( !$parent->exists() ) {
+				if ( !$parent->isSubPage() ) {
+					break;
+				}
+				// Skip page, it does not exist.
+				continue;
+			}
+
+			$cascade = StoreFactory::getStore()->getSemanticData(
+				DIWikiPage::newFromTitle( $parent )
+			)->getPropertyValues( new DIProperty( '___CASCADE_PERMISSIONS' ) );
+
+			if ( isset( $cascade[0] ) && $cascade[0]->getBoolean() ) {
+				return true;
+			}
+		} while ( $parent->isSubPage() );
+
+		return false;
 	}
 
 	/**

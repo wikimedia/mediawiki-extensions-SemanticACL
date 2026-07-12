@@ -4,6 +4,17 @@ All notable changes to the SemanticACL extension are documented in this file.
 
 ## 0.5.1 (unreleased)
 
+* Fix pages containing any image or template transclusion never being
+  cacheable: the file/bad-image and template permission checks that run
+  during every parse unconditionally disabled the parser cache and
+  client/CDN caching for the host page. Caching is now only disabled
+  when the verdict can vary by user — the checked page carries ACL
+  properties for the action (or visibility properties, for edit checks),
+  is a non-categorized file while a public images category is required,
+  or inherits ACLs from a parent with cascading permissions. The
+  decision still happens before the `sacl-exempt` and whitelisted-IP
+  early-returns, so a privileged rendering of protected content can
+  never enter a shared cache
 * Fix a private link key being ignored on a page that also defines a group
   or user whitelist. Multiple `Visible to` audience specifiers are now
   combined as a logical AND (the safest, most restrictive verdict wins),
