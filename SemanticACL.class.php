@@ -64,32 +64,32 @@ class SemanticACL {
 	public static function onSMWPropertyinitProperties( $propertyRegistry ) {
 		// VISIBLE
 		$propertyRegistry->registerProperty( '___VISIBLE', '_txt', 'Visible to' );
-		$propertyRegistry->registerPropertyDescriptionByMsgKey( '__VISIBLE', 'sacl-property-visibility' );
+		$propertyRegistry->registerPropertyDescriptionByMsgKey( '___VISIBLE', 'sacl-property-visibility' );
 
 		$propertyRegistry->registerProperty( '___VISIBLE_WL_GROUP', '_txt', 'Visible to group' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__VISIBLE_WL_GROUP', 'sacl-property-visibility-wl-group'
+			'___VISIBLE_WL_GROUP', 'sacl-property-visibility-wl-group'
 		);
 
 		$propertyRegistry->registerProperty( '___VISIBLE_WL_USER', '_txt', 'Visible to user' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__VISIBLE_WL_USER', 'sacl-property-visibility-wl-user'
+			'___VISIBLE_WL_USER', 'sacl-property-visibility-wl-user'
 		);
 
 		// EDITABLE
 		$propertyRegistry->registerProperty( '___EDITABLE', '_txt', 'Editable by' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__EDITABLE', 'sacl-property-Editable'
+			'___EDITABLE', 'sacl-property-Editable'
 		);
 
 		$propertyRegistry->registerProperty( '___EDITABLE_WL_GROUP', '_txt', 'Editable by group' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__EDITABLE_WL_GROUP', 'sacl-property-editable-wl-group'
+			'___EDITABLE_WL_GROUP', 'sacl-property-editable-wl-group'
 		);
 
 		$propertyRegistry->registerProperty( '___EDITABLE_WL_USER', '_txt', 'Editable by user' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__EDITABLE_WL_USER', 'sacl-property-editable-wl-user'
+			'___EDITABLE_WL_USER', 'sacl-property-editable-wl-user'
 		);
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
@@ -199,6 +199,12 @@ class SemanticACL {
 	public static function onBadImage( $name, &$bad ) {
 		// Also works with galleries and categories.
 		$title = Title::newFromText( $name, NS_FILE );
+
+		if ( !$title ) {
+			// Invalid file name; let MediaWiki handle it.
+			return true;
+		}
+
 		$user = RequestContext::getMain()->getUser();
 
 		if ( !static::fileHasRequiredCategory( $title ) && !$user->isAllowed( 'view-non-categorized-media' ) ) {
@@ -306,7 +312,10 @@ class SemanticACL {
 		);
 
 		if ( !$enablePrivateLinks ) {
-			$key = wfMessage( 'sacl-private-links-disabled' )->text();
+			/* Return the notice directly: assigning it to $key would let it
+			 * fall through the length check below and be emitted as a bogus
+			 * private link URL. */
+			return wfMessage( 'sacl-private-links-disabled' )->text();
 		}
 
 		if ( strlen( $key ) <= self::MIN_KEY_LENGTH ) {
@@ -519,9 +528,11 @@ class SemanticACL {
 					$whitelistValues = $store->getPropertyValues( $userProperty );
 
 					foreach ( $whitelistValues as $whitelistValue ) {
+						// newFromDBkey() returns null on malformed titles; a
+						// bad annotation value must not fatal the page view.
 						$userPage = Title::newFromDBkey( $whitelistValue->getString() );
 
-						if ( $user->getUserPage()->equals( $userPage ) ) {
+						if ( $userPage && $user->getUserPage()->equals( $userPage ) ) {
 							$isWhitelisted = true;
 						}
 					}
@@ -571,6 +582,12 @@ class SemanticACL {
 						// Not implemented on non-text contents
 						break;
 					}
+					/* Clear any key left over from an earlier parse in this
+					 * request (e.g. another page's private link function),
+					 * so only a key defined by the page being checked can
+					 * ever match. */
+					self::$_key = '';
+
 					$text = $parser->recursivePreprocess(
 						$content->getText(),
 						$title,
@@ -588,8 +605,10 @@ class SemanticACL {
 					if (
 						strlen( $key ) > self::MIN_KEY_LENGTH &&
 						isset( $query[self::URL_ARG_NAME] ) &&
-						// If the key provided in the request arguments matches the key in the page.
-						$query[self::URL_ARG_NAME] === $key
+						is_string( $query[self::URL_ARG_NAME] ) &&
+						// Constant-time comparison of the key provided in the
+						// request arguments against the key in the page.
+						hash_equals( $key, $query[self::URL_ARG_NAME] )
 					) {
 						// A matching key overrides the audience verdict.
 						$keyGrantsAccess = true;

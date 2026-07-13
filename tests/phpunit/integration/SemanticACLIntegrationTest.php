@@ -2027,4 +2027,91 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->clientCacheEnabled(),
 			'Whitelisted-IP rendering must not enter the shared HTTP cache' );
 	}
+
+	// --- Robustness tests ---
+
+	/**
+	 * A malformed 'Visible to user' annotation value (one that is not a valid
+	 * title) must not fatal the page view: Title::newFromDBkey() returns null
+	 * for it, which used to be passed unchecked to Title::equals().
+	 * The page must simply deny access to users not otherwise whitelisted.
+	 */
+	public function testMalformedUserWhitelistValueDoesNotFatal(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title,
+			'[[Visible to::whitelist]][[Visible to user::{x}]] Restricted.'
+		);
+
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$title, $this->getAnonUser(), 'read', $result
+		);
+
+		$this->assertFalse( $result,
+			'Malformed whitelist value should deny gracefully, not fatal' );
+	}
+
+	/**
+	 * With private links disabled, the parser function must return the
+	 * "disabled" notice — not a URL embedding the notice as a key, which is
+	 * what the notice text falling through the key-length check produced.
+	 */
+	public function testPrivateLinkFunctionReturnsNoticeWhenDisabled(): void {
+		$this->overrideConfigValue( 'SemanticACLEnablePrivateLinks', false );
+
+		$parser = $this->getServiceContainer()->getParserFactory()->create();
+		$output = TestableSemanticACL::getPrivateLink( $parser, 'long_enough_key_123' );
+
+		$this->assertSame(
+			wfMessage( 'sacl-private-links-disabled' )->text(),
+			$output
+		);
+		$this->assertStringNotContainsString( SemanticACL::URL_ARG_NAME, $output );
+	}
+
+	/**
+	 * A private-link key left over from an earlier parse in the same request
+	 * (another page's {{#SEMANTICACL_PRIVATE_LINK:}} call) must not grant
+	 * access to a different page that declares 'Visible to = key' but defines
+	 * no key of its own.
+	 */
+	public function testStaleKeyFromOtherPageDoesNotGrantAccess(): void {
+		$leftoverKey = 'leftover_key_123';
+
+		// Simulate an earlier parse setting the static key.
+		$otherTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ . '_Other' );
+		$parser = $this->getServiceContainer()->getParserFactory()->create();
+		$parser->startExternalParse( $otherTitle, \ParserOptions::newFromAnon(), \Parser::OT_HTML );
+		TestableSemanticACL::getPrivateLink( $parser, $leftoverKey );
+
+		// Page declaring the 'key' audience without defining a key.
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title,
+			'[[Visible to::users]][[Visible to::key]] No key defined here.'
+		);
+
+		$request = new FauxRequest( [ 'semanticacl-key' => $leftoverKey ] );
+		RequestContext::getMain()->setRequest( $request );
+		RequestContext::getMain()->setUser( $this->getAnonUser() );
+
+		$result = true;
+		TestableSemanticACL::onGetUserPermissionsErrors(
+			$title, $this->getAnonUser(), 'read', $result
+		);
+
+		$this->assertFalse( $result,
+			'A key defined by another page must not grant access to this one' );
+	}
+
+	/**
+	 * An invalid file name reaching onBadImage() must not fatal (the title
+	 * fails to parse); MediaWiki's own handling takes over.
+	 */
+	public function testBadImageWithInvalidNameDoesNotFatal(): void {
+		$bad = false;
+		$hookResult = TestableSemanticACL::onBadImage( '<invalid[name>', $bad );
+
+		$this->assertTrue( $hookResult );
+		$this->assertFalse( $bad );
+	}
 }

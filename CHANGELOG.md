@@ -24,6 +24,21 @@ All notable changes to the SemanticACL extension are documented in this file.
   (whose response would outlive key rotation under the keyed URL), and
   ACL-whitelisted IPs. The parser cache, being shared across all
   users, is still always invalidated on ACL-influenced renderings
+* Fix a fatal error on every view of a page carrying a malformed
+  `Visible to user` value (the invalid title parsed to null and crashed
+  the whitelist comparison); such values now simply never match
+* Fix `{{#SEMANTICACL_PRIVATE_LINK:}}` emitting a bogus URL (with the
+  "disabled" notice embedded as the key) when private links are turned
+  off; it now returns the notice itself
+* Prevent a private-link key defined by another page parsed earlier in
+  the same request from granting access to a page that declares the
+  `key` audience without defining a key of its own
+* Fix the six ACL property descriptions never appearing on
+  Special:Properties (they were registered under property ids with two
+  leading underscores instead of three)
+* Guard `onBadImage()` against invalid file names that fail title
+  parsing instead of throwing a fatal error
+* Compare private-link keys in constant time (`hash_equals()`)
 * Fix a private link key being ignored on a page that also defines a group
   or user whitelist. Multiple `Visible to` audience specifiers are now
   combined as a logical AND (the safest, most restrictive verdict wins),
