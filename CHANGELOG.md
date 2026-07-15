@@ -15,6 +15,15 @@ All notable changes to the SemanticACL extension are documented in this file.
   decision still happens before the `sacl-exempt` and whitelisted-IP
   early-returns, so a privileged rendering of protected content can
   never enter a shared cache
+* Keep ACL pages HTTP-cacheable for plain anonymous requests: the
+  HTTP/CDN cache only ever stores anonymous responses, and the
+  canonical anonymous rendering (including denials and filtered
+  results) is identical for every anonymous visitor. The client cache
+  is now only disabled for requests that can produce a non-canonical
+  rendering — registered users, requests carrying a private-link key
+  (whose response would outlive key rotation under the keyed URL), and
+  ACL-whitelisted IPs. The parser cache, being shared across all
+  users, is still always invalidated on ACL-influenced renderings
 * Fix a private link key being ignored on a page that also defines a group
   or user whitelist. Multiple `Visible to` audience specifiers are now
   combined as a logical AND (the safest, most restrictive verdict wins),

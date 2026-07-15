@@ -1840,19 +1840,45 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * A page carrying an ACL property renders differently depending on the
-	 * user, so a permission check on it must disable caching.
+	 * The HTTP/client cache only ever stores responses to anonymous
+	 * sessionless requests, and the canonical anonymous rendering of an ACL
+	 * page (here: the denial) is identical for every anonymous visitor — so
+	 * a permission check for a plain anonymous request must leave the client
+	 * cache enabled. (The parser cache is still invalidated; its sharing
+	 * domain includes privileged users.)
 	 */
-	public function testCachingDisabledOnAclPage(): void {
+	public function testClientCacheStaysEnabledForAnonOnAclPage(): void {
 		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
 		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		RequestContext::getMain()->setUser( $this->getAnonUser() );
 
 		$this->resetClientCache();
 		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $this->getAnonUser() );
 
 		$this->assertFalse( $allowed );
+		$this->assertTrue( $this->clientCacheEnabled(),
+			'Canonical anonymous rendering of an ACL page should stay HTTP-cacheable' );
+	}
+
+	/**
+	 * A registered user's rendering of an ACL page reflects their rights and
+	 * must not be client-cacheable (defense in depth on top of core's
+	 * session guards).
+	 */
+	public function testClientCacheDisabledForRegisteredUserOnAclPage(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		$user = $this->getMutableTestUser()->getUser();
+		RequestContext::getMain()->setUser( $user );
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $user );
+
+		$this->assertTrue( $allowed );
 		$this->assertFalse( $this->clientCacheEnabled(),
-			'Permission check on an ACL page should disable caching' );
+			'Registered user rendering of an ACL page must not be client-cacheable' );
 	}
 
 	/**
@@ -1867,6 +1893,7 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->createPage( $title, '[[Visible to::users]] Members only.' );
 
 		$user = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+		RequestContext::getMain()->setUser( $user );
 
 		$this->resetClientCache();
 		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $user );
@@ -1877,10 +1904,10 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * A subpage without own ACL that inherits from a cascading parent is
-	 * user-dependent and must disable caching, even though the subpage
-	 * itself carries no ACL property. Covered by the recursive parent
-	 * lookup, which disables caching when it finds ACLs on the parent.
+	 * A registered user viewing a subpage without own ACL that inherits from
+	 * a cascading parent gets a rights-dependent rendering, so the client
+	 * cache must be disabled even though the subpage itself carries no ACL
+	 * property.
 	 */
 	public function testCachingDisabledOnCascadeSubpage(): void {
 		$parentTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
@@ -1891,12 +1918,15 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$subTitle = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ . '/Sub' );
 		$this->createPage( $subTitle, 'Subpage without own ACL.' );
 
-		$this->resetClientCache();
-		$allowed = TestableSemanticACL::checkPermission( $subTitle, 'read', $this->getAnonUser() );
+		$user = $this->getMutableTestUser()->getUser();
+		RequestContext::getMain()->setUser( $user );
 
-		$this->assertFalse( $allowed );
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $subTitle, 'read', $user );
+
+		$this->assertTrue( $allowed, 'Registered user passes the users-only cascade' );
 		$this->assertFalse( $this->clientCacheEnabled(),
-			'Subpage inheriting a cascading ACL must not be cacheable' );
+			'Registered user rendering of a cascade-protected subpage must not be cacheable' );
 	}
 
 	/**
@@ -1919,6 +1949,7 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->createPage( $subTitle, 'Subpage without own ACL.' );
 
 		$user = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+		RequestContext::getMain()->setUser( $user );
 
 		$this->resetClientCache();
 		$allowed = TestableSemanticACL::checkPermission( $subTitle, 'read', $user );
@@ -1929,19 +1960,71 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * An edit-permission check on a page that only restricts visibility must
-	 * still disable caching: editability falls back to visibility, so the
-	 * verdict is user-dependent.
+	 * An edit-permission check by a registered user on a page that only
+	 * restricts visibility must still disable the client cache: editability
+	 * falls back to visibility, so the verdict is user-dependent.
 	 */
 	public function testCachingDisabledOnEditCheckWithVisibilityFallback(): void {
 		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
 		$this->createPage( $title, '[[Visible to::users]] Members only.' );
 
-		$this->resetClientCache();
-		$allowed = TestableSemanticACL::checkPermission( $title, 'edit', $this->getAnonUser() );
+		$user = $this->getMutableTestUser()->getUser();
+		RequestContext::getMain()->setUser( $user );
 
-		$this->assertFalse( $allowed );
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'edit', $user );
+
+		$this->assertTrue( $allowed );
 		$this->assertFalse( $this->clientCacheEnabled(),
-			'Edit check falling back to visibility ACL must disable caching' );
+			'Edit check falling back to visibility ACL must disable client caching' );
+	}
+
+	/**
+	 * A request carrying a private-link key must not be client-cacheable:
+	 * the response would be stored under the keyed URL and keep serving the
+	 * page after the key is rotated, since edits only purge canonical URLs.
+	 */
+	public function testCachingDisabledForKeyCarryingRequest(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		RequestContext::getMain()->setRequest(
+			new FauxRequest( [ 'semanticacl-key' => 'some_key_123' ] )
+		);
+		RequestContext::getMain()->setUser( $this->getAnonUser() );
+
+		$this->resetClientCache();
+		TestableSemanticACL::checkPermission( $title, 'read', $this->getAnonUser() );
+
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Key-carrying request must not be client-cacheable' );
+	}
+
+	/**
+	 * A request from an ACL-whitelisted IP bypasses ACLs and may render
+	 * protected content; it must never enter the shared HTTP cache.
+	 */
+	public function testCachingDisabledForWhitelistedIp(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+
+		// Same setup as testIpWhitelistBypassesAcl: explicit request IP via
+		// reflection, whitelist set through the global (overrideConfigValue()
+		// resets services, which breaks SMW indexing mid-test).
+		$request = new FauxRequest();
+		$ipRef = new \ReflectionProperty( \MediaWiki\Request\WebRequest::class, 'ip' );
+		$ipRef->setAccessible( true );
+		$ipRef->setValue( $request, '192.168.1.100' );
+		RequestContext::getMain()->setRequest( $request );
+		RequestContext::getMain()->setUser( $this->getAnonUser() );
+
+		$GLOBALS['wgSemanticACLWhitelistIPs'] = [ '192.168.1.100' ];
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $this->getAnonUser() );
+
+		$this->assertTrue( $allowed, 'Whitelisted IP should be allowed through' );
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'Whitelisted-IP rendering must not enter the shared HTTP cache' );
 	}
 }

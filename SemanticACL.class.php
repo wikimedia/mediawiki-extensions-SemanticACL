@@ -750,10 +750,39 @@ class SemanticACL {
 		// reflection
 		self::$mOutputRef ??= new \ReflectionProperty( $parser, 'mOutput' );
 		if ( self::$mOutputRef->isInitialized( $parser ) ) {
+			/* This method is only reached when ACL data can influence the
+			 * rendering (see hasPermission()). Such a parse is not safe to
+			 * share with ANY other viewer — the parser cache is keyed on
+			 * parser options, not identity — so it is always invalidated:
+			 * a privileged user's parse may embed restricted content, an
+			 * unprivileged user's parse embeds the denial notice. */
 			$parser->getOutput()->updateCacheExpiry( 0 );
 		}
 
-		RequestContext::getMain()->getOutput()->disableClientCache();
+		/* The HTTP/CDN cache, by contrast, only ever stores responses to
+		 * anonymous sessionless requests — MediaWiki marks everything else
+		 * Cache-Control: private — and the canonical anonymous rendering is
+		 * identical for every anonymous visitor, ACLs included. It therefore
+		 * stays enabled except when this request can produce a NON-canonical
+		 * rendering:
+		 *  - a registered user (their rendering reflects their rights;
+		 *    redundant with core's session guards, kept as defense in depth);
+		 *  - a request carrying a private-link key (the response would be
+		 *    cached under the keyed URL and keep serving the page after the
+		 *    key is rotated, since edits only purge canonical URLs);
+		 *  - a whitelisted IP (bypasses ACLs entirely).
+		 */
+		$context = RequestContext::getMain();
+		$request = $context->getRequest();
+		$whitelistIPs = MediaWikiServices::getInstance()->getMainConfig()
+			->get( 'SemanticACLWhitelistIPs' );
+
+		if ( $context->getUser()->isRegistered()
+			|| $request->getVal( self::URL_ARG_NAME ) !== null
+			|| ( $whitelistIPs !== null && in_array( $request->getIP(), $whitelistIPs ) )
+		) {
+			$context->getOutput()->disableClientCache();
+		}
 	}
 
 	/**
