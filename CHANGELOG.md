@@ -4,6 +4,41 @@ All notable changes to the SemanticACL extension are documented in this file.
 
 ## 0.5.1 (unreleased)
 
+* Fix pages containing any image or template transclusion never being
+  cacheable: the file/bad-image and template permission checks that run
+  during every parse unconditionally disabled the parser cache and
+  client/CDN caching for the host page. Caching is now only disabled
+  when the verdict can vary by user — the checked page carries ACL
+  properties for the action (or visibility properties, for edit checks),
+  is a non-categorized file while a public images category is required,
+  or inherits ACLs from a parent with cascading permissions. The
+  decision still happens before the `sacl-exempt` and whitelisted-IP
+  early-returns, so a privileged rendering of protected content can
+  never enter a shared cache
+* Keep ACL pages HTTP-cacheable for plain anonymous requests: the
+  HTTP/CDN cache only ever stores anonymous responses, and the
+  canonical anonymous rendering (including denials and filtered
+  results) is identical for every anonymous visitor. The client cache
+  is now only disabled for requests that can produce a non-canonical
+  rendering — registered users, requests carrying a private-link key
+  (whose response would outlive key rotation under the keyed URL), and
+  ACL-whitelisted IPs. The parser cache, being shared across all
+  users, is still always invalidated on ACL-influenced renderings
+* Fix a fatal error on every view of a page carrying a malformed
+  `Visible to user` value (the invalid title parsed to null and crashed
+  the whitelist comparison); such values now simply never match
+* Fix `{{#SEMANTICACL_PRIVATE_LINK:}}` emitting a bogus URL (with the
+  "disabled" notice embedded as the key) when private links are turned
+  off; it now returns the notice itself
+* Prevent a private-link key defined by another page parsed earlier in
+  the same request from granting access to a page that declares the
+  `key` audience without defining a key of its own
+* Fix the six ACL property descriptions never appearing on
+  Special:Properties (they were registered under property ids with two
+  leading underscores instead of three)
+* Guard `onBadImage()` against invalid file names that fail title
+  parsing instead of throwing a fatal error
+* Compare private-link keys in constant time (`hash_equals()`)
 * Fix a private link key being ignored on a page that also defines a group
   or user whitelist. Multiple `Visible to` audience specifiers are now
   combined as a logical AND (the safest, most restrictive verdict wins),
