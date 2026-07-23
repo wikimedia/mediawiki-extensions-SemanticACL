@@ -425,11 +425,17 @@ class SemanticACL {
 					DIWikiPage::newFromTitle( $title )
 				);
 
-				if ( $semanticData->getPropertyValues( new DIProperty( $prefix ) ) ||
-					// Editability falls back to visibility restrictions.
-					( $prefix === '___EDITABLE' &&
-						$semanticData->getPropertyValues( new DIProperty( '___VISIBLE' ) ) )
-				) {
+				$aclValues = $semanticData->getPropertyValues( new DIProperty( $prefix ) );
+
+				if ( !$aclValues && $prefix === '___EDITABLE' ) {
+					/* A page with no explicit edit restriction falls back to
+					 * its visibility restrictions (a page that is not visible
+					 * is not editable either), so those values decide whether
+					 * the edit verdict can vary by user. */
+					$aclValues = $semanticData->getPropertyValues( new DIProperty( '___VISIBLE' ) );
+				}
+
+				if ( static::aclValuesVaryByUser( $aclValues ) ) {
 					// The page carries ACL properties relevant to the action.
 					static::disableCaching();
 				} elseif ( static::inheritsCascadingPermissions( $title ) ) {
@@ -708,6 +714,26 @@ class SemanticACL {
 		self::$_permissionCache[$cacheKey] = $hasPermission;
 
 		return $hasPermission;
+	}
+
+	/**
+	 * Whether a set of ACL audience values can make the permission verdict
+	 * vary from one user to another. 'public' grants everyone and is very
+	 * common as an explicit annotation (e.g. on file pages cleared for
+	 * public viewing), so a page whose only ACL value is 'public' renders
+	 * identically for every user and must stay cacheable.
+	 *
+	 * @param \SMW\DataItems\SMWDataItem[] $values audience specifier values
+	 * @return bool
+	 */
+	protected static function aclValuesVaryByUser( $values ) {
+		foreach ( $values as $value ) {
+			if ( strtolower( $value->getString() ) !== 'public' ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

@@ -1840,6 +1840,47 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * A page whose only ACL value is 'public' grants everyone by definition:
+	 * the verdict cannot vary by user, so caching must stay fully enabled.
+	 * Explicit [[Visible to::public]] annotations are common (e.g. on file
+	 * pages cleared for public viewing), and every page embedding such a
+	 * file would otherwise become uncacheable.
+	 */
+	public function testCachingStaysEnabledOnPublicAnnotatedPage(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::public]] Explicitly public.' );
+
+		$user = $this->getMutableTestUser()->getUser();
+		RequestContext::getMain()->setUser( $user );
+
+		$this->resetClientCache();
+		$allowed = TestableSemanticACL::checkPermission( $title, 'read', $user );
+
+		$this->assertTrue( $allowed );
+		$this->assertTrue( $this->clientCacheEnabled(),
+			'A public-only ACL annotation must leave caching enabled' );
+	}
+
+	/**
+	 * When 'public' is combined with a restrictive audience, the specifiers
+	 * are ANDed and the verdict varies by user again — caching must be
+	 * disabled.
+	 */
+	public function testCachingDisabledOnMixedPublicAndRestrictedPage(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::public]][[Visible to::users]] Mixed.' );
+
+		$user = $this->getMutableTestUser()->getUser();
+		RequestContext::getMain()->setUser( $user );
+
+		$this->resetClientCache();
+		TestableSemanticACL::checkPermission( $title, 'read', $user );
+
+		$this->assertFalse( $this->clientCacheEnabled(),
+			'public combined with a restrictive audience must disable caching' );
+	}
+
+	/**
 	 * The HTTP/client cache only ever stores responses to anonymous
 	 * sessionless requests, and the canonical anonymous rendering of an ACL
 	 * page (here: the denial) is identical for every anonymous visitor — so
