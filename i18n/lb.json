@@ -9,6 +9,7 @@
 	"sacl-property-visibility": "Visibel fir",
 	"sacl-property-visibility-wl-group": "Visibel fir de Grupp",
 	"sacl-property-visibility-wl-user": "Visibel fir de Benotzer",
+	"sacl-template-render-denied-anonymous": "Dir musst Iech [[Special:UserLogin|aloggen]], fir dës Schabloun kënnen ze gesinn.",
 	"sacl-template-render-denied-registered": "Dir hutt net déi néideg Rechter, fir dës Schabloun ze gesinn.",
 	"sacl-key-too-short": "De Schlëssel muss méi wéi 6 Buschtawe laang sinn."
 }

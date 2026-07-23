@@ -64,32 +64,32 @@ class SemanticACL {
 	public static function onSMWPropertyinitProperties( $propertyRegistry ) {
 		// VISIBLE
 		$propertyRegistry->registerProperty( '___VISIBLE', '_txt', 'Visible to' );
-		$propertyRegistry->registerPropertyDescriptionByMsgKey( '__VISIBLE', 'sacl-property-visibility' );
+		$propertyRegistry->registerPropertyDescriptionByMsgKey( '___VISIBLE', 'sacl-property-visibility' );
 
 		$propertyRegistry->registerProperty( '___VISIBLE_WL_GROUP', '_txt', 'Visible to group' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__VISIBLE_WL_GROUP', 'sacl-property-visibility-wl-group'
+			'___VISIBLE_WL_GROUP', 'sacl-property-visibility-wl-group'
 		);
 
 		$propertyRegistry->registerProperty( '___VISIBLE_WL_USER', '_txt', 'Visible to user' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__VISIBLE_WL_USER', 'sacl-property-visibility-wl-user'
+			'___VISIBLE_WL_USER', 'sacl-property-visibility-wl-user'
 		);
 
 		// EDITABLE
 		$propertyRegistry->registerProperty( '___EDITABLE', '_txt', 'Editable by' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__EDITABLE', 'sacl-property-Editable'
+			'___EDITABLE', 'sacl-property-Editable'
 		);
 
 		$propertyRegistry->registerProperty( '___EDITABLE_WL_GROUP', '_txt', 'Editable by group' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__EDITABLE_WL_GROUP', 'sacl-property-editable-wl-group'
+			'___EDITABLE_WL_GROUP', 'sacl-property-editable-wl-group'
 		);
 
 		$propertyRegistry->registerProperty( '___EDITABLE_WL_USER', '_txt', 'Editable by user' );
 		$propertyRegistry->registerPropertyDescriptionByMsgKey(
-			'__EDITABLE_WL_USER', 'sacl-property-editable-wl-user'
+			'___EDITABLE_WL_USER', 'sacl-property-editable-wl-user'
 		);
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
@@ -199,6 +199,12 @@ class SemanticACL {
 	public static function onBadImage( $name, &$bad ) {
 		// Also works with galleries and categories.
 		$title = Title::newFromText( $name, NS_FILE );
+
+		if ( !$title ) {
+			// Invalid file name; let MediaWiki handle it.
+			return true;
+		}
+
 		$user = RequestContext::getMain()->getUser();
 
 		if ( !static::fileHasRequiredCategory( $title ) && !$user->isAllowed( 'view-non-categorized-media' ) ) {
@@ -306,7 +312,10 @@ class SemanticACL {
 		);
 
 		if ( !$enablePrivateLinks ) {
-			$key = wfMessage( 'sacl-private-links-disabled' )->text();
+			/* Return the notice directly: assigning it to $key would let it
+			 * fall through the length check below and be emitted as a bogus
+			 * private link URL. */
+			return wfMessage( 'sacl-private-links-disabled' )->text();
 		}
 
 		if ( strlen( $key ) <= self::MIN_KEY_LENGTH ) {
@@ -330,7 +339,9 @@ class SemanticACL {
 	 * @param Title $title the title object to check permission on
 	 * @param string $action the action the user wants to do
 	 * @param \MediaWiki\User\User $user the user to check permissions for
-	 * @param bool $disableCaching force the page being checked to be rerendered for each user
+	 * @param bool $disableCaching disable caching of the page being rendered when the
+	 *   verdict can vary by user, so it is rerendered for each user; pass false when
+	 *   the caller manages caching itself
 	 * @return bool if the user is allowed to conduct the action
 	 */
 	protected static function hasPermission( $title, $action, $user, $disableCaching = true ) {
@@ -394,12 +405,50 @@ class SemanticACL {
 			$prefix = '___EDITABLE';
 		}
 
+		/* Disable caching (parser cache and client/CDN cache) only when the
+		 * verdict can vary from one user to another — otherwise every image
+		 * and transcluded template check would make its host page
+		 * uncacheable. If the page were cached in those cases, the same
+		 * rendering would be served without consideration for the user
+		 * viewing it.
+		 *
+		 * This must stay ahead of the sacl-exempt / whitelisted-IP
+		 * early-returns below: a privileged rendering of protected content,
+		 * baked into a host page's parser cache, would leak to other users.
+		 */
 		if ( $disableCaching ) {
-			/* If the parser caches the page, the same page will be returned
-			 * without consideration for the user viewing the page. Disable the
-			 * cache so it gets rendered anew for every user.
-			 */
-			static::disableCaching();
+			if ( $title->getNamespace() === NS_FILE && !static::fileHasRequiredCategory( $title ) ) {
+				// Visibility depends on the view-non-categorized-media right.
+				static::disableCaching();
+			} else {
+				$semanticData = StoreFactory::getStore()->getSemanticData(
+					DIWikiPage::newFromTitle( $title )
+				);
+
+				$aclValues = $semanticData->getPropertyValues( new DIProperty( $prefix ) );
+
+				if ( !$aclValues && $prefix === '___EDITABLE' ) {
+					/* A page with no explicit edit restriction falls back to
+					 * its visibility restrictions (a page that is not visible
+					 * is not editable either), so those values decide whether
+					 * the edit verdict can vary by user. */
+					$aclValues = $semanticData->getPropertyValues( new DIProperty( '___VISIBLE' ) );
+				}
+
+				if ( static::aclValuesVaryByUser( $aclValues ) ) {
+					// The page carries ACL properties relevant to the action.
+					static::disableCaching();
+				} elseif ( static::inheritsCascadingPermissions( $title ) ) {
+					/* A parent cascades its permissions onto this subpage, so
+					 * the verdict may vary by user whatever the parent's ACLs
+					 * grant. Checked here rather than relying only on the
+					 * recursive lookup at the end of this method, because the
+					 * exemption early-returns below would skip that lookup
+					 * for privileged users — whose rendering must not be
+					 * cached either. */
+					static::disableCaching();
+				}
+			}
 		}
 
 		// Failsafe: Some users are exempt from Semantic ACLs.
@@ -439,6 +488,17 @@ class SemanticACL {
 
 		$hasPermission = true;
 
+		/* Audience specifiers ('whitelist', 'users', 'public') are combined as a
+		 * logical AND: when more than one is set on a page (which is not a
+		 * recommended configuration) the safest, most restrictive verdict wins,
+		 * so any single denial denies access. The private link 'key' is a
+		 * separate override mechanism rather than an audience: a matching key
+		 * grants read access regardless of the audience verdict.
+		 */
+		$audienceChecked = false;
+		$audienceGranted = true;
+		$keyGrantsAccess = false;
+
 		// For each ACL specifier.
 		foreach ( $aclTypes as $valueObj ) {
 			switch ( strtolower( $valueObj->getString() ) ) {
@@ -474,16 +534,17 @@ class SemanticACL {
 					$whitelistValues = $store->getPropertyValues( $userProperty );
 
 					foreach ( $whitelistValues as $whitelistValue ) {
+						// newFromDBkey() returns null on malformed titles; a
+						// bad annotation value must not fatal the page view.
 						$userPage = Title::newFromDBkey( $whitelistValue->getString() );
 
-						if ( $user->getUserPage()->equals( $userPage ) ) {
+						if ( $userPage && $user->getUserPage()->equals( $userPage ) ) {
 							$isWhitelisted = true;
 						}
 					}
 
-					if ( !$isWhitelisted ) {
-						$hasPermission = false;
-					}
+					$audienceChecked = true;
+					$audienceGranted = $audienceGranted && $isWhitelisted;
 
 					break;
 
@@ -527,6 +588,12 @@ class SemanticACL {
 						// Not implemented on non-text contents
 						break;
 					}
+					/* Clear any key left over from an earlier parse in this
+					 * request (e.g. another page's private link function),
+					 * so only a key defined by the page being checked can
+					 * ever match. */
+					self::$_key = '';
+
 					$text = $parser->recursivePreprocess(
 						$content->getText(),
 						$title,
@@ -544,21 +611,32 @@ class SemanticACL {
 					if (
 						strlen( $key ) > self::MIN_KEY_LENGTH &&
 						isset( $query[self::URL_ARG_NAME] ) &&
-						// If the key provided in the request arguments matches the key in the page.
-						$query[self::URL_ARG_NAME] === $key
+						is_string( $query[self::URL_ARG_NAME] ) &&
+						// Constant-time comparison of the key provided in the
+						// request arguments against the key in the page.
+						hash_equals( $key, $query[self::URL_ARG_NAME] )
 					) {
-						$hasPermission = true;
+						// A matching key overrides the audience verdict.
+						$keyGrantsAccess = true;
 					}
 
 					break;
 
 				case 'users':
-					$hasPermission = !$user->isAnon();
+					$audienceChecked = true;
+					$audienceGranted = $audienceGranted && !$user->isAnon();
 					break;
 
 				case 'public':
-					$hasPermission = true;
+					$audienceChecked = true;
 			}
+		}
+
+		// Combine the audience verdict with the private link key override.
+		if ( $keyGrantsAccess ) {
+			$hasPermission = true;
+		} elseif ( $audienceChecked ) {
+			$hasPermission = $audienceGranted;
 		}
 
 		// Talk pages with their own ACL fall back to the subject page for
@@ -639,6 +717,70 @@ class SemanticACL {
 	}
 
 	/**
+	 * Whether a set of ACL audience values can make the permission verdict
+	 * vary from one user to another. 'public' grants everyone and is very
+	 * common as an explicit annotation (e.g. on file pages cleared for
+	 * public viewing), so a page whose only ACL value is 'public' renders
+	 * identically for every user and must stay cacheable.
+	 *
+	 * @param \SMW\DataItems\SMWDataItem[] $values audience specifier values
+	 * @return bool
+	 */
+	protected static function aclValuesVaryByUser( $values ) {
+		foreach ( $values as $value ) {
+			if ( strtolower( $value->getString() ) !== 'public' ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Whether a parent page cascades its permissions onto this subpage.
+	 * Walks the parent chain the same way the cascading lookup in
+	 * hasPermission() does, but only checks for the cascade flag — the
+	 * actual ACL evaluation is left to that lookup.
+	 *
+	 * @param Title $title
+	 * @return bool
+	 */
+	protected static function inheritsCascadingPermissions( $title ) {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		if ( self::$inCascadingLookup ||
+			!$config->get( 'SemanticACLEnableCascadingACL' ) ||
+			!$title->isSubPage()
+		) {
+			return false;
+		}
+
+		$parent = $title;
+
+		do {
+			$parent = $parent->getBaseTitle();
+
+			if ( !$parent->exists() ) {
+				if ( !$parent->isSubPage() ) {
+					break;
+				}
+				// Skip page, it does not exist.
+				continue;
+			}
+
+			$cascade = StoreFactory::getStore()->getSemanticData(
+				DIWikiPage::newFromTitle( $parent )
+			)->getPropertyValues( new DIProperty( '___CASCADE_PERMISSIONS' ) );
+
+			if ( isset( $cascade[0] ) && $cascade[0]->getBoolean() ) {
+				return true;
+			}
+		} while ( $parent->isSubPage() );
+
+		return false;
+	}
+
+	/**
 	 * Disable caching for the page currently being rendered.
 	 */
 	/** @var ?\ReflectionProperty Cached reflection for Parser::$mOutput. */
@@ -650,13 +792,42 @@ class SemanticACL {
 		// Parser::getOutput() emits E_USER_DEPRECATED when called before the
 		// parser has been initialized (since MW 1.42). PHP offers no public API
 		// to test for this, so we inspect the uninitialized typed property via
-		// reflection (safe on PHP 8.1+ without setAccessible).
+		// reflection
 		self::$mOutputRef ??= new \ReflectionProperty( $parser, 'mOutput' );
 		if ( self::$mOutputRef->isInitialized( $parser ) ) {
+			/* This method is only reached when ACL data can influence the
+			 * rendering (see hasPermission()). Such a parse is not safe to
+			 * share with ANY other viewer — the parser cache is keyed on
+			 * parser options, not identity — so it is always invalidated:
+			 * a privileged user's parse may embed restricted content, an
+			 * unprivileged user's parse embeds the denial notice. */
 			$parser->getOutput()->updateCacheExpiry( 0 );
 		}
 
-		RequestContext::getMain()->getOutput()->disableClientCache();
+		/* The HTTP/CDN cache, by contrast, only ever stores responses to
+		 * anonymous sessionless requests — MediaWiki marks everything else
+		 * Cache-Control: private — and the canonical anonymous rendering is
+		 * identical for every anonymous visitor, ACLs included. It therefore
+		 * stays enabled except when this request can produce a NON-canonical
+		 * rendering:
+		 *  - a registered user (their rendering reflects their rights;
+		 *    redundant with core's session guards, kept as defense in depth);
+		 *  - a request carrying a private-link key (the response would be
+		 *    cached under the keyed URL and keep serving the page after the
+		 *    key is rotated, since edits only purge canonical URLs);
+		 *  - a whitelisted IP (bypasses ACLs entirely).
+		 */
+		$context = RequestContext::getMain();
+		$request = $context->getRequest();
+		$whitelistIPs = MediaWikiServices::getInstance()->getMainConfig()
+			->get( 'SemanticACLWhitelistIPs' );
+
+		if ( $context->getUser()->isRegistered()
+			|| $request->getVal( self::URL_ARG_NAME ) !== null
+			|| ( $whitelistIPs !== null && in_array( $request->getIP(), $whitelistIPs ) )
+		) {
+			$context->getOutput()->disableClientCache();
+		}
 	}
 
 	/**
