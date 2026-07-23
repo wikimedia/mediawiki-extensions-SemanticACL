@@ -2,7 +2,15 @@
 
 All notable changes to the SemanticACL extension are documented in this file.
 
-## 0.5.1 (unreleased)
+## 0.5.2 (2026-07-23)
+
+* Keep pages whose only ACL value is `public` cacheable: an explicit
+  `[[Visible to::public]]` annotation (common on file pages cleared for
+  public viewing) grants everyone by definition, but still counted as
+  "verdict may vary by user" and disabled caching for the page — and
+  for every page embedding such a file or template
+
+## 0.5.1 (2026-07-22)
 
 * Fix pages containing any image or template transclusion never being
   cacheable: the file/bad-image and template permission checks that run
