@@ -2,6 +2,14 @@
 
 All notable changes to the SemanticACL extension are documented in this file.
 
+## Unreleased
+
+* Stop disabling the parser cache when an SMW query result is merely
+  edit-restricted: only a non-public `Visible to` value can make the
+  result list vary by viewer, so a non-public `Editable by` value on a
+  result (e.g. an edit-whitelisted article listed on a portal page) no
+  longer makes the embedding page uncacheable
+
 ## 0.5.2 (2026-07-23)
 
 * Keep pages whose only ACL value is `public` cacheable: an explicit
