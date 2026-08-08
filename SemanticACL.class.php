@@ -144,20 +144,20 @@ class SemanticACL {
 			} else {
 				$semanticData = $store->getSemanticData( $result );
 
-				// Look for a SemanticACL property in the page's list of properties.
+				/* Look for a visibility restriction in the page's list of
+				 * properties. Only ___VISIBLE can make the result list vary
+				 * by viewer (a whitelisted viewer sees the row, others do
+				 * not); an edit restriction (___EDITABLE) never changes what
+				 * a reader sees in a query result, so it must not disable
+				 * caching of the embedding page. */
 				foreach ( $semanticData->getProperties() as $property ) {
-					$key = $property->getKey();
-
-					foreach ( [ '___VISIBLE', '___EDITABLE' ] as $semanticACLProperty ) {
-						// If this is a SemanticACL property.
-						if ( $key === $semanticACLProperty ) {
-							foreach ( $semanticData->getPropertyValues( $property ) as $dataItem ) {
-								// If this is a not a public item.
-								if ( $dataItem->getSerialization() !== 'public' ) {
-									// That item is not always visible, disable caching.
-									static::disableCaching();
-									break 3;
-								}
+					if ( $property->getKey() === '___VISIBLE' ) {
+						foreach ( $semanticData->getPropertyValues( $property ) as $dataItem ) {
+							// If this is a not a public item.
+							if ( $dataItem->getSerialization() !== 'public' ) {
+								// That item is not always visible, disable caching.
+								static::disableCaching();
+								break 2;
 							}
 						}
 					}

@@ -11,7 +11,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use SMW\MediaWiki\Deferred\CallableUpdate as SMWCallableUpdate;
-use SMW\MediaWiki\Hooks as SMWHooks;
 use SMW\PropertyRegistry;
 use SMW\Query\Language\NamespaceDescription;
 use SMW\Services\ServicesFactory as SMWServicesFactory;
@@ -92,14 +91,17 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		PropertyRegistry::clear();
 		StoreFactory::clear();
 
-		// Re-register SMW's programmatic hooks into the new HookContainer created by
-		// overrideMwServices() inside parent::setUp(). SMW registers LinksUpdateComplete
-		// and other handlers at boot time via $hookContainer->register(), which stores
-		// them in the container's extraHandlers array. The fresh container built for
-		// each test only inherits hooks declared in $wgHooks and extension.json 'Hooks',
-		// so SMW's LinksUpdateComplete handler would be absent — meaning no data would
-		// be written to the store when createPage() flushes deferred updates.
-		( new SMWHooks() )->register();
+		/* With SMW < 7.1, SMW registers LinksUpdateComplete and other handlers
+		 * programmatically at boot via $hookContainer->register(); the fresh
+		 * HookContainer created by overrideMwServices() inside parent::setUp()
+		 * only inherits hooks declared in $wgHooks and extension.json, so those
+		 * handlers must be re-registered or no data reaches the store when
+		 * createPage() flushes deferred updates. SMW ≥ 7.1 declares its hooks
+		 * in extension.json (HookHandlers) and deleted that class, and the
+		 * fresh container inherits them natively. */
+		if ( class_exists( \SMW\MediaWiki\Hooks::class ) ) {
+			( new \SMW\MediaWiki\Hooks() )->register();
+		}
 
 		// Discard any SMW updates left over from a previous test.  SMW queues
 		// DataUpdater jobs in a static CallableUpdate::$pendingUpdates array when
