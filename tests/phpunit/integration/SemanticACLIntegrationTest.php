@@ -2056,7 +2056,6 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 		// resets services, which breaks SMW indexing mid-test).
 		$request = new FauxRequest();
 		$ipRef = new \ReflectionProperty( \MediaWiki\Request\WebRequest::class, 'ip' );
-		$ipRef->setAccessible( true );
 		$ipRef->setValue( $request, '192.168.1.100' );
 		RequestContext::getMain()->setRequest( $request );
 		RequestContext::getMain()->setUser( $this->getAnonUser() );
