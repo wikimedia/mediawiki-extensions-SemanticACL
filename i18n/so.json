@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"sacl-desc": "Waxay oggolaanaysaa in xannibaadaha gelitaanka lagu dejiyo sifooyinka Semantic MediaWiki",
+	"sacl-denied": "Kuma jirto liiska gelitaanka boggan.",
+	"action-sacl-exempt": "Laga dhaafo ACL-yada Semantic",
+	"right-sacl-exempt": "Laga dhaafo ACL-yada Semantic",
+	"action-view-non-categorized-media": "Eeg faylasha warbaahinta ee aan qaybsanayn",
+	"right-view-non-categorized-media": "Eeg faylasha warbaahinta ee aan qaybsanayn",
+	"sacl-property-visibility": "Loo arki karo",
+	"sacl-property-visibility-wl-group": "Loo arki karo kooxda",
+	"sacl-property-visibility-wl-user": "Loo arki karo isticmaalaha",
+	"sacl-property-editable": "Wax ka beddeli kara",
+	"sacl-property-editable-wl-group": "Kooxdu wax ka beddeli karto",
+	"sacl-property-editable-wl-user": "Isticmaaluhu wax ka beddeli karo",
+	"sacl-template-render-denied-anonymous": "Waa inaad [[Special:UserLogin|gashaa]] si aad u aragto tusmadaan.",
+	"sacl-template-render-denied-registered": "Ma lihid oggolaanshaha loo baahan yahay si aad u aragto tusmadaan.",
+	"sacl-key-too-short": "Furaha waa inuu ka badan yahay 6 xaraf.",
+	"sacl-private-links-disabled": "Xiriirrada gaarka ah waxaa curyaamiyay maamulahaaga",
+	"sacl-property-cascade-permissions": "Oggolaanshaha u gudbi bogagga hoose"
+}
