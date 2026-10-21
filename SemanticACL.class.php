@@ -50,6 +50,19 @@ class SemanticACL {
 	protected static bool $ignoreCliMode = false;
 
 	/**
+	 * Enforce ACLs in command line mode, where they are skipped by default.
+	 *
+	 * Maintenance scripts that publish content on behalf of other users (for
+	 * example a sitemap generator checking what anonymous users can read) must
+	 * call this, otherwise every permission check succeeds.
+	 *
+	 * @param bool $enforce
+	 */
+	public static function enforceInCliMode( bool $enforce ): void {
+		static::$ignoreCliMode = $enforce;
+	}
+
+	/**
 	 * When true, cascading permission lookups are suppressed.
 	 * Used as a recursion guard in hasPermission().
 	 */

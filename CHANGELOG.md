@@ -4,6 +4,9 @@ All notable changes to the SemanticACL extension are documented in this file.
 
 ## Unreleased
 
+* Add `SemanticACL::enforceInCliMode()` so maintenance scripts can opt in
+  to ACL checks, which are skipped in command line mode by default (e.g. a
+  sitemap generator excluding pages anonymous users cannot read)
 * Stop disabling the parser cache when an SMW query result is merely
   edit-restricted: only a non-public `Visible to` value can make the
   result list vary by viewer, so a non-public `Editable by` value on a

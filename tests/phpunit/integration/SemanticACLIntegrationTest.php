@@ -174,6 +174,33 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * ACLs are skipped in command line mode unless a script opts in with
+	 * enforceInCliMode(), e.g. a sitemap generator checking what anonymous
+	 * users can read through the PermissionManager.
+	 */
+	public function testEnforceInCliModeAppliesAclsToBaseClass(): void {
+		$title = Title::newFromText( 'SemanticACLTest_' . __FUNCTION__ );
+		$this->createPage( $title, '[[Visible to::users]] Members only.' );
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		$this->assertTrue(
+			$permissionManager->userCan( 'read', $this->getAnonUser(), $title ),
+			'ACLs must be skipped in command line mode by default'
+		);
+
+		SemanticACL::enforceInCliMode( true );
+		try {
+			TestableSemanticACL::resetPermissionCache();
+			$this->assertFalse(
+				$permissionManager->userCan( 'read', $this->getAnonUser(), $title ),
+				'ACLs must apply in command line mode once enforced'
+			);
+		} finally {
+			SemanticACL::enforceInCliMode( false );
+		}
+	}
+
+	/**
 	 * The other side of 'users' visibility: a logged-in user must be allowed
 	 * through. Verifies the hook returns true and leaves $result unchanged.
 	 */
@@ -1436,16 +1463,14 @@ class SemanticACLIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * permissions in CLI mode.
 	 */
 	private function enableBaseClassAcl(): void {
-		$ref = new \ReflectionProperty( SemanticACL::class, 'ignoreCliMode' );
-		$ref->setValue( null, true );
+		SemanticACL::enforceInCliMode( true );
 	}
 
 	/**
 	 * Restore the base class CLI mode bypass.
 	 */
 	private function disableBaseClassAcl(): void {
-		$ref = new \ReflectionProperty( SemanticACL::class, 'ignoreCliMode' );
-		$ref->setValue( null, false );
+		SemanticACL::enforceInCliMode( false );
 	}
 
 	/**
