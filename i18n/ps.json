@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"sacl-desc": "د ماناپوهنيزه مېډياويکي ځانتياو سره د لاسرسي محدوديتونو اوڼلو ته اجازه ورکوي",
+	"sacl-denied": "تاسو دې مخ ته دلاسسي لړليک کې نه ياست.",
+	"action-sacl-exempt": "د لاسرسي‌واک‌لړ څخه بښلي شئ",
+	"right-sacl-exempt": "د لاسرسي‌واک‌لړ څخه بښلي شئ",
+	"action-view-non-categorized-media": "ناوېشنيزه‌شوې رسنيزې دوتنې کتل",
+	"right-view-non-categorized-media": "ناوېشنيزه‌شوې رسنيزې دوتنې کتل",
+	"sacl-property-visibility": "ليدوړ",
+	"sacl-property-visibility-wl-group": "ډلې ته د ليدوړ",
+	"sacl-property-visibility-wl-user": "کارن ته د ليدوړ",
+	"sacl-property-editable": "د...له‌خوا د سمون‌وړ",
+	"sacl-property-editable-wl-group": "د ډلې له‌خوا د سمون‌وړ",
+	"sacl-property-editable-wl-user": "د کارن له‌خوا د سمون‌وړ",
+	"sacl-key-too-short": "کونجي بايد له ۶ تورو زياته اوږده وي.",
+	"sacl-private-links-disabled": "پټواله_تړوني_ستاسو_د_پازوال_له‌خوا_ناچارن‌شوي_دي",
+	"sacl-property-cascade-permissions": "څېرمه‌مخونو ته ځړوبيزې پرېښلې"
+}
